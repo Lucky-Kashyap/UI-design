@@ -76,7 +76,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-tg-soft"
+      className="relative overflow-hidden bg-tg-soft scroll-mt-[var(--tg-header-offset,5.5rem)]"
       aria-labelledby="about-heading"
     >
       <div className="absolute inset-0 tg-soft-texture opacity-70 pointer-events-none" aria-hidden="true" />

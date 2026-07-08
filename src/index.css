@@ -232,7 +232,7 @@
   }
 
   .tg-btn-outline {
-    @apply inline-flex items-center justify-center rounded-tg-pill border border-tg-navy/20 bg-white font-semibold text-tg-navy;
+    @apply inline-flex items-center justify-center rounded-tg-pill border border-tg-line bg-white font-semibold text-tg-navy;
     padding-inline: var(--tg-btn-x);
     padding-block: var(--tg-btn-y);
     min-height: var(--tg-btn-min-h);
@@ -337,6 +337,18 @@
 
   .tg-nav-link--hero::after {
     background-image: linear-gradient(90deg, #c9a227, #d4b84a);
+  }
+
+  .tg-mobile-nav-link {
+    @apply rounded-xl px-3.5 py-2.5 text-sm font-medium text-tg-ink transition-colors duration-300;
+  }
+
+  .tg-mobile-nav-link:hover {
+    @apply bg-tg-soft text-tg-cyan;
+  }
+
+  .tg-mobile-nav-link--active {
+    @apply bg-tg-soft font-semibold text-tg-navy;
   }
 
   .tg-logo-hero {

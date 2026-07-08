@@ -16,13 +16,22 @@ export const SITE = {
 
 export type NavLink = { label: string; href: string };
 
+/** Primary nav links — order matches page layout (see Home.tsx). */
 export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '#home' },
-  { label: 'About Us', href: '#about' },
   { label: 'Services', href: '#ventures' },
+  { label: 'About Us', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' },
 ];
+
+/** Nav links rendered in the header menu. */
+export const HEADER_NAV_LINKS = NAV_LINKS;
+
+/** All anchored sections in page order — used for scroll-spy. */
+export const PAGE_SECTION_IDS = ['home', 'ventures', 'about', 'gallery', 'contact'] as const;
+
+export const CONTACT_CTA = { label: 'Get a Free Quote', href: '#contact' } as const;
 
 export type HeroSlide = {
   src: string;

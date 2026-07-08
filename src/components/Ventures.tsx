@@ -7,7 +7,7 @@ const Ventures = () => {
   const reduce = useReducedMotion() ?? false;
 
   return (
-    <section id="ventures" className="tg-section bg-tg-bg relative overflow-hidden scroll-mt-24" aria-labelledby="ventures-heading">
+    <section id="ventures" className="tg-section bg-tg-bg relative overflow-hidden scroll-mt-[var(--tg-header-offset,5.5rem)]" aria-labelledby="ventures-heading">
       <div className="absolute inset-x-0 top-0 h-px tg-prism-line opacity-70" aria-hidden="true" />
       <div className="tg-container relative">
         <motion.div

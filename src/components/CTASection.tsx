@@ -8,7 +8,7 @@ const CTASection = () => {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden text-white"
+      className="relative overflow-hidden text-white scroll-mt-[var(--tg-header-offset,5.5rem)]"
       aria-labelledby="cta-heading"
     >
       <div className="absolute inset-0">

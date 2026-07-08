@@ -43,7 +43,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="tg-hero relative min-h-[100dvh] overflow-x-clip bg-tg-deep lg:overflow-hidden"
+      className="tg-hero relative min-h-[100dvh] overflow-x-clip bg-tg-deep lg:overflow-hidden scroll-mt-[var(--tg-header-offset,5.5rem)]"
       aria-labelledby="hero-heading"
     >
       <HeroBackground activeIndex={activeVenture} />

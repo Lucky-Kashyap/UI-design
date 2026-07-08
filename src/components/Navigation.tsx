@@ -2,32 +2,16 @@ import { useEffect, useState } from 'react';
 import { Menu, Phone, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TraditionalGroupLogo from '@/components/TraditionalGroupLogo';
-import { NAV_LINKS, SITE } from '@/data/traditionalGroup';
+import { CONTACT_CTA, NAV_LINKS, PAGE_SECTION_IDS, SITE } from '@/data/traditionalGroup';
+import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { useScrolledPast } from '@/hooks/useScrolledPast';
 import { cn } from '@/lib/utils';
 
 const Navigation = () => {
   const scrolled = useScrolledPast(48);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('#home');
-
-  useEffect(() => {
-    const onScroll = () => {
-      const sections = NAV_LINKS.map((link) => link.href.replace('#', ''));
-      let current = '#home';
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top;
-        if (top <= 96) current = `#${id}`;
-      }
-      setActive(current);
-    };
-
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const { active, setActiveHref } = useScrollSpy(PAGE_SECTION_IDS);
+  const contactActive = active === CONTACT_CTA.href;
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -37,6 +21,11 @@ const Navigation = () => {
   }, [open]);
 
   const close = () => setOpen(false);
+
+  const handleNavClick = (href: string) => {
+    setActiveHref(href);
+    close();
+  };
 
   return (
     <div
@@ -54,7 +43,7 @@ const Navigation = () => {
         <a
           href="#home"
           className="shrink-0 transition-transform duration-300 hover:scale-[1.02]"
-          onClick={close}
+          onClick={() => handleNavClick('#home')}
           aria-label="Traditional Group home"
         >
           <TraditionalGroupLogo priority variant={scrolled ? 'default' : 'hero'} />
@@ -65,6 +54,8 @@ const Navigation = () => {
             <li key={link.href}>
               <a
                 href={link.href}
+                onClick={() => setActiveHref(link.href)}
+                aria-current={active === link.href ? 'page' : undefined}
                 className={cn(
                   'tg-nav-link',
                   scrolled
@@ -81,13 +72,16 @@ const Navigation = () => {
 
         <div className="hidden lg:flex">
           <a
-            href="#contact"
+            href={CONTACT_CTA.href}
+            onClick={() => setActiveHref(CONTACT_CTA.href)}
+            aria-current={contactActive ? 'page' : undefined}
             className={cn(
               'tg-btn-nav transition-all duration-300',
               scrolled ? 'tg-btn-primary' : 'tg-btn-gold',
+              contactActive && 'ring-2 ring-tg-cyan/60 ring-offset-2 ring-offset-transparent',
             )}
           >
-            Get a Free Quote
+            {CONTACT_CTA.label}
           </a>
         </div>
 
@@ -102,7 +96,7 @@ const Navigation = () => {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((value) => !value)}
           whileTap={{ scale: 0.92 }}
         >
           {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -123,16 +117,32 @@ const Navigation = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={close}
+                  onClick={() => handleNavClick(link.href)}
+                  aria-current={active === link.href ? 'page' : undefined}
                   className={cn(
                     'rounded-xl px-3.5 py-2.5 text-sm font-medium text-tg-ink transition-all duration-300 hover:bg-tg-soft hover:text-tg-cyan hover:translate-x-1',
-                    active === link.href && 'bg-tg-soft text-tg-navy',
+                    active === link.href && 'bg-tg-soft text-tg-navy font-semibold',
                   )}
                 >
                   {link.label}
                 </a>
               ))}
-              <a href={SITE.phoneHref} className="mt-1.5 tg-btn-primary w-full gap-2" onClick={close}>
+              <a
+                href={CONTACT_CTA.href}
+                onClick={() => handleNavClick(CONTACT_CTA.href)}
+                aria-current={contactActive ? 'page' : undefined}
+                className={cn(
+                  'mt-1 tg-btn-primary w-full',
+                  contactActive && 'ring-2 ring-tg-cyan/50',
+                )}
+              >
+                {CONTACT_CTA.label}
+              </a>
+              <a
+                href={SITE.phoneHref}
+                className="tg-btn-secondary w-full gap-2 border border-tg-line"
+                onClick={close}
+              >
                 <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
                 Call {SITE.phoneDisplay}
               </a>

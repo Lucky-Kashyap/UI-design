@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import Home from '@/pages/Home';
+import { emitScroll, getHeaderOffsetPx } from '@/lib/scroll';
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,9 @@ function App() {
     };
     frame = requestAnimationFrame(raf);
 
+    lenis.on('scroll', emitScroll);
+    window.addEventListener('scroll', emitScroll, { passive: true });
+
     const onAnchorClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
       const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
@@ -43,7 +47,7 @@ function App() {
 
       event.preventDefault();
       lenis.scrollTo(el, {
-        offset: -100,
+        offset: -getHeaderOffsetPx(),
         duration: 1.4,
         easing: (t) => 1 - Math.pow(1 - t, 4),
       });
@@ -53,6 +57,8 @@ function App() {
 
     return () => {
       document.removeEventListener('click', onAnchorClick);
+      window.removeEventListener('scroll', emitScroll);
+      lenis.off('scroll', emitScroll);
       cancelAnimationFrame(frame);
       delete (window as Window & { __lenis?: Lenis }).__lenis;
       lenis.destroy();

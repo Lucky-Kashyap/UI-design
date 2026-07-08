@@ -29,7 +29,7 @@ const Gallery = () => {
   }, [active]);
 
   return (
-    <section id="gallery" className="tg-section bg-tg-bg overflow-hidden" aria-labelledby="gallery-heading">
+    <section id="gallery" className="tg-section bg-tg-bg overflow-hidden scroll-mt-[var(--tg-header-offset,5.5rem)]" aria-labelledby="gallery-heading">
       <div className="tg-container">
         <motion.div
           className="tg-section-header max-w-2xl"

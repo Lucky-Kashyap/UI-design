@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { VENTURES, type Venture } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
 
@@ -44,7 +45,7 @@ const HeroVenturePicker = () => {
 
   useEffect(() => () => clearTimers(), [clearTimers]);
 
-  const handleManualSelect = (index: number) => {
+  const handleFocus = (index: number) => {
     setSelected(index);
     setIsAutoPlaying(false);
     clearTimers();
@@ -62,8 +63,9 @@ const HeroVenturePicker = () => {
   };
 
   return (
-    <motion.div
-      className="tg-venture-glass w-full lg:max-w-venture-panel lg:shrink-0"
+    <motion.nav
+      className="tg-venture-glass w-full"
+      aria-label="Traditional Group ventures"
       initial={reduce ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -77,20 +79,22 @@ const HeroVenturePicker = () => {
 
           return (
             <li key={venture.id}>
-              <motion.button
-                type="button"
-                onClick={() => handleManualSelect(index)}
+              <motion.a
+                href="#ventures"
                 className={cn(
-                  'tg-venture-chip relative w-full text-left',
+                  'tg-venture-chip group/chip relative flex w-full items-center text-left',
                   active && 'tg-venture-chip--active',
                 )}
+                onMouseEnter={() => handleFocus(index)}
+                onFocus={() => handleFocus(index)}
                 whileHover={reduce ? undefined : { scale: 1.015, x: 2 }}
                 whileTap={reduce ? undefined : { scale: 0.985 }}
-                aria-pressed={active}
+                aria-current={active ? 'true' : undefined}
+                aria-label={`View ${venture.shortName} in portfolio`}
               >
                 <span
                   className={cn(
-                    'absolute inset-0 rounded-[inherit] transition-opacity duration-300',
+                    'absolute inset-0 rounded-[inherit] transition-opacity duration-500',
                     active
                       ? `bg-gradient-to-r ${gradient} opacity-100`
                       : 'bg-white/5 opacity-100',
@@ -100,23 +104,29 @@ const HeroVenturePicker = () => {
                 {active && showShimmer && (
                   <span className="tg-venture-shimmer absolute inset-0 rounded-[inherit]" aria-hidden="true" />
                 )}
-                <span className="relative z-[1] flex items-center justify-between gap-2">
+                <span className="relative z-[1] flex w-full items-center justify-between gap-2">
                   <span className="font-display text-venture-chip leading-tight text-white">
                     {venture.shortName}
                   </span>
-                  {active && (
-                    <span
-                      className="h-1.5 w-1.5 shrink-0 rounded-full bg-white shadow-[0_0_0.5rem_rgba(255,255,255,0.85)]"
+                  <span className="flex items-center gap-1.5">
+                    {active && (
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-white shadow-[0_0_0.5rem_rgba(255,255,255,0.85)]"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <ArrowUpRight
+                      className="h-3.5 w-3.5 shrink-0 text-white/50 transition-all duration-300 group-hover/chip:text-white group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5"
                       aria-hidden="true"
                     />
-                  )}
+                  </span>
                 </span>
-              </motion.button>
+              </motion.a>
             </li>
           );
         })}
       </ul>
-    </motion.div>
+    </motion.nav>
   );
 };
 

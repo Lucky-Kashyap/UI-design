@@ -274,6 +274,77 @@
     overflow: hidden;
   }
 
+  .tg-venture-card {
+    background: var(--tg-navy-deep);
+  }
+
+  .tg-venture-reveal {
+    background: linear-gradient(
+      145deg,
+      rgba(6, 20, 40, 0.97) 0%,
+      rgba(11, 31, 58, 0.96) 45%,
+      rgba(27, 163, 201, 0.22) 100%
+    );
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tg-venture-reveal__content,
+  .tg-venture-reveal__cta {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tg-venture-reveal__cta {
+    transition-delay: 0.08s;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .tg-venture-card:hover .tg-venture-reveal,
+    .tg-venture-card:focus-within .tg-venture-reveal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .tg-venture-card:hover .tg-venture-reveal__content,
+    .tg-venture-card:hover .tg-venture-reveal__cta,
+    .tg-venture-card:focus-within .tg-venture-reveal__content,
+    .tg-venture-card:focus-within .tg-venture-reveal__cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tg-venture-card:hover .tg-venture-reveal__content {
+      transition-delay: 0.12s;
+    }
+
+    .tg-venture-card:hover .tg-venture-reveal__cta {
+      transition-delay: 0.22s;
+    }
+  }
+
+  .tg-timeline-dot--active {
+    box-shadow: 0 0 0 4px rgba(27, 163, 201, 0.18);
+    border-color: var(--tg-prism-cyan);
+  }
+
+  .tg-timeline-panel {
+    transition:
+      border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tg-timeline-panel:hover {
+    box-shadow: 0 0.75rem 1.75rem rgba(11, 31, 58, 0.08);
+  }
+
   .tg-flip-inner {
     position: absolute;
     inset: 0;
@@ -499,8 +570,76 @@
     min-height: 0;
     display: flex;
     align-items: center;
-    padding-bottom: calc(var(--tg-hero-scroll-h) + 0.2rem);
+    padding-bottom: calc(var(--tg-hero-scroll-h) + 0.35rem);
     overflow: hidden;
+  }
+
+  .tg-hero-scroll-cue {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: var(--tg-hero-scroll-h);
+    padding-bottom: max(0.625rem, env(safe-area-inset-bottom, 0px));
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgba(6, 20, 40, 0.72) 0%,
+      rgba(6, 20, 40, 0.28) 55%,
+      transparent 100%
+    );
+  }
+
+  .tg-hero-scroll-cue__btn {
+    position: relative;
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition:
+      transform 0.35s var(--tg-ease),
+      border-color 0.35s ease,
+      background-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .tg-hero-scroll-cue__btn:hover {
+    transform: translateY(0.2rem);
+    border-color: rgba(27, 163, 201, 0.65);
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 0.5rem 1.25rem rgba(6, 20, 40, 0.35);
+  }
+
+  .tg-hero-scroll-cue__pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: tg-scroll-cue 1.8s ease-in-out infinite;
+    opacity: 0.7;
+  }
+
+  .tg-hero-scroll-cue__icon {
+    width: var(--tg-font-scroll-icon);
+    height: var(--tg-font-scroll-icon);
+    animation: tg-scroll-cue 1.8s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+  }
+
+  .tg-hero-scroll-cue__btn:hover .tg-hero-scroll-cue__icon {
+    color: var(--tg-prism-cyan);
   }
 
   .tg-hero-scroll {
@@ -686,8 +825,8 @@
 .tg-live-dot {
   position: relative;
   display: inline-flex;
-  height: 0.625rem;
-  width: 0.625rem;
+  height: var(--tg-live-dot-size, 0.5rem);
+  width: var(--tg-live-dot-size, 0.5rem);
   flex-shrink: 0;
   align-items: center;
   justify-content: center;

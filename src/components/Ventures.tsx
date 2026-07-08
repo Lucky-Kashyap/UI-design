@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { VENTURES, type Venture } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
+
 const Ventures = () => {
   const reduce = useReducedMotion() ?? false;
 
@@ -40,8 +41,7 @@ const Ventures = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  'group relative block min-h-[260px] xs:min-h-[280px] md:min-h-[340px] rounded-2xl',
-                  reduce ? 'overflow-hidden shadow-sm hover:shadow-xl' : 'tg-flip-card',
+                  'group tg-venture-card relative block min-h-[260px] xs:min-h-[280px] md:min-h-[340px] overflow-hidden rounded-2xl shadow-sm transition-shadow duration-500 hover:shadow-xl',
                   span,
                 )}
                 initial={reduce ? false : { opacity: 0, y: 28 }}
@@ -50,20 +50,8 @@ const Ventures = () => {
                 transition={{ duration: 0.5, delay: reduce ? 0 : index * 0.07 }}
                 whileHover={reduce ? { y: -6 } : undefined}
               >
-                {reduce ? (
-                  <div className="relative h-full min-h-[260px] xs:min-h-[280px] md:min-h-[340px] overflow-hidden rounded-2xl bg-tg-navy shadow-sm">
-                    <VentureFront venture={venture} />
-                  </div>
-                ) : (
-                  <div className="tg-flip-inner rounded-2xl shadow-sm transition-shadow duration-300 group-hover:shadow-xl">
-                    <div className="tg-flip-face tg-flip-front rounded-2xl bg-tg-navy">
-                      <VentureFront venture={venture} />
-                    </div>
-                    <div className="tg-flip-face tg-flip-back rounded-2xl bg-tg-navy">
-                      <VentureBack venture={venture} />
-                    </div>
-                  </div>
-                )}
+                <VentureFront venture={venture} />
+                <VentureBack venture={venture} />
               </motion.a>
             );
           })}
@@ -82,13 +70,12 @@ const VentureFront = ({ venture }: { venture: Venture }) => (
       decoding="async"
       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-tg-deep via-tg-navy/55 to-tg-navy/10" />
-    <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-tg-cyan/25 via-transparent to-tg-amber/20" />
-    <div className="absolute inset-x-0 bottom-0 p-5 xs:p-6">
+    <div className="absolute inset-0 bg-gradient-to-t from-tg-deep via-tg-navy/55 to-tg-navy/10 transition-opacity duration-500 group-hover:opacity-60" />
+    <div className="absolute inset-x-0 bottom-0 p-5 xs:p-6 transition-transform duration-500 group-hover:translate-y-2 group-hover:opacity-0">
       <p className="text-[11px] uppercase tracking-[0.14em] text-white/70 mb-2">{venture.sector}</p>
       <h3 className="font-display text-xl xs:text-2xl text-white mb-2 pr-10">{venture.shortName}</h3>
-      <p className="text-sm text-white/80 max-w-sm">{venture.description}</p>
-      <span className="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:bg-tg-cyan/90 group-hover:text-white">
+      <p className="text-sm text-white/80 max-w-sm line-clamp-2">{venture.description}</p>
+      <span className="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
         <ArrowUpRight className="h-4 w-4" />
       </span>
     </div>
@@ -97,15 +84,15 @@ const VentureFront = ({ venture }: { venture: Venture }) => (
 );
 
 const VentureBack = ({ venture }: { venture: Venture }) => (
-  <div className="absolute inset-0 flex flex-col justify-between p-5 xs:p-6 bg-gradient-to-br from-tg-navy via-tg-deep to-tg-navy">
-    <div>
+  <div className="tg-venture-reveal absolute inset-0 flex flex-col justify-between p-5 xs:p-6">
+    <div className="tg-venture-reveal__content">
       <p className="text-[11px] uppercase tracking-[0.16em] text-tg-cyan mb-3">{venture.sector}</p>
       <h3 className="font-display text-2xl text-white mb-3">{venture.shortName}</h3>
       <div className="mb-4 h-1 w-12 rounded-full tg-prism-line" aria-hidden="true" />
-      <p className="text-sm text-white/80 leading-relaxed">{venture.description}</p>
+      <p className="text-sm text-white/85 leading-relaxed">{venture.description}</p>
       <p className="mt-4 text-xs text-white/55">{venture.name}</p>
     </div>
-    <span className="inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-tg-navy transition-transform duration-300 group-hover:scale-105">
+    <span className="tg-venture-reveal__cta inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-tg-navy">
       Visit website
       <ExternalLink className="h-3.5 w-3.5 text-tg-cyan" />
     </span>

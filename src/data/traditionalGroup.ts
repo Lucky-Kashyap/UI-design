@@ -61,7 +61,7 @@ export type Testimonial = {
   name: string;
   role: string;
   quote: string;
-  image: string;
+  icon: 'briefcase' | 'palette' | 'scale' | 'hotel';
 };
 
 export const VENTURES: Venture[] = [
@@ -205,7 +205,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Accountant',
     quote:
       'Traditional Group maintains exceptional standards across all its enterprises. Their dedication to customer satisfaction and long-term value truly sets them apart.',
-    image: 'https://library.generateblocks.com/wp-content/uploads/2020/07/test-1.jpg',
+    icon: 'briefcase',
   },
   {
     id: 't2',
@@ -213,7 +213,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Graphic designer',
     quote:
       'Whether it’s the premium experience at Traditional Heritage Haveli, the quality of education at Shanti Asiatic School, or the craftsmanship from Traditional Gallery.',
-    image: 'https://library.generateblocks.com/wp-content/uploads/2020/07/test-2.jpg',
+    icon: 'palette',
   },
   {
     id: 't3',
@@ -221,7 +221,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Lawyer',
     quote:
       'A brand you can rely on. Traditional Group brings quality, consistency, and care in every service they offer. We are fully satisfied from the Services.',
-    image: 'https://library.generateblocks.com/wp-content/uploads/2020/07/test-3.jpg',
+    icon: 'scale',
   },
   {
     id: 't4',
@@ -229,7 +229,7 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Hospitality consultant',
     quote:
       'From Heritage Haveli to Leopard Valley, every Traditional Group experience feels intentional, premium, and rooted in genuine Rajasthan hospitality.',
-    image: 'https://library.generateblocks.com/wp-content/uploads/2020/07/test-1.jpg',
+    icon: 'hotel',
   },
 ];
 

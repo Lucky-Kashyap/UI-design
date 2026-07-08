@@ -1,12 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { X, ArrowUpRight } from 'lucide-react';
+import { X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { GALLERY, type GalleryItem } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
 
 const Gallery = () => {
   const [active, setActive] = useState<GalleryItem | null>(null);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(GALLERY.map((item) => [item.id, true])),
+  );
   const reduce = useReducedMotion() ?? false;
+
+  const toggleItem = useCallback((id: string) => {
+    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
 
   useEffect(() => {
     if (!active) return undefined;
@@ -38,97 +45,147 @@ const Gallery = () => {
           <div className="mb-4 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="text-body-md text-tg-muted">
             Follow the pathway through hospitality, manufacturing, education, and eco-adventure —
-            each stop a chapter of Traditional Group.
+            each stop a chapter of Traditional Group. Tap a timeline dot to expand or collapse.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Pathway connector — desktop center, mobile left */}
           <div
             className="absolute left-4 md:left-1/2 top-2 bottom-2 w-px -translate-x-0 md:-translate-x-1/2 bg-gradient-to-b from-tg-emerald via-tg-cyan to-tg-coral opacity-70"
             aria-hidden="true"
           />
 
-          <ol className="relative space-y-12 md:space-y-20 lg:space-y-24">
+          <ol className="relative space-y-8 md:space-y-12 lg:space-y-16">
             {GALLERY.map((item, index) => {
               const imageLeft = index % 2 === 0;
+              const isExpanded = expanded[item.id] ?? true;
+
               return (
                 <motion.li
                   key={item.id}
-                  className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 lg:gap-14 items-center pl-10 md:pl-0"
+                  layout={!reduce}
+                  className={cn(
+                    'relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 lg:gap-14 items-center pl-10 md:pl-0 transition-[gap] duration-500',
+                    !isExpanded && 'md:gap-4',
+                  )}
                   initial={reduce ? false : { opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.55, delay: reduce ? 0 : 0.05 }}
                 >
-                  {/* Timeline node */}
-                  <span
-                    className="absolute left-4 md:left-1/2 top-8 md:top-1/2 z-10 flex h-4 w-4 -translate-x-1/2 -translate-y-0 md:-translate-y-1/2 items-center justify-center"
-                    aria-hidden="true"
-                  >
-                    <span className="absolute h-4 w-4 rounded-full bg-white border-2 border-tg-navy" />
-                    <span className="absolute h-2 w-2 rounded-full tg-prism-line animate-pulse" />
-                  </span>
-
-                  {/* Image card */}
                   <button
                     type="button"
-                    onClick={() => setActive(item)}
+                    onClick={() => toggleItem(item.id)}
                     className={cn(
-                      'group relative w-full overflow-hidden rounded-2xl md:rounded-3xl aspect-[16/11] shadow-lg hover:shadow-2xl transition-all duration-500 text-left focus:outline-none hover:-translate-y-1',
-                      imageLeft ? 'md:order-1' : 'md:order-2',
+                      'tg-timeline-dot absolute left-4 md:left-1/2 z-20 flex -translate-x-1/2 items-center justify-center rounded-full border-2 border-tg-navy bg-white transition-all duration-300 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-tg-cyan focus-visible:ring-offset-2',
+                      isExpanded
+                        ? 'top-8 md:top-1/2 h-5 w-5 md:-translate-y-1/2 tg-timeline-dot--active'
+                        : 'top-1/2 h-4 w-4 -translate-y-1/2',
                     )}
+                    aria-expanded={isExpanded}
+                    aria-controls={`gallery-panel-${item.id}`}
+                    aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.title}`}
                   >
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async"
+                    <span
                       className={cn(
-                        'absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110',
-                        !reduce && 'tg-img-drift',
-                      )}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-tg-deep/50 via-transparent to-transparent opacity-80" />
-                    <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-tg-cyan/20 via-transparent to-tg-amber/15" />
-                    <span className="absolute bottom-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:bg-tg-cyan group-hover:scale-110">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
-                  </button>
-
-                  {/* Text panel */}
-                  <div
-                    className={cn(
-                      'relative',
-                      imageLeft ? 'md:order-2 md:pl-4 lg:pl-8' : 'md:order-1 md:pr-4 lg:pr-8 md:text-right',
-                    )}
-                  >
-                    <p className="tg-eyebrow mb-2">{item.sector}</p>
-                    <h3 className="font-display text-2xl xs:text-3xl text-tg-navy mb-3">
-                      {item.title}
-                    </h3>
-                    <div
-                      className={cn(
-                        'mb-4 h-1 w-14 rounded-full tg-prism-line',
-                        !imageLeft && 'md:ml-auto',
+                        'rounded-full tg-prism-line transition-all duration-300',
+                        isExpanded ? 'h-2.5 w-2.5 animate-pulse' : 'h-1.5 w-1.5',
                       )}
                       aria-hidden="true"
                     />
-                    <p className="text-body-md text-tg-muted max-w-md md:max-w-none">
-                      {item.description}
-                    </p>
+                  </button>
+
+                  <motion.div
+                    layout={!reduce}
+                    className={cn(imageLeft ? 'md:order-1' : 'md:order-2')}
+                    animate={{ opacity: isExpanded ? 1 : 0.85 }}
+                    transition={{ duration: 0.4 }}
+                  >
                     <button
                       type="button"
                       onClick={() => setActive(item)}
                       className={cn(
-                        'mt-5 tg-link-hover text-sm font-semibold text-tg-navy hover:!text-tg-cyan',
-                        !imageLeft && 'md:flex-row-reverse',
+                        'group relative w-full overflow-hidden rounded-2xl md:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 text-left focus:outline-none hover:-translate-y-1',
+                        isExpanded ? 'aspect-[16/11]' : 'aspect-[16/7] md:aspect-[16/8]',
                       )}
                     >
-                      View frame
-                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className={cn(
+                          'absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110',
+                          !reduce && isExpanded && 'tg-img-drift',
+                        )}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-tg-deep/50 via-transparent to-transparent opacity-80" />
+                      <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-tg-cyan/20 via-transparent to-tg-amber/15" />
+                      <span className="absolute bottom-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-hover:bg-tg-cyan group-hover:scale-110">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
                     </button>
-                  </div>
+                  </motion.div>
+
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        id={`gallery-panel-${item.id}`}
+                        key={`panel-${item.id}`}
+                        layout={!reduce}
+                        initial={reduce ? false : { opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={reduce ? undefined : { opacity: 0, height: 0 }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className={cn(
+                          'relative overflow-hidden',
+                          imageLeft ? 'md:order-2 md:pl-4 lg:pl-8' : 'md:order-1 md:pr-4 lg:pr-8 md:text-right',
+                        )}
+                      >
+                        <div className="tg-timeline-panel rounded-2xl border border-tg-line/80 bg-white/60 p-5 md:p-6 backdrop-blur-sm transition-colors duration-500 hover:border-tg-cyan/35 hover:bg-tg-soft/80">
+                          <p className="tg-eyebrow mb-2">{item.sector}</p>
+                          <h3 className="font-display text-2xl xs:text-3xl text-tg-navy mb-3">{item.title}</h3>
+                          <div
+                            className={cn(
+                              'mb-4 h-1 w-14 rounded-full tg-prism-line',
+                              !imageLeft && 'md:ml-auto',
+                            )}
+                            aria-hidden="true"
+                          />
+                          <p className="text-body-md text-tg-muted max-w-md md:max-w-none">{item.description}</p>
+                          <button
+                            type="button"
+                            onClick={() => setActive(item)}
+                            className={cn(
+                              'mt-5 tg-link-hover inline-flex items-center gap-1.5 text-sm font-semibold text-tg-navy hover:!text-tg-cyan',
+                              !imageLeft && 'md:flex-row-reverse',
+                            )}
+                          >
+                            View frame
+                            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {!isExpanded && (
+                    <div
+                      className={cn(
+                        'flex items-center gap-2 md:col-span-1',
+                        imageLeft ? 'md:order-2 md:pl-4' : 'md:order-1 md:pr-4 md:justify-end',
+                      )}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => toggleItem(item.id)}
+                        className="tg-link-hover inline-flex items-center gap-1 text-sm font-semibold text-tg-muted hover:!text-tg-cyan"
+                      >
+                        {item.title}
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                    </div>
+                  )}
                 </motion.li>
               );
             })}

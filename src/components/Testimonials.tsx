@@ -1,7 +1,28 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import {
+  Briefcase,
+  Hotel,
+  Palette,
+  Scale,
+  Star,
+  type LucideIcon,
+} from 'lucide-react';
 import { TESTIMONIALS, type Testimonial } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
+
+const ICON_MAP: Record<Testimonial['icon'], LucideIcon> = {
+  briefcase: Briefcase,
+  palette: Palette,
+  scale: Scale,
+  hotel: Hotel,
+};
+
+const ICON_THEME: Record<Testimonial['icon'], string> = {
+  briefcase: 'from-tg-amber/90 via-tg-coral/80 to-tg-amber/70',
+  palette: 'from-tg-cyan/90 via-tg-emerald/75 to-tg-cyan/70',
+  scale: 'from-tg-navy via-tg-deep to-tg-navy',
+  hotel: 'from-tg-emerald/85 via-tg-amber/70 to-tg-coral/80',
+};
 
 /** Fan / arch offsets inspired by Vmake-style testimonial layouts */
 const FAN = [
@@ -41,7 +62,6 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        {/* Mobile: stacked cards */}
         <div className="grid gap-4 md:hidden">
           {cards.map((item, index) => (
             <motion.article
@@ -62,7 +82,6 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Desktop/tablet: arched fan */}
         <div className="relative hidden md:block">
           <div className="flex items-end justify-center gap-3 lg:gap-5 px-2 lg:px-6 pt-4 pb-8">
             {cards.map((item, index) => {
@@ -77,20 +96,12 @@ const Testimonials = () => {
                     zIndex: fan.z,
                     transformOrigin: 'center bottom',
                   }}
-                  initial={
-                    reduce
-                      ? false
-                      : { opacity: 0, y: 40, rotate: 0 }
-                  }
+                  initial={reduce ? false : { opacity: 0, y: 40, rotate: 0 }}
                   whileInView={
-                    reduce
-                      ? { opacity: 1 }
-                      : { opacity: 1, y: fan.y, rotate: fan.rotate }
+                    reduce ? { opacity: 1 } : { opacity: 1, y: fan.y, rotate: fan.rotate }
                   }
                   whileHover={
-                    reduce
-                      ? undefined
-                      : { y: fan.y - 14, rotate: 0, scale: 1.045, zIndex: 10 }
+                    reduce ? undefined : { y: fan.y - 14, rotate: 0, scale: 1.045, zIndex: 10 }
                   }
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{
@@ -131,20 +142,29 @@ const Stars = () => (
   </div>
 );
 
-const Author = ({ item }: { item: Testimonial }) => (
-  <div className="mt-5 flex items-center gap-3 border-t border-tg-line pt-4">
-    <img
-      src={item.image}
-      alt={item.name}
-      loading="lazy"
-      decoding="async"
-      className="h-11 w-11 rounded-full object-cover ring-2 ring-transparent transition-all duration-300 group-hover:ring-tg-cyan/40 group-hover:scale-105"
-    />
-    <div>
-      <p className="font-semibold text-tg-navy text-sm transition-colors group-hover:text-tg-cyan">{item.name}</p>
-      <p className="text-xs text-tg-muted">{item.role}</p>
+const Author = ({ item }: { item: Testimonial }) => {
+  const Icon = ICON_MAP[item.icon];
+
+  return (
+    <div className="mt-5 flex items-center gap-3 border-t border-tg-line pt-4">
+      <div
+        className={cn(
+          'relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-white shadow-md ring-2 ring-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg',
+          ICON_THEME[item.icon],
+        )}
+        aria-hidden="true"
+      >
+        <Icon className="h-5 w-5" strokeWidth={1.75} />
+        <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/25" />
+      </div>
+      <div>
+        <p className="font-semibold text-tg-navy text-sm transition-colors group-hover:text-tg-cyan">
+          {item.name}
+        </p>
+        <p className="text-xs text-tg-muted">{item.role}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Testimonials;

@@ -24,16 +24,45 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Contact', href: '#contact' },
 ];
 
+export type HeroSlide = {
+  src: string;
+  alt: string;
+};
+
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    src: '/media/hero-rajasthan-haveli-heritage-architecture.webp',
+    alt: 'Rajasthan heritage haveli architecture — Traditional Group Jaipur hospitality',
+  },
+  {
+    src: '/media/hero-luxury-hospitality-resort-jaipur.webp',
+    alt: 'Luxury hospitality resort experience in Jaipur — Traditional Heritage Haveli',
+  },
+  {
+    src: '/media/hero-education-campus-students-jaipur.webp',
+    alt: 'Education campus and student activities in Jaipur — Shanti Asiatic School and Kindori',
+  },
+  {
+    src: '/media/hero-adventure-nature-landscape-rajasthan.webp',
+    alt: 'Adventure and nature landscape in Rajasthan — Leopard Valley eco-adventure',
+  },
+  {
+    src: '/media/hero-manufacturing-craftsmanship-traditional-gallery.webp',
+    alt: 'Premium clothing manufacturing and craftsmanship — Traditional Gallery Jaipur',
+  },
+];
+
 export const HERO = {
   title: 'Traditional Group',
   titleSubline: 'Multi-venture organisation · Jaipur',
+  liveLabel: 'Live across Jaipur ventures',
   descriptionShort:
-    'A diverse multi-venture organisation dedicated to quality and innovation across manufacturing, education, hospitality, and eco-adventure.',
+    'Quality and innovation across manufacturing, education, hospitality, and eco-adventure in Jaipur.',
   description:
-    'Traditional Group is a diverse multi-venture organisation dedicated to quality and innovation. From premium clothing manufacturing to world-class education, luxury hospitality, and eco-adventure experiences, we continue to create value across every sector we serve.',
+    'A diverse multi-venture organisation in Jaipur, dedicated to quality and innovation across manufacturing, education, hospitality, and eco-adventure.',
   primaryCta: { label: 'Contact Us', href: '#contact' },
   secondaryCta: { label: 'Explore Ventures', href: '#ventures' },
-  backgroundImage: '/media/hero-haveli-cinematic.png',
+  backgroundImage: HERO_SLIDES[0].src,
 } as const;
 
 export type Venture = {
@@ -60,8 +89,9 @@ export type Testimonial = {
   id: string;
   name: string;
   role: string;
+  venture: string;
+  rating: number;
   quote: string;
-  icon: 'briefcase' | 'palette' | 'scale' | 'hotel';
 };
 
 export const VENTURES: Venture[] = [
@@ -72,7 +102,7 @@ export const VENTURES: Venture[] = [
     description: 'Premium clothing manufacturing and craftsmanship.',
     sector: 'Manufacturing',
     href: 'https://traditionalgallery.com/',
-    image: '/media/gallery-manufacturing-craft.png',
+    image: '/media/hero-manufacturing-craftsmanship-traditional-gallery.webp',
     logoImage:
       'https://traditionalgroup.in/wp-content/uploads/2025/12/WhatsApp-Image-2025-12-02-at-2.42.52-PM.jpeg',
   },
@@ -83,7 +113,7 @@ export const VENTURES: Venture[] = [
     description: 'Luxury boutique hotel experience in Jaipur.',
     sector: 'Hospitality',
     href: 'https://www.traditionalheritagehaveli.com/',
-    image: '/media/hero-haveli-cinematic.png',
+    image: '/media/hero-luxury-hospitality-resort-jaipur.webp',
     logoImage:
       'https://traditionalgroup.in/wp-content/uploads/2025/11/trdaition.webp',
   },
@@ -94,7 +124,7 @@ export const VENTURES: Venture[] = [
     description: 'World-class education rooted in values and excellence.',
     sector: 'Education',
     href: 'https://sasjaipur.com/',
-    image: '/media/gallery-education-campus.png',
+    image: '/media/hero-education-campus-students-jaipur.webp',
     logoImage:
       'https://traditionalgroup.in/wp-content/uploads/2025/11/logo-1400x600-1.webp',
   },
@@ -105,7 +135,7 @@ export const VENTURES: Venture[] = [
     description: 'IB World School nurturing global learners.',
     sector: 'Education',
     href: 'https://kindori.in/',
-    image: '/media/gallery-education-campus.png',
+    image: '/media/hero-education-campus-students-jaipur.webp',
     logoImage:
       'https://traditionalgroup.in/wp-content/uploads/2025/11/KINDORI-LOGO-PNG-2-scaled.webp',
   },
@@ -116,7 +146,7 @@ export const VENTURES: Venture[] = [
     description: 'Eco-adventure and resort experiences in nature.',
     sector: 'Eco-Adventure',
     href: 'https://www.leopardvalley.in/',
-    image: '/media/gallery-eco-adventure.png',
+    image: '/media/hero-adventure-nature-landscape-rajasthan.webp',
     logoImage:
       'https://traditionalgroup.in/wp-content/uploads/2025/11/leoperd.webp',
   },
@@ -128,15 +158,16 @@ export const ABOUT = {
   body:
     'Traditional Group is a diverse multi-venture organisation dedicated to quality and innovation. From premium clothing manufacturing to world-class education, luxury hospitality, and eco-adventure experiences, we continue to create value across every sector we serve.',
   sectors: [
-    'Clothing and Manufacturing',
-    'Hotel Industry',
-    'Education',
-    'Resort',
+    { id: 'manufacturing', label: 'Clothing and Manufacturing' },
+    { id: 'hospitality', label: 'Hotel Industry' },
+    { id: 'education', label: 'Education' },
+    { id: 'ib-school', label: 'IB World School' },
+    { id: 'eco-adventure', label: 'Eco-Adventure & Resort' },
   ],
-  image: '/media/about-haveli-interior.png',
+  image: '/media/about-haveli-interior-heritage-jaipur.webp',
   stats: [
     { label: 'Ventures', value: 5, suffix: '+' },
-    { label: 'Sectors', value: 4, suffix: '' },
+    { label: 'Sectors', value: 5, suffix: '' },
     { label: 'Years of Trust', value: 25, suffix: '+' },
   ],
 };
@@ -145,7 +176,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'g1',
     alt: 'Heritage haveli façade at golden hour',
-    src: '/media/hero-haveli-cinematic.png',
+    src: '/media/hero-rajasthan-haveli-heritage-architecture.webp',
     sector: 'Hospitality',
     title: 'Heritage at golden hour',
     description:
@@ -154,7 +185,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'g2',
     alt: 'Premium clothing craftsmanship atelier',
-    src: '/media/gallery-manufacturing-craft.png',
+    src: '/media/gallery-manufacturing-craft-traditional-gallery.webp',
     sector: 'Manufacturing',
     title: 'Craft behind Traditional Gallery',
     description:
@@ -163,7 +194,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'g3',
     alt: 'Eco adventure valley and hills',
-    src: '/media/gallery-eco-adventure.png',
+    src: '/media/gallery-eco-adventure-leopard-valley-rajasthan.webp',
     sector: 'Eco-Adventure',
     title: 'Wild edges of Leopard Valley',
     description:
@@ -172,7 +203,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'g4',
     alt: 'Modern education campus architecture',
-    src: '/media/gallery-education-campus.png',
+    src: '/media/gallery-education-campus-shanti-asiatic-jaipur.webp',
     sector: 'Education',
     title: 'Campuses that shape futures',
     description:
@@ -181,7 +212,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'g5',
     alt: 'Boutique hotel courtyard interiors',
-    src: '/media/about-haveli-interior.png',
+    src: '/media/about-haveli-interior-heritage-jaipur.webp',
     sector: 'Hospitality',
     title: 'Courtyards of calm',
     description:
@@ -190,7 +221,7 @@ export const GALLERY: GalleryItem[] = [
   {
     id: 'g6',
     alt: 'Evening resort hospitality ambience',
-    src: '/media/cta-evening-resort.png',
+    src: '/media/cta-evening-resort-hospitality-jaipur.webp',
     sector: 'Resort',
     title: 'Evenings that stay with you',
     description:
@@ -203,33 +234,37 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 't1',
     name: 'John Doe',
     role: 'Accountant',
+    venture: 'Traditional Gallery',
+    rating: 4.9,
     quote:
       'Traditional Group maintains exceptional standards across all its enterprises. Their dedication to customer satisfaction and long-term value truly sets them apart.',
-    icon: 'briefcase',
   },
   {
     id: 't2',
     name: 'Jenny Andersson',
     role: 'Graphic designer',
+    venture: 'Heritage Haveli',
+    rating: 4.8,
     quote:
       'Whether it’s the premium experience at Traditional Heritage Haveli, the quality of education at Shanti Asiatic School, or the craftsmanship from Traditional Gallery.',
-    icon: 'palette',
   },
   {
     id: 't3',
     name: 'George Smith',
     role: 'Lawyer',
+    venture: 'Traditional Group',
+    rating: 5,
     quote:
       'A brand you can rely on. Traditional Group brings quality, consistency, and care in every service they offer. We are fully satisfied from the Services.',
-    icon: 'scale',
   },
   {
     id: 't4',
     name: 'Priya Sharma',
     role: 'Hospitality consultant',
+    venture: 'Leopard Valley',
+    rating: 4.9,
     quote:
       'From Heritage Haveli to Leopard Valley, every Traditional Group experience feels intentional, premium, and rooted in genuine Rajasthan hospitality.',
-    icon: 'hotel',
   },
 ];
 

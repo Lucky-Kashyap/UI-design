@@ -13,9 +13,8 @@ const CTASection = () => {
     >
       <div className="absolute inset-0">
         <img
-          src="/media/cta-evening-resort.png"
-          alt=""
-          aria-hidden="true"
+          src="/media/cta-evening-resort-hospitality-jaipur.webp"
+          alt="Evening resort hospitality ambience at Traditional Group Jaipur — contact Traditional Group"
           loading="lazy"
           decoding="async"
           className={`h-full w-full object-cover ${reduce ? '' : 'animate-ken-burns tg-img-drift'}`}
@@ -53,10 +52,10 @@ const CTASection = () => {
               enquiries. We are ready to help you take the next step.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={SITE.phoneHref}
-                className="group tg-btn-primary tg-btn-glow bg-white text-tg-navy hover:bg-white gap-2"
+                className="group tg-btn-gold gap-2"
               >
                 <Phone className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                 {SITE.phoneDisplay}

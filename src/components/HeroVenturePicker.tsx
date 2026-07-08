@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { VENTURES, type Venture } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
 
-const AUTO_INTERVAL_MS = 2500;
-const MANUAL_PAUSE_MS = 5000;
+const MANUAL_PAUSE_MS = 6000;
 const HOVER_RESUME_MS = 2000;
 
 const GRADIENT_BY_ID: Record<string, string> = {
@@ -19,11 +18,15 @@ const GRADIENT_BY_ID: Record<string, string> = {
 const isIOSDevice = (): boolean =>
   typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-const HeroVenturePicker = () => {
+type HeroVenturePickerProps = {
+  selected: number;
+  onChange: (index: number) => void;
+  onAutoPlayChange: (playing: boolean) => void;
+};
+
+const HeroVenturePicker = ({ selected, onChange, onAutoPlayChange }: HeroVenturePickerProps) => {
   const reduce = useReducedMotion() ?? false;
   const ventures: Venture[] = VENTURES;
-  const [selected, setSelected] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const pauseTimerRef = useRef<number | null>(null);
   const resumeTimerRef = useRef<number | null>(null);
   const showShimmer = !reduce && !isIOSDevice();
@@ -33,33 +36,23 @@ const HeroVenturePicker = () => {
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
   }, []);
 
-  useEffect(() => {
-    if (!isAutoPlaying || reduce || ventures.length === 0) return undefined;
-
-    const id = window.setInterval(() => {
-      setSelected((prev) => (prev + 1) % ventures.length);
-    }, AUTO_INTERVAL_MS);
-
-    return () => window.clearInterval(id);
-  }, [isAutoPlaying, reduce, ventures.length]);
-
   useEffect(() => () => clearTimers(), [clearTimers]);
 
   const handleFocus = (index: number) => {
-    setSelected(index);
-    setIsAutoPlaying(false);
+    onChange(index);
+    onAutoPlayChange(false);
     clearTimers();
-    pauseTimerRef.current = window.setTimeout(() => setIsAutoPlaying(true), MANUAL_PAUSE_MS);
+    pauseTimerRef.current = window.setTimeout(() => onAutoPlayChange(true), MANUAL_PAUSE_MS);
   };
 
   const handleMouseEnter = () => {
-    setIsAutoPlaying(false);
+    onAutoPlayChange(false);
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
   };
 
   const handleMouseLeave = () => {
     clearTimers();
-    resumeTimerRef.current = window.setTimeout(() => setIsAutoPlaying(true), HOVER_RESUME_MS);
+    resumeTimerRef.current = window.setTimeout(() => onAutoPlayChange(true), HOVER_RESUME_MS);
   };
 
   return (
@@ -90,7 +83,7 @@ const HeroVenturePicker = () => {
                 whileHover={reduce ? undefined : { scale: 1.015, x: 2 }}
                 whileTap={reduce ? undefined : { scale: 0.985 }}
                 aria-current={active ? 'true' : undefined}
-                aria-label={`View ${venture.shortName} in portfolio`}
+                aria-label={`View ${venture.shortName} — ${venture.sector}`}
               >
                 <span
                   className={cn(
@@ -108,18 +101,10 @@ const HeroVenturePicker = () => {
                   <span className="font-display text-venture-chip leading-tight text-white">
                     {venture.shortName}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    {active && (
-                      <span
-                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-white shadow-[0_0_0.5rem_rgba(255,255,255,0.85)]"
-                        aria-hidden="true"
-                      />
-                    )}
-                    <ArrowUpRight
-                      className="h-3.5 w-3.5 shrink-0 text-white/50 transition-all duration-300 group-hover/chip:text-white group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </span>
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 shrink-0 text-white/50 transition-all duration-300 group-hover/chip:text-white group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
                 </span>
               </motion.a>
             </li>

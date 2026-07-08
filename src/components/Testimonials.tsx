@@ -1,36 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  Briefcase,
-  Hotel,
-  Palette,
-  Scale,
-  Star,
-  type LucideIcon,
-} from 'lucide-react';
+import { Star } from 'lucide-react';
 import { TESTIMONIALS, type Testimonial } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
 
-const ICON_MAP: Record<Testimonial['icon'], LucideIcon> = {
-  briefcase: Briefcase,
-  palette: Palette,
-  scale: Scale,
-  hotel: Hotel,
-};
-
-const ICON_THEME: Record<Testimonial['icon'], string> = {
-  briefcase: 'from-tg-amber/90 via-tg-coral/80 to-tg-amber/70',
-  palette: 'from-tg-cyan/90 via-tg-emerald/75 to-tg-cyan/70',
-  scale: 'from-tg-navy via-tg-deep to-tg-navy',
-  hotel: 'from-tg-emerald/85 via-tg-amber/70 to-tg-coral/80',
-};
-
-/** Fan / arch offsets inspired by Vmake-style testimonial layouts */
-const FAN = [
-  { rotate: -6, y: 28, z: 1 },
-  { rotate: -2, y: 8, z: 2 },
-  { rotate: 2, y: 8, z: 2 },
-  { rotate: 6, y: 28, z: 1 },
-];
+const CARD_TILT = [-3, 0, 0, 2] as const;
 
 const Testimonials = () => {
   const reduce = useReducedMotion() ?? false;
@@ -45,126 +18,84 @@ const Testimonials = () => {
       <div className="absolute inset-0 tg-soft-texture opacity-50 pointer-events-none" aria-hidden="true" />
       <div className="tg-container relative">
         <motion.div
-          className="mx-auto max-w-2xl text-center mb-10 md:mb-14"
+          className="tg-section-header mx-auto max-w-2xl text-center"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="tg-eyebrow mb-3">Testimonials</p>
-          <h2 id="testimonials-heading" className="font-display text-headline-xl text-tg-navy mb-4">
+          <p className="tg-eyebrow mb-4">Testimonials</p>
+          <h2 id="testimonials-heading" className="font-display text-headline-xl text-tg-navy">
             Stories of trust
           </h2>
-          <div className="mx-auto mb-4 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-          <p className="text-body-md text-tg-muted">
+          <div className="mx-auto mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
+          <p className="font-sans text-body-md text-tg-muted">
             At Traditional Group, we pride ourselves on delivering excellence across every
             venture—whether it’s education, hospitality, manufacturing, or adventure tourism.
           </p>
         </motion.div>
 
-        <div className="grid gap-4 md:hidden">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
           {cards.map((item, index) => (
             <motion.article
               key={item.id}
-              className="group tg-card-lift rounded-2xl bg-white border border-tg-line p-5 shadow-md"
-              initial={reduce ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: reduce ? 0 : index * 0.06, duration: 0.4 }}
-              whileHover={reduce ? undefined : { y: -6, borderColor: 'rgba(27,163,201,0.35)' }}
+              className={cn(
+                'group tg-testimonial-card',
+                index === 0 && 'sm:-rotate-2',
+                index === 3 && 'sm:rotate-1',
+              )}
+              initial={reduce ? false : { opacity: 0, y: 24, rotate: 0 }}
+              whileInView={
+                reduce
+                  ? { opacity: 1 }
+                  : { opacity: 1, y: 0, rotate: CARD_TILT[index] ?? 0 }
+              }
+              whileHover={reduce ? undefined : { y: -6, rotate: 0, scale: 1.02 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{
+                type: 'spring',
+                stiffness: 140,
+                damping: 18,
+                delay: reduce ? 0 : index * 0.07,
+              }}
             >
-              <Stars />
-              <blockquote className="mt-3 font-display text-lg text-tg-ink/90 leading-relaxed">
-                “{item.quote}”
-              </blockquote>
-              <Author item={item} />
+              <TestimonialCard item={item} />
             </motion.article>
           ))}
-        </div>
-
-        <div className="relative hidden md:block">
-          <div className="flex items-end justify-center gap-3 lg:gap-5 px-2 lg:px-6 pt-4 pb-8">
-            {cards.map((item, index) => {
-              const fan = FAN[index] || FAN[1];
-              return (
-                <motion.article
-                  key={item.id}
-                  className={cn(
-                    'group w-[min(100%,240px)] lg:w-[min(100%,280px)] shrink-0 rounded-2xl bg-white border border-tg-line p-5 lg:p-6 shadow-[0_18px_50px_rgba(11,31,58,0.10)] transition-[box-shadow,border-color] duration-300 hover:shadow-[0_24px_60px_rgba(11,31,58,0.16)] hover:border-tg-cyan/40',
-                  )}
-                  style={{
-                    zIndex: fan.z,
-                    transformOrigin: 'center bottom',
-                  }}
-                  initial={reduce ? false : { opacity: 0, y: 40, rotate: 0 }}
-                  whileInView={
-                    reduce ? { opacity: 1 } : { opacity: 1, y: fan.y, rotate: fan.rotate }
-                  }
-                  whileHover={
-                    reduce ? undefined : { y: fan.y - 14, rotate: 0, scale: 1.045, zIndex: 10 }
-                  }
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 120,
-                    damping: 16,
-                    delay: reduce ? 0 : index * 0.08,
-                  }}
-                >
-                  <Stars />
-                  <blockquote className="mt-3 font-display text-[1.05rem] lg:text-lg text-tg-ink/90 leading-relaxed min-h-[140px]">
-                    “{item.quote}”
-                  </blockquote>
-                  <Author item={item} />
-                </motion.article>
-              );
-            })}
-          </div>
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-tg-soft to-transparent"
-            aria-hidden="true"
-          />
         </div>
       </div>
     </section>
   );
 };
 
-const Stars = () => (
-  <div className="flex gap-0.5 text-tg-amber" aria-hidden="true">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <Star
-        key={i}
-        className="h-3.5 w-3.5 fill-current transition-transform duration-300 group-hover:scale-110"
-        style={{ transitionDelay: `${i * 40}ms` }}
-      />
-    ))}
-  </div>
-);
-
-const Author = ({ item }: { item: Testimonial }) => {
-  const Icon = ICON_MAP[item.icon];
-
-  return (
-    <div className="mt-5 flex items-center gap-3 border-t border-tg-line pt-4">
+const TestimonialCard = ({ item }: { item: Testimonial }) => (
+  <>
+    <header className="mb-4 flex items-start justify-between gap-3">
+      <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-tg-muted">
+        {item.venture}
+      </p>
       <div
-        className={cn(
-          'relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-white shadow-md ring-2 ring-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg',
-          ICON_THEME[item.icon],
-        )}
-        aria-hidden="true"
+        className="flex shrink-0 items-center gap-1 rounded-full bg-tg-soft px-2 py-0.5"
+        aria-label={`Rated ${item.rating} out of 5`}
       >
-        <Icon className="h-5 w-5" strokeWidth={1.75} />
-        <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/25" />
+        <span className="font-sans text-sm font-semibold tabular-nums text-tg-navy">
+          {item.rating.toFixed(1)}
+        </span>
+        <Star className="h-3.5 w-3.5 fill-tg-emerald text-tg-emerald" aria-hidden="true" />
       </div>
-      <div>
-        <p className="font-semibold text-tg-navy text-sm transition-colors group-hover:text-tg-cyan">
-          {item.name}
-        </p>
-        <p className="text-xs text-tg-muted">{item.role}</p>
-      </div>
-    </div>
-  );
-};
+    </header>
+
+    <blockquote className="tg-testimonial-quote">
+      “{item.quote}”
+    </blockquote>
+
+    <footer className="mt-5 border-t border-tg-line pt-4">
+      <p className="font-sans text-sm font-semibold text-tg-navy transition-colors group-hover:text-tg-cyan">
+        {item.name}
+      </p>
+      <p className="mt-0.5 font-sans text-xs text-tg-muted">{item.role}</p>
+    </footer>
+  </>
+);
 
 export default Testimonials;

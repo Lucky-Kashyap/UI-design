@@ -1,0 +1,15 @@
+{
+  "short_name": "Traditional Group",
+  "name": "Traditional Group",
+  "icons": [
+    {
+      "src": "traditional-group-logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0B1F3A",
+  "background_color": "#ffffff"
+}

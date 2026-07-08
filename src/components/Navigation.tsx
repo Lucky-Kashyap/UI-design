@@ -48,7 +48,7 @@ const Navigation = () => {
       )}
     >
       <nav
-        className="tg-navbar__inner tg-container flex items-center justify-between gap-3"
+        className="tg-navbar__inner tg-container flex min-w-0 items-center justify-between gap-3"
         aria-label="Primary"
       >
         <a

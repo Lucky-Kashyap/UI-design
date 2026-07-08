@@ -731,6 +731,26 @@
     }
   }
 
+  /* Below lg, hero stacks copy + venture picker — content exceeds one screen */
+  @media (max-width: 1023px) {
+    .tg-first-screen {
+      height: auto;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .tg-first-screen .tg-hero {
+      height: auto;
+      min-height: 100dvh;
+    }
+
+    .tg-hero__content {
+      min-height: 100dvh;
+      overflow: visible;
+      padding-bottom: calc(var(--tg-hero-scroll-h) + 2.5rem);
+    }
+  }
+
   .tg-hero-scroll-cue {
     position: absolute;
     left: 0;
@@ -827,7 +847,7 @@
   }
 
   .tg-venture-glass {
-    @apply rounded-tg-md border border-white/10 bg-white/5 backdrop-blur-xl;
+    @apply w-full min-w-0 max-w-full rounded-tg-md border border-white/10 bg-white/5 backdrop-blur-xl;
     padding: var(--tg-venture-glass-pad);
   }
 

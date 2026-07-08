@@ -7,12 +7,25 @@ export const useHeaderOffset = (): void => {
     const header = document.querySelector<HTMLElement>('.tg-site-header');
     if (!header) return undefined;
 
-    const sync = () => {
+    let frameId = 0;
+    let lastOffset = '';
+
+    const applyOffset = () => {
       const height = Math.ceil(header.getBoundingClientRect().height);
-      document.documentElement.style.setProperty(
-        '--tg-header-offset',
-        `${height + HEADER_GAP_PX}px`,
-      );
+      const next = `${height + HEADER_GAP_PX}px`;
+      if (next === lastOffset) return;
+
+      lastOffset = next;
+      document.documentElement.style.setProperty('--tg-header-offset', next);
+    };
+
+    const sync = () => {
+      if (frameId) cancelAnimationFrame(frameId);
+
+      frameId = requestAnimationFrame(() => {
+        frameId = 0;
+        applyOffset();
+      });
     };
 
     sync();
@@ -22,6 +35,7 @@ export const useHeaderOffset = (): void => {
     window.addEventListener('resize', sync);
 
     return () => {
+      if (frameId) cancelAnimationFrame(frameId);
       observer.disconnect();
       window.removeEventListener('resize', sync);
     };

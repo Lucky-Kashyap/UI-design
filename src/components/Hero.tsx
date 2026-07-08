@@ -43,13 +43,13 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="tg-hero relative min-h-[100dvh] overflow-hidden bg-tg-deep"
+      className="tg-hero relative min-h-[100dvh] overflow-x-clip bg-tg-deep lg:overflow-hidden"
       aria-labelledby="hero-heading"
     >
       <HeroBackground activeIndex={activeVenture} />
 
       <div className="tg-hero__content relative z-10 tg-container w-full">
-        <div className="flex w-full flex-col gap-hero-stack lg:flex-row lg:items-start lg:justify-between lg:gap-hero-stack-xl xl:gap-[3.5rem]">
+        <div className="flex w-full min-w-0 flex-col gap-hero-stack lg:flex-row lg:items-start lg:justify-between lg:gap-hero-stack-xl xl:gap-[3.5rem]">
           <div className="flex min-w-0 flex-1 max-w-hero-copy flex-col gap-hero-copy md:gap-hero-copy-md lg:gap-hero-copy-lg lg:pr-4 xl:pr-8">
             <motion.h1
               id="hero-heading"
@@ -69,7 +69,7 @@ const Hero = () => {
             />
 
             <motion.p
-              className="text-hero-body max-w-hero-body lg:max-w-[26rem] lg:text-hero-body-lg tg-hero-body"
+              className="text-hero-body max-w-hero-body tg-hero-body lg:max-w-[26rem] lg:text-hero-body-lg"
               {...fadeUp(0.16, reduce)}
             >
               <span className="lg:hidden">{HERO.descriptionShort}</span>
@@ -77,28 +77,28 @@ const Hero = () => {
             </motion.p>
 
             <motion.div
-              className="mt-hero-cta-mt flex flex-col xs:flex-row xs:flex-wrap gap-hero-cta xs:items-center pb-hero-cta-bottom"
+              className="mt-hero-cta-mt flex w-full min-w-0 flex-col gap-hero-cta pb-hero-cta-bottom sm:flex-row sm:flex-wrap sm:items-center"
               {...fadeUp(0.24, reduce)}
             >
-              <a href={HERO.primaryCta.href} className="tg-btn-gold w-full xs:w-auto">
+              <a href={HERO.primaryCta.href} className="tg-btn-gold w-full sm:w-auto sm:max-w-full">
                 {HERO.primaryCta.label}
               </a>
-              <a href={HERO.secondaryCta.href} className="tg-btn-secondary w-full xs:w-auto">
+              <a href={HERO.secondaryCta.href} className="tg-btn-secondary w-full sm:w-auto sm:max-w-full">
                 {HERO.secondaryCta.label}
               </a>
             </motion.div>
           </div>
 
-          <div className="flex w-full shrink-0 flex-col gap-3 lg:max-w-venture-panel lg:pt-1 lg:pl-venture-panel-inset">
+          <div className="flex w-full min-w-0 shrink-0 flex-col gap-3 lg:max-w-venture-panel lg:pt-1 lg:pl-venture-panel-inset">
             <motion.div
-              className="inline-flex w-fit items-center gap-hero-badge self-start rounded-tg-pill border border-white/20 bg-white/10 px-hero-badge-x py-hero-badge-y backdrop-blur-md lg:self-end"
+              className="inline-flex max-w-full items-center gap-hero-badge self-start rounded-tg-pill border border-white/20 bg-white/10 px-hero-badge-x py-hero-badge-y backdrop-blur-md lg:self-end"
               {...fadeUp(0.12, reduce)}
             >
               <span className="tg-live-dot" aria-hidden="true">
                 <span className="tg-live-dot__ping" />
                 <span className="tg-live-dot__core" />
               </span>
-              <span className="text-hero-label uppercase text-white/80">{HERO.liveLabel}</span>
+              <span className="min-w-0 text-hero-label uppercase leading-snug text-white/80">{HERO.liveLabel}</span>
             </motion.div>
 
             <HeroVenturePicker

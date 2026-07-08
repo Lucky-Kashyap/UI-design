@@ -21,7 +21,7 @@ const TraditionalGroupLogo = ({
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
       className={cn(
-        'h-8 w-auto xs:h-8 sm:h-9 object-contain',
+        'h-8 w-auto object-contain sm:h-9',
         variant === 'hero' && 'h-7 sm:h-8',
         className,
       )}

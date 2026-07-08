@@ -55,7 +55,7 @@ const TopBar = () => {
   return (
     <div
       className={cn(
-        'tg-topbar text-white text-topbar leading-none transition-all duration-500 ease-tg',
+        'max-lg:hidden tg-topbar text-white text-topbar leading-none transition-all duration-500 ease-tg',
         showTopBar
           ? 'tg-topbar--visible max-h-none opacity-100 bg-tg-navy border-b border-white/10'
           : 'tg-topbar--hidden max-h-0 opacity-0 pointer-events-none',

@@ -22,7 +22,11 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Services', href: '#ventures' },
   { label: 'About Us', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
+  { label: 'Contact', href: '#contact' },
 ];
+
+/** Nav links rendered in the header menu. */
+export const HEADER_NAV_LINKS = NAV_LINKS;
 
 /** All anchored sections in page order — used for scroll-spy. */
 export const PAGE_SECTION_IDS = ['home', 'ventures', 'about', 'gallery', 'contact'] as const;

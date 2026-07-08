@@ -1,9 +1,21 @@
 import { SITE } from '@/data/traditionalGroup';
+import { useScrollPause } from '@/hooks/useScrollPause';
+import { cn } from '@/lib/utils';
 import { Facebook, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
 
 const TopBar = () => {
+  const { showTopBar } = useScrollPause();
+
   return (
-    <div className="tg-topbar bg-tg-navy text-white text-topbar leading-none">
+    <div
+      className={cn(
+        'tg-topbar text-white text-topbar leading-none transition-all duration-500 ease-tg',
+        showTopBar
+          ? 'tg-topbar--visible max-h-16 opacity-100 bg-tg-navy border-b border-white/10'
+          : 'tg-topbar--hidden max-h-0 opacity-0 pointer-events-none',
+      )}
+      aria-hidden={!showTopBar}
+    >
       <div className="tg-container flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <a
           href={`mailto:${SITE.email}`}
@@ -11,7 +23,8 @@ const TopBar = () => {
         >
           <Mail className="h-3.5 w-3.5 shrink-0 text-tg-cyan/90" aria-hidden="true" />
           <span>{SITE.email}</span>
-        </a>        <div className="flex items-center gap-2.5 sm:gap-3">
+        </a>
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <div className="hidden xs:flex items-center gap-1">
             <a
               href={SITE.facebook}

@@ -32,17 +32,17 @@ const Gallery = () => {
     <section id="gallery" className="tg-section bg-tg-bg overflow-hidden" aria-labelledby="gallery-heading">
       <div className="tg-container">
         <motion.div
-          className="max-w-2xl mb-12 md:mb-16"
+          className="tg-section-header max-w-2xl"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="tg-eyebrow mb-3">In the gallery</p>
-          <h2 id="gallery-heading" className="font-display text-headline-xl text-tg-navy mb-4">
+          <p className="tg-eyebrow mb-4">In the gallery</p>
+          <h2 id="gallery-heading" className="font-display text-headline-xl text-tg-navy">
             A journey across our ventures
           </h2>
-          <div className="mb-4 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
+          <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="text-body-md text-tg-muted">
             Follow the pathway through hospitality, manufacturing, education, and eco-adventure —
             each stop a chapter of Traditional Group. Tap a timeline dot to expand or collapse.
@@ -98,8 +98,11 @@ const Gallery = () => {
                   <motion.div
                     layout={!reduce}
                     className={cn(imageLeft ? 'md:order-1' : 'md:order-2')}
+                    initial={reduce ? false : { opacity: 0, x: imageLeft ? -36 : 36, scale: 0.96 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     animate={{ opacity: isExpanded ? 1 : 0.85 }}
-                    transition={{ duration: 0.4 }}
                   >
                     <button
                       type="button"
@@ -133,16 +136,22 @@ const Gallery = () => {
                         id={`gallery-panel-${item.id}`}
                         key={`panel-${item.id}`}
                         layout={!reduce}
-                        initial={reduce ? false : { opacity: 0, height: 0 }}
+                        initial={reduce ? false : { opacity: 0, x: imageLeft ? 32 : -32, y: 12 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true, margin: '-50px' }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={reduce ? undefined : { opacity: 0, height: 0 }}
-                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         className={cn(
                           'relative overflow-hidden',
                           imageLeft ? 'md:order-2 md:pl-4 lg:pl-8' : 'md:order-1 md:pr-4 lg:pr-8 md:text-right',
                         )}
                       >
-                        <div className="tg-timeline-panel rounded-2xl border border-tg-line/80 bg-white/60 p-5 md:p-6 backdrop-blur-sm transition-colors duration-500 hover:border-tg-cyan/35 hover:bg-tg-soft/80">
+                        <motion.div
+                          className="tg-timeline-panel rounded-2xl border border-tg-line/80 bg-white/60 p-5 md:p-6 backdrop-blur-sm transition-colors duration-500 hover:border-tg-cyan/35 hover:bg-tg-soft/80"
+                          whileHover={reduce ? undefined : { y: -4, scale: 1.01 }}
+                          transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+                        >
                           <p className="tg-eyebrow mb-2">{item.sector}</p>
                           <h3 className="font-display text-2xl xs:text-3xl text-tg-navy mb-3">{item.title}</h3>
                           <div
@@ -164,7 +173,7 @@ const Gallery = () => {
                             View frame
                             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" />
                           </button>
-                        </div>
+                        </motion.div>
                       </motion.div>
                     )}
                   </AnimatePresence>

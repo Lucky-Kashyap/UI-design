@@ -3,17 +3,16 @@ import { Menu, Phone, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TraditionalGroupLogo from '@/components/TraditionalGroupLogo';
 import { NAV_LINKS, SITE } from '@/data/traditionalGroup';
+import { useScrolledPast } from '@/hooks/useScrolledPast';
 import { cn } from '@/lib/utils';
 
 const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useScrolledPast(48);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#home');
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 24);
-
       const sections = NAV_LINKS.map((link) => link.href.replace('#', ''));
       let current = '#home';
       for (const id of sections) {
@@ -42,12 +41,14 @@ const Navigation = () => {
   return (
     <div
       className={cn(
-        'tg-navbar sticky top-0 z-50 transition-all duration-300',
-        scrolled ? 'tg-glass shadow-sm border-b border-tg-line backdrop-blur-xl' : 'bg-white/95',
+        'tg-navbar transition-all duration-500 ease-tg',
+        scrolled
+          ? 'tg-glass border-b border-tg-line/80 backdrop-blur-xl'
+          : 'border-b border-white/10 bg-tg-deep/25 backdrop-blur-sm',
       )}
     >
       <nav
-        className="tg-navbar__inner tg-container flex items-center justify-between gap-2.5"
+        className="tg-navbar__inner tg-container flex items-center justify-between gap-3"
         aria-label="Primary"
       >
         <a
@@ -56,17 +57,20 @@ const Navigation = () => {
           onClick={close}
           aria-label="Traditional Group home"
         >
-          <TraditionalGroupLogo priority />
+          <TraditionalGroupLogo priority variant={scrolled ? 'default' : 'hero'} />
         </a>
 
-        <ul className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+        <ul className="hidden lg:flex items-center gap-1 xl:gap-2">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
                 className={cn(
-                  'tg-nav-link text-tg-ink/80 text-[0.8125rem]',
-                  active === link.href && 'is-active text-tg-navy',
+                  'tg-nav-link',
+                  scrolled
+                    ? 'text-tg-ink/80 text-[0.8125rem]'
+                    : 'tg-nav-link--hero text-[0.8125rem]',
+                  active === link.href && (scrolled ? 'is-active text-tg-navy' : 'is-active'),
                 )}
               >
                 {link.label}
@@ -76,14 +80,25 @@ const Navigation = () => {
         </ul>
 
         <div className="hidden lg:flex">
-          <a href="#contact" className="tg-btn-primary tg-btn-nav">
+          <a
+            href="#contact"
+            className={cn(
+              'tg-btn-nav transition-all duration-300',
+              scrolled ? 'tg-btn-primary' : 'tg-btn-gold',
+            )}
+          >
             Get a Free Quote
           </a>
         </div>
 
         <motion.button
           type="button"
-          className="lg:hidden tg-icon-btn tg-icon-btn--cyan inline-flex h-9 w-9 items-center justify-center rounded-full border border-tg-line text-tg-navy"
+          className={cn(
+            'lg:hidden tg-icon-btn inline-flex h-9 w-9 items-center justify-center rounded-full border',
+            scrolled
+              ? 'tg-icon-btn--cyan border-tg-line text-tg-navy'
+              : 'border-white/40 text-white bg-white/15 backdrop-blur-sm shadow-[0_2px_12px_rgba(0,0,0,0.35)]',
+          )}
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}

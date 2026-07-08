@@ -7,21 +7,21 @@ const Ventures = () => {
   const reduce = useReducedMotion() ?? false;
 
   return (
-    <section id="ventures" className="tg-section bg-tg-bg relative overflow-hidden" aria-labelledby="ventures-heading">
+    <section id="ventures" className="tg-section bg-tg-bg relative overflow-hidden scroll-mt-24" aria-labelledby="ventures-heading">
       <div className="absolute inset-x-0 top-0 h-px tg-prism-line opacity-70" aria-hidden="true" />
       <div className="tg-container relative">
         <motion.div
-          className="max-w-3xl mb-10 md:mb-14"
+          className="tg-section-header max-w-3xl"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55 }}
         >
-          <p className="tg-eyebrow mb-3">Our portfolio</p>
-          <h2 id="ventures-heading" className="font-display text-headline-xl text-tg-navy mb-4">
+          <p className="tg-eyebrow mb-4">Our portfolio</p>
+          <h2 id="ventures-heading" className="font-display text-headline-xl text-tg-navy">
             Traditional Group Ventures
           </h2>
-          <div className="mb-4 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
+          <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="text-body-md text-tg-muted">
             Traditional Group operates across multiple sectors with a strong commitment to quality
             and innovation. From manufacturing to hospitality, education, and recreation, each
@@ -65,7 +65,7 @@ const VentureFront = ({ venture }: { venture: Venture }) => (
   <>
     <img
       src={venture.image}
-      alt={venture.name}
+      alt={`${venture.name} — ${venture.sector} venture by Traditional Group Jaipur`}
       loading="lazy"
       decoding="async"
       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"

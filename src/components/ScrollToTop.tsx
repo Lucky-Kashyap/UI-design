@@ -3,28 +3,18 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
 import type Lenis from 'lenis';
 
-const getFirstScreenHeight = (): number => {
-  const firstScreen = document.querySelector('.tg-first-screen');
-  return firstScreen?.getBoundingClientRect().height ?? window.innerHeight;
-};
+const SCROLL_THRESHOLD_PX = 450;
 
 const ScrollToTop = () => {
   const reduce = useReducedMotion() ?? false;
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      const threshold = getFirstScreenHeight();
-      setVisible(window.scrollY > threshold - 48);
-    };
+    const onScroll = () => setVisible(window.scrollY > SCROLL_THRESHOLD_PX);
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollToTop = useCallback(() => {

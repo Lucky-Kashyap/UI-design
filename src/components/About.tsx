@@ -1,45 +1,44 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Factory, GraduationCap, Hotel, Trees, type LucideIcon } from 'lucide-react';
+import {
+  BookOpen,
+  CheckCircle2,
+  Factory,
+  GraduationCap,
+  Hotel,
+  Trees,
+  type LucideIcon,
+} from 'lucide-react';
 import { ABOUT } from '@/data/traditionalGroup';
 import { useCountUp, useParallax } from '@/hooks/useMotionUtils';
 import { cn } from '@/lib/utils';
 
-const SECTOR_META: Array<{
-  id: string;
-  label: string;
-  icon: LucideIcon;
-  themeClass: string;
-  iconClass: string;
-}> = [
-  {
-    id: 'manufacturing',
-    label: 'Clothing and Manufacturing',
+const SECTOR_ICON_MAP: Record<string, { icon: LucideIcon; themeClass: string; iconClass: string }> = {
+  manufacturing: {
     icon: Factory,
     themeClass: 'tg-sector-item--amber',
     iconClass: 'text-tg-amber',
   },
-  {
-    id: 'hospitality',
-    label: 'Hotel Industry',
+  hospitality: {
     icon: Hotel,
     themeClass: 'tg-sector-item--cyan',
     iconClass: 'text-tg-cyan',
   },
-  {
-    id: 'education',
-    label: 'Education',
+  education: {
     icon: GraduationCap,
     themeClass: 'tg-sector-item--emerald',
     iconClass: 'text-tg-emerald',
   },
-  {
-    id: 'resort',
-    label: 'Resort',
+  'ib-school': {
+    icon: BookOpen,
+    themeClass: 'tg-sector-item--gold',
+    iconClass: 'text-tg-gold',
+  },
+  'eco-adventure': {
     icon: Trees,
     themeClass: 'tg-sector-item--coral',
     iconClass: 'text-tg-coral',
   },
-];
+};
 
 type StatProps = {
   value: number;
@@ -97,12 +96,12 @@ const About = () => {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.55 }}
           >
-            <p className="tg-eyebrow mb-2">{ABOUT.eyebrow}</p>
-            <h2 id="about-heading" className="font-display text-headline-xl text-tg-navy mb-3">
+            <p className="tg-eyebrow mb-4">{ABOUT.eyebrow}</p>
+            <h2 id="about-heading" className="font-display text-headline-xl text-tg-navy mb-5">
               {ABOUT.title}
             </h2>
-            <div className="mb-3 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-            <p className="text-body-md text-tg-muted mb-5 max-w-xl">{ABOUT.body}</p>
+            <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
+            <p className="text-body-md text-tg-muted mb-8 max-w-xl">{ABOUT.body}</p>
 
             <div className="grid grid-cols-3 gap-2 mb-5">
               {ABOUT.stats.map((stat, i) => (
@@ -111,28 +110,39 @@ const About = () => {
             </div>
 
             <div className="relative flex-1">
-              <div
-                className="absolute left-[0.95rem] top-3 bottom-3 w-px tg-prism-line opacity-50"
+              <motion.div
+                className="absolute left-[0.95rem] top-3 bottom-3 w-px origin-top tg-prism-line opacity-50"
                 aria-hidden="true"
+                initial={reduce ? false : { scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
               />
               <ul className="flex flex-col gap-2">
-                {SECTOR_META.map((sector, i) => {
-                  const Icon = sector.icon;
+                {ABOUT.sectors.map((sector, i) => {
+                  const meta = SECTOR_ICON_MAP[sector.id];
+                  if (!meta) return null;
+
+                  const Icon = meta.icon;
                   return (
                     <motion.li
                       key={sector.id}
-                      className={cn('tg-sector-item group', sector.themeClass)}
-                      initial={reduce ? false : { opacity: 0, x: -12 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      className={cn('tg-sector-item group', meta.themeClass)}
+                      initial={reduce ? false : { opacity: 0, x: -20, scale: 0.98 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: reduce ? 0 : 0.05 * i, duration: 0.35 }}
-                      whileHover={reduce ? undefined : { x: 6 }}
+                      transition={{
+                        delay: reduce ? 0 : 0.08 * i,
+                        duration: 0.45,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      whileHover={reduce ? undefined : { x: 8, scale: 1.01 }}
                     >
                       <span className="tg-sector-icon">
-                        <Icon className={cn('h-4 w-4 transition-transform duration-300 group-hover:scale-110', sector.iconClass)} />
+                        <Icon className={cn('h-4 w-4 transition-transform duration-300 group-hover:scale-110', meta.iconClass)} />
                       </span>
                       <span className="tg-sector-label">{sector.label}</span>
-                      <CheckCircle2 className={cn('h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12', sector.iconClass)} />
+                      <CheckCircle2 className={cn('h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12', meta.iconClass)} />
                     </motion.li>
                   );
                 })}
@@ -172,7 +182,7 @@ const About = () => {
                 <div className="absolute inset-x-3 bottom-3 rounded-[var(--tg-radius-md)] bg-white/95 backdrop-blur-md border border-tg-line p-3 shadow-lg">
                   <p className="text-[10px] uppercase tracking-[0.14em] text-tg-muted mb-0.5">Across sectors</p>
                   <p className="font-display text-base text-tg-navy leading-snug">
-                    Hospitality · Education · Manufacturing · Adventure
+                    Manufacturing · Hospitality · Education · Eco-Adventure
                   </p>
                   <div className="mt-2 h-0.5 w-full rounded-full tg-prism-line animate-prism-shift bg-[length:200%_100%]" />
                 </div>

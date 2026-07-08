@@ -43,7 +43,7 @@ function App() {
 
       event.preventDefault();
       lenis.scrollTo(el, {
-        offset: -72,
+        offset: -100,
         duration: 1.4,
         easing: (t) => 1 - Math.pow(1 - t, 4),
       });

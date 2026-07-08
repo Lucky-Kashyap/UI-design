@@ -1,3 +1,4 @@
+import HeritagePathway from '@/components/HeritagePathway';
 import ScrollProgress from '@/components/ScrollProgress';
 import ScrollToTop from '@/components/ScrollToTop';
 import TopBar from '@/components/TopBar';
@@ -10,8 +11,11 @@ import Testimonials from '@/components/Testimonials';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import { SITE } from '@/data/traditionalGroup';
+import { useHeaderOffset } from '@/hooks/useHeaderOffset';
 
 const Home = () => {
+  useHeaderOffset();
+
   return (
     <div className="theme-prism min-h-screen bg-tg-bg text-tg-ink font-sans">
       <a
@@ -24,16 +28,18 @@ const Home = () => {
       <ScrollProgress />
       <ScrollToTop />
 
+      <header className="tg-site-header fixed inset-x-0 top-0 z-50" role="banner">
+        <TopBar />
+        <Navigation />
+      </header>
+
       <div className="tg-first-screen">
-        <header className="flex flex-shrink-0 flex-col" role="banner">
-          <TopBar />
-          <Navigation />
-        </header>
         <Hero />
       </div>
 
       <main id="main-content" role="main" aria-label={`${SITE.name} homepage content`}>
         <Ventures />
+        <HeritagePathway />
         <About />
         <Gallery />
         <Testimonials />

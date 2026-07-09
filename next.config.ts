@@ -6,6 +6,7 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   output: 'export',
+  trailingSlash: true,
   turbopack: {
     root: rootDir,
   },

@@ -33,23 +33,20 @@ const ForgeLineage = () => (
           className="absolute -bottom-4 -right-2 hidden rounded-tg-md border border-tg-gold/30 bg-tg-bg px-4 py-3 shadow-lg sm:block xs:-right-4"
           aria-hidden="true"
         >
-          <p className="fg-caption text-tg-gold">Est. 1985</p>
-          <p className="fg-h3 mt-0.5 text-tg-ink">Three generations</p>
+          <p className="fg-caption text-tg-gold">{FORGE_LINEAGE.badge.caption}</p>
+          <p className="fg-h3 mt-0.5 text-tg-ink">{FORGE_LINEAGE.badge.title}</p>
         </div>
       </AnimatedContent>
 
       <AnimatedContent delay={0.1} className="min-w-0">
-        <ForgeEyebrow>Lineage</ForgeEyebrow>
+        <ForgeEyebrow>{FORGE_LINEAGE.eyebrow}</ForgeEyebrow>
         <ForgeH2 id="lineage-heading" className="mt-2 xs:mt-3">
-          Built over generations
+          {FORGE_LINEAGE.title}
         </ForgeH2>
-        <ForgeBody className="mt-3 xs:mt-4">
-          From a single manufacturing vision to a multi-venture collective — each era added depth without losing the
-          thread of quality.
-        </ForgeBody>
+        <ForgeBody className="mt-3 xs:mt-4">{FORGE_LINEAGE.intro}</ForgeBody>
 
         <ol className="fg-timeline mt-6 xs:mt-8">
-          {FORGE_LINEAGE.map((item) => (
+          {FORGE_LINEAGE.timeline.map((item) => (
             <li key={item.era} className="fg-timeline__item">
               <p className="fg-h3 text-tg-gold">{item.era}</p>
               <ForgeBody className="mt-1 max-w-prose">{item.detail}</ForgeBody>

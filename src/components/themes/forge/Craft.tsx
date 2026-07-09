@@ -1,5 +1,5 @@
 import AnimatedContent from '@/components/react-bits/AnimatedContent';
-import { FORGE_CRAFT_INTRO } from '@/data/forgeContent';
+import { FORGE_GALLERY } from '@/data/forgeContent';
 import { FORGE_CRAFT } from './media';
 import {
   ForgeBody,
@@ -20,11 +20,11 @@ const ForgeCraft = () => (
 
     <ForgeContainer className="relative mb-8 xs:mb-10 md:mb-12">
       <div className="max-w-2xl">
-        <ForgeEyebrow>Craft</ForgeEyebrow>
+        <ForgeEyebrow>{FORGE_GALLERY.eyebrow}</ForgeEyebrow>
         <ForgeH2 id="craft-heading" className="mt-2 text-white">
-          Material and landscape
+          {FORGE_GALLERY.title}
         </ForgeH2>
-        <ForgeBody className="mt-3 max-w-xl text-white/65">{FORGE_CRAFT_INTRO}</ForgeBody>
+        <ForgeBody className="mt-3 max-w-xl text-white/65">{FORGE_GALLERY.intro}</ForgeBody>
       </div>
     </ForgeContainer>
 

@@ -3,16 +3,10 @@ import { useRef } from 'react';
 import ScrollReveal from '@/components/react-bits/ScrollReveal';
 import SplitText from '@/components/react-bits/SplitText';
 import { HERO } from '@/data/traditionalGroup';
-import { FORGE_HERO } from '@/data/forgeContent';
+import { FORGE_HERO, FORGE_HERO_BADGE, FORGE_HERO_STATS } from '@/data/forgeContent';
 import { useTheme } from '@/context/ThemeProvider';
 import { FORGE_HERO_BG, FORGE_HERO_FEATURE } from './media';
 import { ForgeImage, ForgeThemeStyles } from './ui';
-
-const FORGE_STATS = [
-  { value: '5+', label: 'Ventures' },
-  { value: 'Jaipur', label: 'Rooted' },
-  { value: '3 Gen', label: 'Lineage' },
-] as const;
 
 const ForgeHero = () => {
   const reduce = useReducedMotion() ?? false;
@@ -73,7 +67,7 @@ const ForgeHero = () => {
               </a>
             </div>
             <div className="mt-6 grid grid-cols-3 gap-2 xs:mt-8 xs:gap-3 sm:max-w-md">
-              {FORGE_STATS.map((stat) => (
+              {FORGE_HERO_STATS.map((stat) => (
                 <div key={stat.label} className="fg-stat">
                   <span className="fg-stat__value">{stat.value}</span>
                   <span className="fg-stat__label">{stat.label}</span>
@@ -100,8 +94,8 @@ const ForgeHero = () => {
               decoding="async"
             />
             <div className="absolute bottom-3 right-3 rounded-tg-md border border-tg-gold/40 bg-tg-deep/85 px-3 py-2 backdrop-blur-sm xs:bottom-4 xs:right-4 xs:px-4 xs:py-3">
-              <p className="fg-h3 text-tg-gold">Since 1985</p>
-              <p className="fg-caption text-white/60">Forged in trust</p>
+              <p className="fg-h3 text-tg-gold">{FORGE_HERO_BADGE.title}</p>
+              <p className="fg-caption text-white/60">{FORGE_HERO_BADGE.subtitle}</p>
             </div>
           </motion.div>
         </div>

@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import AnimatedContent from '@/components/react-bits/AnimatedContent';
+import { FORGE_VISIT } from '@/data/forgeContent';
 import { SITE } from '@/data/traditionalGroup';
 import { FORGE_VISIT_BG } from './media';
 import { ForgeBody, ForgeContainer, ForgeEyebrow, ForgeH2, ForgeImage, ForgeSection } from './ui';
@@ -14,13 +15,11 @@ const ForgeVisit = () => (
 
         <AnimatedContent className="fg-visit-panel__content grid min-w-0 gap-8 p-5 xs:gap-10 xs:p-8 md:grid-cols-2 md:p-12 lg:gap-14">
           <div className="min-w-0">
-            <ForgeEyebrow>Visit</ForgeEyebrow>
+            <ForgeEyebrow>{FORGE_VISIT.eyebrow}</ForgeEyebrow>
             <ForgeH2 id="visit-heading" className="mt-2 xs:mt-3">
-              Visit the hearth
+              {FORGE_VISIT.title}
             </ForgeH2>
-            <ForgeBody className="mt-4 max-w-md">
-              Walk in, call, or write — we welcome conversations about ventures, partnerships, and stays.
-            </ForgeBody>
+            <ForgeBody className="mt-4 max-w-md">{FORGE_VISIT.intro}</ForgeBody>
           </div>
 
           <div className="grid min-w-0 gap-3 xs:gap-4">

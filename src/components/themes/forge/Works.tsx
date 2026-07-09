@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import AnimatedContent from '@/components/react-bits/AnimatedContent';
-import { FORGE_WORKS_INTRO } from '@/data/forgeContent';
+import { FORGE_WORKS } from '@/data/forgeContent';
 import { mergeVentureMedia } from '@/lib/themeVentures';
 import { cn } from '@/lib/utils';
 import { FORGE_WORKS_MEDIA } from './media';
@@ -24,11 +24,11 @@ const ForgeWorks = () => {
     <ForgeSection id="works" className="bg-tg-bg" aria-labelledby="works-heading">
       <ForgeContainer className="mb-8 xs:mb-10 md:mb-12">
         <AnimatedContent className="max-w-2xl">
-          <ForgeEyebrow>Works</ForgeEyebrow>
+          <ForgeEyebrow>{FORGE_WORKS.eyebrow}</ForgeEyebrow>
           <ForgeH2 id="works-heading" className="mt-2 xs:mt-3">
-            Forged across sectors
+            {FORGE_WORKS.title}
           </ForgeH2>
-          <ForgeBody className="mt-3 xs:mt-4">{FORGE_WORKS_INTRO}</ForgeBody>
+          <ForgeBody className="mt-3 xs:mt-4">{FORGE_WORKS.intro}</ForgeBody>
         </AnimatedContent>
       </ForgeContainer>
 

@@ -11,7 +11,7 @@ export const SITE = {
     'SP-6&7 RIICO Industrial Area, Shipra Path, Mansarovar, Jaipur, Rajasthan 302020',
   facebook:
     'https://www.facebook.com/people/Traditional-Gallery-Pvt-ltd/100057586114920/',
-  logo: '/traditional-group-logo.png',
+  logo: '/traditional-group-logo.webp',
 } as const;
 
 export type NavLink = { label: string; href: string };

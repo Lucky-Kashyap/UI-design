@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Phone, Mail } from 'lucide-react';
 import { SITE } from '@/data/traditionalGroup';
-import HeadingReveal from '@/components/HeadingReveal';
 
 const CTASection = () => {
   const reduce = useReducedMotion() ?? false;
@@ -43,10 +42,8 @@ const CTASection = () => {
             <p className="tg-eyebrow text-white/60 mb-3">
               Get in touch
             </p>
-            <h2 id="cta-heading" className="font-display text-headline-xl mb-4">
-              <HeadingReveal variant="light" block>
-                Get a Free Quote
-              </HeadingReveal>
+            <h2 id="cta-heading" className="font-display text-headline-xl mb-4 text-white">
+              Get a Free Quote
             </h2>
             <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
             <p className="text-body-md text-white/75 mb-8 w-full max-w-none">

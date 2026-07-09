@@ -9,7 +9,6 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { ABOUT } from '@/data/traditionalGroup';
-import HeadingReveal from '@/components/HeadingReveal';
 import { useCountUp, useParallax } from '@/hooks/useMotionUtils';
 import { cn } from '@/lib/utils';
 
@@ -99,7 +98,7 @@ const About = () => {
           >
             <p className="tg-eyebrow mb-4">{ABOUT.eyebrow}</p>
             <h2 id="about-heading" className="font-display text-headline-xl mb-5">
-              <HeadingReveal block>{ABOUT.title}</HeadingReveal>
+              {ABOUT.title}
             </h2>
             <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
             <p className="text-body-md text-tg-muted mb-8 w-full max-w-none">{ABOUT.body}</p>

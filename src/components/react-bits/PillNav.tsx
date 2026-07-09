@@ -19,21 +19,24 @@ const PillNav = ({ items, className, solid = false }: PillNavProps) => {
   return (
     <nav
       className={cn(
-        'relative inline-flex items-center gap-0.5 rounded-tg-pill border p-1',
+        'relative inline-flex max-w-full items-center gap-0.5 rounded-tg-pill border p-1',
         solid
-          ? 'border-tg-line/80 bg-tg-soft/80 backdrop-blur-xl'
-          : 'border-white/10 bg-white/5 backdrop-blur-2xl',
+          ? 'border-tg-line/80 bg-tg-soft/90 backdrop-blur-xl'
+          : 'border-white/12 bg-tg-navy/55 backdrop-blur-2xl',
         className,
       )}
       aria-label="Primary"
     >
       {activeIndex >= 0 && (
         <span
-          className="absolute top-1 bottom-1 rounded-tg-pill bg-prism-band transition-all duration-300 ease-tg"
+          className={cn(
+            'absolute top-1 bottom-1 rounded-tg-pill transition-all duration-300 ease-tg',
+            solid ? 'bg-tg-navy' : 'bg-prism-band',
+          )}
           style={{
             left: `calc(${activeIndex} * (100% / ${items.length}) + 0.25rem)`,
             width: `calc(100% / ${items.length} - 0.5rem)`,
-            opacity: solid ? 0.28 : 0.38,
+            opacity: solid ? 1 : 0.42,
           }}
           aria-hidden="true"
         />
@@ -48,11 +51,11 @@ const PillNav = ({ items, className, solid = false }: PillNavProps) => {
             'relative z-10 rounded-tg-pill px-2 py-1.5 text-[0.7rem] font-medium transition-colors duration-300 xs:px-3 xs:py-2 xs:text-[0.8125rem] xl:px-4',
             item.isActive
               ? solid
-                ? 'font-semibold text-tg-navy'
+                ? 'font-semibold text-white'
                 : 'font-semibold text-white'
               : solid
-                ? 'text-tg-ink/70 hover:text-tg-navy'
-                : 'text-white/70 hover:text-white',
+                ? 'text-tg-ink/75 hover:text-tg-navy'
+                : 'text-white/75 hover:text-white',
           )}
         >
           {item.label}

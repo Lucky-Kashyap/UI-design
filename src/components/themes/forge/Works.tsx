@@ -15,12 +15,14 @@ import {
   ForgeSection,
 } from './ui';
 
+const BENTO_LAYOUT = ['featured', 'side', 'side', 'half', 'half'] as const;
+
 const ForgeWorks = () => {
   const ventures = useMemo(() => mergeVentureMedia(FORGE_WORKS_MEDIA), []);
 
   return (
     <ForgeSection id="works" className="bg-tg-bg" aria-labelledby="works-heading">
-      <ForgeContainer className="mb-8 xs:mb-10 md:mb-14">
+      <ForgeContainer className="mb-8 xs:mb-10 md:mb-12">
         <AnimatedContent className="max-w-2xl">
           <ForgeEyebrow>Works</ForgeEyebrow>
           <ForgeH2 id="works-heading" className="mt-2 xs:mt-3">
@@ -30,59 +32,78 @@ const ForgeWorks = () => {
         </AnimatedContent>
       </ForgeContainer>
 
-      <div className="space-y-12 xs:space-y-14 md:space-y-20">
-        {ventures.map((venture, index) => {
-          const imageLeft = index % 2 === 0;
-          const media = FORGE_WORKS_MEDIA[index];
+      <ForgeContainer>
+        <div className="fg-works-bento">
+          {ventures.map((venture, index) => {
+            const media = FORGE_WORKS_MEDIA[index];
+            const layout = BENTO_LAYOUT[index] ?? 'half';
+            const isFeatured = layout === 'featured';
+            const isOverlay = isFeatured || layout === 'side';
 
-          return (
-            <AnimatedContent key={venture.id} delay={index * 0.06}>
-              <article
+            return (
+              <AnimatedContent
+                key={venture.id}
+                delay={index * 0.06}
                 className={cn(
-                  'fg-container grid min-w-0 items-center gap-6 xs:gap-8 md:gap-10 lg:grid-cols-2 lg:gap-14',
-                  !imageLeft && 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1',
+                  layout === 'featured' && 'fg-works-bento__featured',
+                  layout === 'side' && 'fg-works-bento__side',
+                  layout === 'half' && 'fg-works-bento__half',
                 )}
               >
                 <a
                   href={venture.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative block overflow-hidden rounded-tg-lg border border-tg-line shadow-md xs:rounded-tg-xl"
+                  className={cn(
+                    'fg-venture-card group',
+                    isOverlay && 'fg-venture-card--overlay',
+                    isFeatured && 'min-h-[20rem] sm:min-h-[24rem] lg:min-h-[28rem]',
+                  )}
                 >
-                  <ForgeImage
-                    src={venture.image}
-                    alt={media?.alt ?? venture.name}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] lg:aspect-[5/4]"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span className="absolute left-3 top-3 rounded-tg-md bg-tg-deep/80 px-2.5 py-1 font-display text-lg text-tg-gold backdrop-blur-sm xs:left-4 xs:top-4 xs:px-3 xs:text-xl">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </a>
-
-                <div className="min-w-0 px-0.5 lg:px-2">
-                  <p className="fg-caption text-tg-gold">{venture.sector}</p>
-                  <div className="mt-2 flex items-start justify-between gap-3 xs:mt-3">
-                    <ForgeH3>{venture.shortName}</ForgeH3>
-                    <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-tg-muted" aria-hidden="true" />
-                  </div>
-                  <ForgeBody className="mt-3">{venture.description}</ForgeBody>
-                  <a
-                    href={venture.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="fg-body mt-5 inline-flex items-center gap-1.5 font-semibold text-tg-gold transition-colors hover:text-tg-gold-light"
+                  <div
+                    className={cn(
+                      'fg-venture-card__media',
+                      isOverlay ? 'absolute inset-0' : 'relative aspect-[16/10] sm:aspect-[5/3]',
+                    )}
                   >
-                    Explore venture
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </article>
-            </AnimatedContent>
-          );
-        })}
-      </div>
+                    <ForgeImage
+                      src={venture.image}
+                      alt={media?.alt ?? venture.name}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    {isOverlay && <div className="fg-venture-card__overlay" aria-hidden="true" />}
+                    <span className="absolute left-3 top-3 z-10 rounded-tg-md bg-tg-deep/80 px-2.5 py-1 font-display text-lg text-tg-gold backdrop-blur-sm xs:left-4 xs:top-4 xs:px-3 xs:text-xl">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  <div className={cn('fg-venture-card__body', isFeatured && 'mt-auto')}>
+                    <p className="fg-caption text-tg-gold">{venture.sector}</p>
+                    <div className="mt-1 flex items-start justify-between gap-3 xs:mt-2">
+                      <ForgeH3 className={isOverlay ? 'text-white' : undefined}>{venture.shortName}</ForgeH3>
+                      <ArrowUpRight
+                        className={cn('mt-1 h-5 w-5 shrink-0', isOverlay ? 'text-tg-gold' : 'text-tg-muted')}
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <ForgeBody className={cn('mt-2 line-clamp-2 xs:mt-3', isOverlay && 'text-white/75')}>
+                      {venture.description}
+                    </ForgeBody>
+                    {!isOverlay && (
+                      <span className="fg-body mt-4 inline-flex items-center gap-1.5 font-semibold text-tg-gold transition-colors group-hover:text-tg-gold-light">
+                        Explore venture
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    )}
+                  </div>
+                </a>
+              </AnimatedContent>
+            );
+          })}
+        </div>
+      </ForgeContainer>
     </ForgeSection>
   );
 };

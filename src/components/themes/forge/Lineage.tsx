@@ -11,34 +11,48 @@ import {
 } from './ui';
 
 const ForgeLineage = () => (
-  <ForgeSection id="lineage" className="bg-tg-soft" aria-labelledby="lineage-heading">
-    <ForgeContainer className="grid min-w-0 gap-8 xs:gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-      <AnimatedContent className="min-w-0 lg:order-2">
-        <ForgeImage
-          src={FORGE_LINEAGE_IMAGE}
-          alt="Heritage courtyard interior warm light"
-          className="w-full rounded-tg-lg border border-tg-gold/25 shadow-lg"
-          loading="lazy"
-          decoding="async"
-        />
+  <ForgeSection id="lineage" className="relative overflow-hidden bg-tg-soft" aria-labelledby="lineage-heading">
+    <div className="fg-copper-band absolute inset-x-0 top-0" aria-hidden="true" />
+
+    <ForgeContainer className="grid min-w-0 gap-8 xs:gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14 xl:gap-16">
+      <AnimatedContent className="relative min-w-0">
+        <div className="relative overflow-hidden rounded-tg-lg border border-tg-gold/25 shadow-xl">
+          <ForgeImage
+            src={FORGE_LINEAGE_IMAGE}
+            alt="Heritage courtyard interior warm light"
+            className="aspect-[4/5] w-full object-cover sm:aspect-[5/6] lg:aspect-[4/5]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-tg-deep/40 via-transparent to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+        <div
+          className="absolute -bottom-4 -right-2 hidden rounded-tg-md border border-tg-gold/30 bg-tg-bg px-4 py-3 shadow-lg sm:block xs:-right-4"
+          aria-hidden="true"
+        >
+          <p className="fg-caption text-tg-gold">Est. 1985</p>
+          <p className="fg-h3 mt-0.5 text-tg-ink">Three generations</p>
+        </div>
       </AnimatedContent>
 
-      <AnimatedContent delay={0.1} className="min-w-0 lg:order-1">
+      <AnimatedContent delay={0.1} className="min-w-0">
         <ForgeEyebrow>Lineage</ForgeEyebrow>
         <ForgeH2 id="lineage-heading" className="mt-2 xs:mt-3">
           Built over generations
         </ForgeH2>
         <ForgeBody className="mt-3 xs:mt-4">
-          From a single manufacturing vision to a multi-venture collective — each era added depth without losing the thread of quality.
+          From a single manufacturing vision to a multi-venture collective — each era added depth without losing the
+          thread of quality.
         </ForgeBody>
-        <ol className="mt-6 space-y-5 xs:mt-8 xs:space-y-6">
-          {FORGE_LINEAGE.map((item, index) => (
-            <li key={item.era} className="flex gap-4 border-l-2 border-tg-gold/40 pl-4 xs:gap-5 xs:pl-6">
-              <span className="fg-caption text-tg-gold/70">{String(index + 1).padStart(2, '0')}</span>
-              <div>
-                <p className="fg-h3 text-tg-gold">{item.era}</p>
-                <ForgeBody className="mt-1">{item.detail}</ForgeBody>
-              </div>
+
+        <ol className="fg-timeline mt-6 xs:mt-8">
+          {FORGE_LINEAGE.map((item) => (
+            <li key={item.era} className="fg-timeline__item">
+              <p className="fg-h3 text-tg-gold">{item.era}</p>
+              <ForgeBody className="mt-1 max-w-prose">{item.detail}</ForgeBody>
             </li>
           ))}
         </ol>

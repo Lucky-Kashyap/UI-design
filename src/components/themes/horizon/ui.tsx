@@ -42,6 +42,30 @@ export const HorizonImage = ({
   );
 };
 
+type SectionBgOverlay = 'hero' | 'light' | 'soft' | 'warm';
+
+const overlayClass: Record<SectionBgOverlay, string> = {
+  hero: 'bg-gradient-to-b from-tg-navy/35 via-tg-navy/10 to-tg-bg/45',
+  light: 'bg-tg-bg/30',
+  soft: 'bg-tg-soft/35',
+  warm: 'bg-tg-bg/25',
+};
+
+export const HorizonSectionBg = ({
+  src,
+  overlay = 'light',
+  className,
+}: {
+  src: string;
+  overlay?: SectionBgOverlay;
+  className?: string;
+}) => (
+  <div className={cn('hz-section-bg', className)} aria-hidden="true">
+    <HorizonImage src={src} alt="" loading="lazy" decoding="async" width={1920} height={1080} />
+    <div className={cn('absolute inset-0', overlayClass[overlay])} />
+  </div>
+);
+
 type SectionProps = {
   id?: string;
   className?: string;

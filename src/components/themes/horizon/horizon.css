@@ -105,9 +105,25 @@
   transition: transform 0.35s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
+[data-theme='horizon'] .hz-nav-cta--desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='horizon'] .hz-nav-cta--desktop {
+    display: inline-flex;
+  }
+}
+
 [data-theme='horizon'] .hz-btn--primary {
   background: #fff;
   color: var(--tg-navy);
+}
+
+[data-theme='horizon'] .hz-mobile-menu .hz-btn--primary,
+[data-theme='horizon'] .hz-mobile-menu__cta {
+  background: var(--tg-navy);
+  color: #fff;
 }
 
 [data-theme='horizon'] .hz-btn--primary:hover {
@@ -124,6 +140,38 @@
 [data-theme='horizon'] .hz-btn--ghost:hover {
   background: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
+}
+
+[data-theme='horizon'] .hz-hero-bg__img {
+  object-position: 86% 28%;
+}
+
+@media (max-width: 767px) {
+  [data-theme='horizon'] .hz-hero-bg__img {
+    object-position: 82% 22%;
+  }
+}
+
+[data-theme='horizon'] .hz-hero-copy {
+  text-shadow: 0 1px 12px rgba(21, 42, 69, 0.35);
+}
+
+[data-theme='horizon'] .hz-hero-copy .hz-btn--primary {
+  box-shadow: 0 8px 24px rgba(21, 42, 69, 0.2);
+}
+
+[data-theme='horizon'] .hz-section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+[data-theme='horizon'] .hz-section-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 [data-theme='horizon'] .hz-img-fallback {

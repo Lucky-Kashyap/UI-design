@@ -1,12 +1,14 @@
 /**
  * Meridian Atelier — exclusive image paths.
- * Drop assets under public/assets/themes/meridian/{hero,ventures,gallery}/
+ * Assets under public/assets/themes/meridian/
  */
 
 const base = '/assets/themes/meridian';
 const hero = (name: string) => `${base}/hero/${name}`;
 const ventures = (name: string) => `${base}/ventures/${name}`;
 const gallery = (name: string) => `${base}/gallery/${name}`;
+const about = (name: string) => `${base}/about/${name}`;
+const backgrounds = (name: string) => `${base}/backgrounds/${name}`;
 
 export type MeridianVentureMedia = {
   id: string;
@@ -14,9 +16,12 @@ export type MeridianVentureMedia = {
   alt: string;
 };
 
-export const MERIDIAN_HERO_VIDEO = `${base}/hero/meridian-hero-loop.webm`;
+export const MERIDIAN_HERO_VIDEO = hero('meridian-hero-loop.webm');
 export const MERIDIAN_HERO_POSTER = hero('meridian-hero-poster.webp');
 export const MERIDIAN_HERO_DEFAULT = hero('meridian-hero-gallery.webp');
+
+export const MERIDIAN_BG_ECOSYSTEM = backgrounds('meridian-bg-ecosystem.webp');
+export const MERIDIAN_BG_FRAMES = backgrounds('meridian-bg-frames.webp');
 
 export const MERIDIAN_VENTURE_MEDIA: MeridianVentureMedia[] = [
   { id: 'gallery', image: ventures('meridian-venture-gallery.webp'), alt: 'Manufacturing floor at night — cinematic architecture' },
@@ -27,11 +32,11 @@ export const MERIDIAN_VENTURE_MEDIA: MeridianVentureMedia[] = [
 ];
 
 export const MERIDIAN_FRAMES = [
-  { id: 'mf1', src: gallery('meridian-frame-haveli.webp'), alt: 'Haveli facade at night', sector: 'Hospitality', title: 'Night façades', description: 'Sandstone heritage lit with cyan accents after dark.' },
-  { id: 'mf2', src: gallery('meridian-frame-resort.webp'), alt: 'Resort pool at night', sector: 'Resort', title: 'Still water', description: 'Infinity edges reflecting a deep Jaipur sky.' },
-  { id: 'mf3', src: gallery('meridian-frame-campus.webp'), alt: 'Campus aerial at night', sector: 'Education', title: 'Campus glow', description: 'Learning corridors alive with evening light.' },
-  { id: 'mf4', src: gallery('meridian-frame-valley.webp'), alt: 'Valley night landscape', sector: 'Adventure', title: 'Valley hush', description: 'Eco trails under violet horizons.' },
-  { id: 'mf5', src: gallery('meridian-frame-factory.webp'), alt: 'Factory floor at night', sector: 'Manufacturing', title: 'Floor rhythm', description: 'Precision lines and craft in low light.' },
+  { id: 'mf1', src: gallery('meridian-frame-haveli.webp'), alt: 'Haveli facade at night', sector: 'Hospitality', title: 'Night façades', description: 'Sandstone heritage lit with cyan accents after dark.', width: 900, height: 1200 },
+  { id: 'mf2', src: gallery('meridian-frame-resort.webp'), alt: 'Resort pool at night', sector: 'Resort', title: 'Still water', description: 'Infinity edges reflecting a deep Jaipur sky.', width: 900, height: 1200 },
+  { id: 'mf3', src: gallery('meridian-frame-campus.webp'), alt: 'Campus aerial at night', sector: 'Education', title: 'Campus glow', description: 'Learning corridors alive with evening light.', width: 900, height: 1200 },
+  { id: 'mf4', src: gallery('meridian-frame-valley.webp'), alt: 'Valley night landscape', sector: 'Adventure', title: 'Valley hush', description: 'Eco trails under violet horizons.', width: 900, height: 1200 },
+  { id: 'mf5', src: gallery('meridian-frame-factory.webp'), alt: 'Factory floor at night', sector: 'Manufacturing', title: 'Floor rhythm', description: 'Precision lines and craft in low light.', width: 900, height: 1200 },
 ] as const;
 
-export const MERIDIAN_EVOLUTION_IMAGE = gallery('meridian-about-heritage.webp');
+export const MERIDIAN_EVOLUTION_IMAGE = about('meridian-about-heritage.webp');

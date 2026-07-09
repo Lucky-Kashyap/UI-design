@@ -30,7 +30,7 @@ const PrismNavigation = () => {
           aria-label="Traditional Group home"
           aria-current={active === '#home' ? 'page' : undefined}
         >
-          <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
+          <TraditionalGroupLogo priority />
         </a>
 
         <ul className="hidden lg:flex items-center gap-1 xl:gap-2">

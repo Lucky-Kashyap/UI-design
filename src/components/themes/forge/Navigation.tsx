@@ -29,7 +29,7 @@ const ForgeNavigation = () => {
     >
       <ForgeContainer className="flex min-w-0 items-center justify-between gap-4 py-3 md:py-4">
         <a href="#home" onClick={() => handleNavClick('#home')} aria-label="Traditional Group home" className="shrink-0">
-          <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
+          <TraditionalGroupLogo priority />
         </a>
         <div className="hidden h-px max-w-xs flex-1 bg-gradient-to-r from-transparent via-tg-gold/50 to-transparent lg:block" aria-hidden="true" />
         <ul className="hidden items-center gap-5 lg:gap-6 lg:flex">

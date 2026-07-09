@@ -79,9 +79,9 @@ export const meridianTheme: ThemeConfig = {
   assets: {
     basePath: '/assets/themes/meridian',
     hero: {
-      videoSrc: '/media/meridian-hero-loop.webm',
-      posterSrc: '/media/meridian-hero-poster.webp',
-      fallbackImage: '/media/meridian/meridian-hero-gallery.webp',
+      videoSrc: '/assets/themes/meridian/hero/meridian-hero-loop.webm',
+      posterSrc: '/assets/themes/meridian/hero/meridian-hero-poster.webp',
+      fallbackImage: '/assets/themes/meridian/hero/meridian-hero-gallery.webp',
     },
     decorativeSvg: '/assets/themes/meridian/icons/aurora-divider.svg',
   },

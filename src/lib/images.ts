@@ -8,6 +8,12 @@ export const BRAND_IMAGES = {
   logoWebp: '/traditional-group-logo.webp',
 } as const;
 
+/** Official Traditional Group brand mark (provided logo asset). */
+export const BRAND_LOGO_SIZE = {
+  width: 1024,
+  height: 479,
+} as const;
+
 export const PRISM_MEDIA = {
   heroSlides: [
     '/media/hero-rajasthan-haveli-heritage-architecture.webp',

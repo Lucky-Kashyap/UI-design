@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { GALLERY, type GalleryItem } from '@/data/traditionalGroup';
-import HeadingReveal from '@/components/HeadingReveal';
 import { cn } from '@/lib/utils';
 
 const Gallery = () => {
@@ -41,7 +40,7 @@ const Gallery = () => {
         >
           <p className="tg-eyebrow mb-4">In the gallery</p>
           <h2 id="gallery-heading" className="font-display text-headline-xl">
-            <HeadingReveal block>A journey across our ventures</HeadingReveal>
+            A journey across our ventures
           </h2>
           <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="text-body-md text-tg-muted w-full max-w-none">

@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Factory, GraduationCap, Hotel, Sparkles, Trees } from 'lucide-react';
 import { VENTURES } from '@/data/traditionalGroup';
-import HeadingReveal from '@/components/HeadingReveal';
 import { cn } from '@/lib/utils';
 
 const PATHWAY_STEPS = [
@@ -68,11 +67,9 @@ const HeritagePathway = () => {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55 }}
         >
-          <p className="tg-eyebrow tg-text-hover mb-4">Our heritage journey</p>
+          <p className="tg-eyebrow mb-4">Our heritage journey</p>
           <h2 id="heritage-pathway-heading" className="font-display text-headline-xl mb-5 text-white">
-            <HeadingReveal variant="light" block className="mx-auto">
-              A connected ecosystem across Jaipur
-            </HeadingReveal>
+            A connected ecosystem across Jaipur
           </h2>
           <div
             className="tg-section-header__rule mb-5 h-1 w-16 rounded-full bg-gradient-to-r from-tg-gold via-tg-cyan to-tg-emerald"

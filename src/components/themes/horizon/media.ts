@@ -1,10 +1,11 @@
 /**
- * Horizon Light — exclusive image paths.
- * Drop assets under public/assets/themes/horizon/{hero,ventures,gallery}/
+ * Horizon Light — exclusive image paths (theme 3 only).
+ * Backgrounds: public/assets/themes/horizon/backgrounds/
+ * Content:     public/assets/themes/horizon/{ventures,gallery}/
  */
 
 const base = '/assets/themes/horizon';
-const hero = (name: string) => `${base}/hero/${name}`;
+const backgrounds = (name: string) => `${base}/backgrounds/${name}`;
 const ventures = (name: string) => `${base}/ventures/${name}`;
 const gallery = (name: string) => `${base}/gallery/${name}`;
 
@@ -14,7 +15,16 @@ export type HorizonVentureMedia = {
   alt: string;
 };
 
-export const HORIZON_HERO_IMAGE = hero('horizon-hero-resort.webp');
+export const HORIZON_BG_HERO = backgrounds('horizon-bg-hero.webp');
+export const HORIZON_BG_WORLDS = backgrounds('horizon-bg-worlds.webp');
+export const HORIZON_BG_JOURNEY = backgrounds('horizon-bg-journey.webp');
+export const HORIZON_BG_SCENES = backgrounds('horizon-bg-scenes.webp');
+export const HORIZON_BG_ECHOES = backgrounds('horizon-bg-echoes.webp');
+export const HORIZON_BG_REACH = backgrounds('horizon-bg-reach.webp');
+
+export const HORIZON_HERO_IMAGE = HORIZON_BG_HERO;
+export const HORIZON_JOURNEY_FEATURE = gallery('horizon-journey-feature.webp');
+export const HORIZON_REACH_FEATURE = gallery('horizon-reach-feature.webp');
 
 export const HORIZON_WORLDS_MEDIA: HorizonVentureMedia[] = [
   { id: 'gallery', image: ventures('horizon-world-factory.webp'), alt: 'Bright manufacturing studio in natural light' },

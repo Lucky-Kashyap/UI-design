@@ -1,34 +1,35 @@
-﻿import { MERIDIAN_NAV_LINKS } from '@/data/meridianContent';
-import TraditionalGroupLogo from '@/components/TraditionalGroupLogo';
+import { MERIDIAN_NAV_LINKS } from '@/data/meridianContent';
 import { SITE } from '@/data/traditionalGroup';
 import { MeridianBody, MeridianContainer } from './ui';
+import MeridianLogo from './MeridianLogo';
 
 const MeridianFooter = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-tg-line bg-tg-deep text-white/75" role="contentinfo">
-      <MeridianContainer className="py-10 md:py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
-          <div className="min-w-0">
+    <footer className="md-footer" role="contentinfo">
+      <MeridianContainer className="py-12 md:py-16 lg:py-20">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <div className="min-w-0 lg:col-span-4">
             <a
               href="#home"
               aria-label="Traditional Group home"
-              className="inline-block transition-transform hover:scale-[1.02]"
+              className="tg-brand-logo-link md-footer-logo-link inline-flex"
             >
-              <TraditionalGroupLogo variant="hero" />
+              <MeridianLogo variant="footer" />
             </a>
-            <MeridianBody className="mt-4 max-w-sm text-white/72">
-              Meridian Atelier preview - {SITE.name} multi-venture collective, Jaipur.
+            <MeridianBody className="mt-5 max-w-sm text-white/70">
+              {SITE.name} - a multi-venture collective rooted in Jaipur. Manufacturing, hospitality,
+              education, and adventure under one Meridian standard.
             </MeridianBody>
           </div>
 
-          <div className="min-w-0">
-            <p className="md-eyebrow text-white/80">Explore</p>
-            <ul className="mt-3 space-y-2">
+          <div className="min-w-0 sm:col-span-1 lg:col-span-3 lg:col-start-6">
+            <p className="md-eyebrow text-white/60">Navigation</p>
+            <ul className="mt-4 space-y-2.5">
               {MERIDIAN_NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="md-body text-white/75 transition-colors hover:text-white">
+                  <a href={link.href} className="md-footer-link">
                     {link.label}
                   </a>
                 </li>
@@ -36,28 +37,38 @@ const MeridianFooter = () => {
             </ul>
           </div>
 
-          <div className="min-w-0">
-            <p className="md-eyebrow text-white/80">Connect</p>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div className="min-w-0 sm:col-span-1 lg:col-span-3">
+            <p className="md-eyebrow text-white/60">Connect</p>
+            <div className="mt-4 space-y-3">
+              <a href={`mailto:${SITE.email}`} className="md-footer-link block break-all">
+                {SITE.email}
+              </a>
+              <a href={SITE.phoneHref} className="md-footer-link block">
+                {SITE.phoneDisplay}
+              </a>
+              <p className="md-body text-white/55">{SITE.address}</p>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
               <a
                 href={SITE.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="md-body text-white/75 hover:text-white"
+                className="md-footer-social"
+                aria-label="Facebook"
               >
-                Facebook
-              </a>
-              <a href={`mailto:${SITE.email}`} className="md-body break-all text-white/75 hover:text-white">
-                {SITE.email}
+                <span className="text-xs font-semibold">FB</span>
               </a>
             </div>
           </div>
         </div>
       </MeridianContainer>
 
-      <div className="border-t border-white/10">
-        <MeridianContainer className="py-4">
-          <p className="md-caption text-white/45">© {year} {SITE.name}</p>
+      <div className="border-t border-white/8">
+        <MeridianContainer className="flex flex-col items-start justify-between gap-2 py-5 sm:flex-row sm:items-center">
+          <p className="md-caption text-white/40">
+            &copy; {year} {SITE.name}. All rights reserved.
+          </p>
+          <p className="md-caption text-white/35">Meridian Atelier</p>
         </MeridianContainer>
       </div>
     </footer>

@@ -10,12 +10,8 @@ const Footer = () => {
       <div className="tg-container py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="sm:col-span-2 lg:col-span-1">
-            <a
-              href="#home"
-              aria-label="Traditional Group home"
-              className="inline-block mb-4 transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg"
-            >
-              <TraditionalGroupLogo variant="hero" />
+            <a href="#home" aria-label="Traditional Group home" className="tg-brand-logo-link mb-4">
+              <TraditionalGroupLogo variant="footer" />
             </a>
             <p className="tg-footer-copy text-white/70">{FOOTER.blurb}</p>
           </div>
@@ -56,19 +52,10 @@ const Footer = () => {
             <ul className="space-y-2.5 text-white/70">
               <li>
                 <a
-                  href={SITE.officePhoneHref}
+                  href={SITE.phoneHref}
                   className="tg-link-hover tg-footer-link inline-flex items-center gap-2 hover:!text-tg-cyan"
                 >
                   <Phone className="h-3.5 w-3.5 shrink-0 text-tg-cyan/80" aria-hidden="true" />
-                  <span>{SITE.officePhoneDisplay}</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SITE.phoneHref}
-                  className="tg-link-hover tg-footer-link inline-flex items-center gap-2 hover:!text-tg-amber"
-                >
-                  <Phone className="h-3.5 w-3.5 shrink-0 text-tg-amber/80" aria-hidden="true" />
                   <span>{SITE.phoneDisplay}</span>
                 </a>
               </li>

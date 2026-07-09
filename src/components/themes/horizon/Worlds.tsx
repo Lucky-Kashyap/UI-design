@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import AnimatedContent from '@/components/react-bits/AnimatedContent';
 import { mergeVentureMedia } from '@/lib/themeVentures';
 import { cn } from '@/lib/utils';
-import { HORIZON_WORLDS_MEDIA } from './media';
+import { HORIZON_BG_WORLDS, HORIZON_WORLDS_MEDIA } from './media';
 import {
   HorizonBody,
   HorizonContainer,
@@ -12,14 +12,17 @@ import {
   HorizonH3,
   HorizonImage,
   HorizonSection,
+  HorizonSectionBg,
 } from './ui';
 
 const HorizonWorlds = () => {
   const ventures = useMemo(() => mergeVentureMedia(HORIZON_WORLDS_MEDIA), []);
 
   return (
-    <HorizonSection id="worlds" className="bg-tg-bg" aria-labelledby="worlds-heading">
-      <HorizonContainer className="mb-8 xs:mb-10 md:mb-14">
+    <HorizonSection id="worlds" className="relative overflow-hidden bg-tg-bg" aria-labelledby="worlds-heading">
+      <HorizonSectionBg src={HORIZON_BG_WORLDS} overlay="light" />
+
+      <HorizonContainer className="relative z-[1] mb-8 xs:mb-10 md:mb-14">
         <AnimatedContent className="mx-auto max-w-2xl text-center">
           <HorizonEyebrow>Worlds</HorizonEyebrow>
           <HorizonH2 id="worlds-heading" className="mt-2 xs:mt-3">
@@ -31,7 +34,7 @@ const HorizonWorlds = () => {
         </AnimatedContent>
       </HorizonContainer>
 
-      <div className="space-y-12 xs:space-y-14 md:space-y-20">
+      <div className="relative z-[1] space-y-12 xs:space-y-14 md:space-y-20">
         {ventures.map((venture, index) => {
           const imageLeft = index % 2 === 0;
           const media = HORIZON_WORLDS_MEDIA[index];
@@ -59,7 +62,7 @@ const HorizonWorlds = () => {
                   />
                 </a>
 
-                <div className={cn('min-w-0 px-0.5', !imageLeft && 'lg:text-right')}>
+                <div className={cn('min-w-0 rounded-tg-lg border border-tg-line/70 bg-tg-bg/80 p-5 backdrop-blur-sm xs:p-6', !imageLeft && 'lg:text-right')}>
                   <p className="hz-caption text-tg-cyan">{venture.sector}</p>
                   <div className={cn('mt-2 flex items-start gap-2', !imageLeft && 'lg:flex-row-reverse lg:justify-end')}>
                     <HorizonH3>{venture.shortName}</HorizonH3>

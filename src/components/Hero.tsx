@@ -64,7 +64,7 @@ const Hero = () => {
       <HeroBackground activeIndex={activeVenture} />
 
       <div className="tg-hero__content relative z-10 tg-container w-full">
-        <div className="flex w-full min-w-0 flex-col gap-hero-stack lg:flex-row lg:items-center lg:justify-between lg:gap-hero-stack-xl xl:gap-[3.5rem]">
+        <div className="flex w-full min-w-0 flex-col gap-hero-stack lg:flex-row lg:items-start lg:justify-between lg:gap-hero-stack-xl xl:gap-[3.5rem]">
           <div className="flex min-w-0 flex-1 flex-col gap-hero-copy md:gap-hero-copy-md lg:gap-hero-copy-lg lg:pr-4 xl:pr-8">
             <h1
               id="hero-heading"

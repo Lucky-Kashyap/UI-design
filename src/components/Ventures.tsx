@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
-import HeadingReveal from '@/components/HeadingReveal';
 import { VENTURES, type Venture } from '@/data/traditionalGroup';
 import { cn } from '@/lib/utils';
 
@@ -18,9 +17,9 @@ const Ventures = () => {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55 }}
         >
-          <p className="tg-eyebrow tg-text-hover mb-4">Our portfolio</p>
+          <p className="tg-eyebrow mb-4">Our portfolio</p>
           <h2 id="ventures-heading" className="font-display text-headline-xl">
-            <HeadingReveal block>Traditional Group Ventures</HeadingReveal>
+            Traditional Group Ventures
           </h2>
           <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="text-body-md text-tg-muted w-full max-w-none">
@@ -74,7 +73,7 @@ const VentureFront = ({ venture }: { venture: Venture }) => (
     <div className="absolute inset-0 bg-gradient-to-t from-tg-deep via-tg-navy/55 to-tg-navy/10 transition-opacity duration-500 group-hover:opacity-60" />
     <div className="absolute inset-x-0 bottom-0 p-5 xs:p-6 transition-transform duration-500 group-hover:translate-y-2 group-hover:opacity-0">
       <p className="tg-caption text-white/70 mb-2">{venture.sector}</p>
-      <h3 className="tg-card-title-lg mb-2 pr-10">{venture.shortName}</h3>
+      <h3 className="tg-card-title-lg tg-venture-card__title mb-2 pr-10">{venture.shortName}</h3>
       <p className="tg-card-body text-white/80 max-w-sm line-clamp-2">{venture.description}</p>
       <span className="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
         <ArrowUpRight className="h-4 w-4" />
@@ -88,7 +87,7 @@ const VentureBack = ({ venture }: { venture: Venture }) => (
   <div className="tg-venture-reveal absolute inset-0 flex flex-col justify-between p-5 xs:p-6">
     <div className="tg-venture-reveal__content">
       <p className="tg-caption text-tg-cyan mb-3">{venture.sector}</p>
-      <h3 className="tg-card-title-lg mb-3">{venture.shortName}</h3>
+      <h3 className="tg-card-title-lg tg-venture-card__title mb-3">{venture.shortName}</h3>
       <div className="mb-4 h-1 w-12 rounded-full tg-prism-line" aria-hidden="true" />
       <p className="tg-card-body text-white/85 w-full max-w-none">{venture.description}</p>
       <p className="tg-caption mt-4 text-white/55">{venture.name}</p>

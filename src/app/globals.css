@@ -1,27 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap');
-
 @import "tailwindcss";
 @import "./theme-palettes.css";
 @import "./tailwind-theme.css";
 
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/outfit/v15/QGYvz_MVcBeNP4NJuktqQ4E.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
 @layer base {
   .font-display {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif;
     font-weight: var(--tg-fw-heading, 600);
+    font-optical-sizing: auto;
   }
 
   :root {
-    --font-fraunces: "Fraunces";
-    --font-outfit: "Outfit";
     --tg-pad-stat-y: 0.75rem;
     --tg-pad-stat-x: 0.5rem;
     --tg-pad-sector-y: 0.5rem;
@@ -131,7 +119,7 @@
     & #about-heading,
     & #ventures-heading,
     & #heritage-pathway-heading {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: var(--font-fraunces), Georgia, serif;
       font-weight: var(--tg-fw-heading);
       font-optical-sizing: auto;
     }
@@ -141,14 +129,14 @@
     & .tg-section-header h3,
     & #main-content h3,
     & .tg-timeline-panel h3 {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: var(--font-fraunces), Georgia, serif;
       font-weight: var(--tg-fw-heading);
       font-optical-sizing: auto;
     }
 
     & .tg-heritage-card h3,
     & .tg-venture-card h3 {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: var(--font-fraunces), Georgia, serif;
       font-weight: var(--tg-fw-subheading);
       font-optical-sizing: auto;
     }
@@ -156,14 +144,14 @@
     & .tg-hero-heading,
     & .tg-hero-heading .text-hero-display,
     & .tg-hero-heading .text-hero-editorial {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: var(--font-fraunces), Georgia, serif;
       font-weight: var(--tg-fw-display);
       font-optical-sizing: auto;
     }
 
     & .tg-stat-value,
     & .tg-stat-label {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: var(--font-fraunces), Georgia, serif;
       font-weight: var(--tg-fw-stat);
       font-style: normal;
       font-optical-sizing: auto;
@@ -182,7 +170,7 @@
     & .tg-caption,
     & .tg-micro,
     & .tg-link-hover {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
     }
 
     & .tg-nav-link {
@@ -202,7 +190,7 @@
     & .tg-hero-subline,
     & .tg-testimonial-quote,
     & #main-content p {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-weight: var(--tg-fw-body);
       line-height: 1.7;
       letter-spacing: 0.01em;
@@ -210,14 +198,14 @@
 
     & .tg-section-header p,
     & .text-body-lg {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-weight: var(--tg-fw-lead);
       line-height: 1.75;
       letter-spacing: 0.012em;
     }
 
     & .text-body-md {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-weight: var(--tg-fw-body);
       line-height: 1.7;
       letter-spacing: 0.01em;
@@ -268,7 +256,7 @@
     }
 
     & .tg-card-body {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-size: var(--text-card-body);
       font-weight: var(--tg-fw-body);
       line-height: var(--text-card-body--line-height, 1.65);
@@ -276,7 +264,7 @@
 
     & .tg-card-title,
     & .tg-card-title-lg {
-      font-family: "Fraunces", Georgia, serif;
+      font-family: var(--font-fraunces), Georgia, serif;
       font-weight: var(--tg-fw-subheading);
       font-optical-sizing: auto;
     }
@@ -295,6 +283,15 @@
       font-size: var(--text-card-title-lg);
       line-height: var(--text-card-title-lg--line-height, 1.2);
       font-weight: var(--tg-fw-subheading);
+      color: #fff;
+    }
+
+    & #ventures-heading {
+      color: var(--tg-navy);
+    }
+
+    & #ventures .tg-eyebrow {
+      color: var(--tg-prism-cyan);
     }
 
     & .tg-section-header h2 {
@@ -303,7 +300,7 @@
     }
 
     & .tg-site-footer h3 {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-size: var(--text-body-md);
       font-weight: var(--tg-fw-label);
     }
@@ -315,7 +312,7 @@
     }
 
     & .tg-site-footer .tg-footer-link {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-size: 0.875rem;
       font-style: normal;
       font-weight: 400;
@@ -323,7 +320,7 @@
     }
 
     & .tg-site-footer .tg-footer-copy {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-size: 0.875rem;
       font-style: normal;
       font-weight: 400;
@@ -343,7 +340,7 @@
     }
 
     & .tg-site-footer .tg-footer-meta-item {
-      font-family: "Outfit", system-ui, sans-serif;
+      font-family: var(--font-outfit), system-ui, sans-serif;
       font-size: var(--text-caption);
       font-style: normal;
       font-weight: 400;
@@ -529,7 +526,7 @@
     padding-inline: var(--tg-btn-sm-x);
     padding-block: var(--tg-btn-sm-y);
     min-height: var(--tg-btn-sm-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-sm-font);
     font-weight: var(--tg-fw-btn, 600);
     line-height: var(--text-btn-sm--line-height, 1.2);
@@ -551,7 +548,7 @@
     padding-inline: var(--tg-btn-x);
     padding-block: var(--tg-btn-y);
     min-height: var(--tg-btn-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -593,7 +590,7 @@
     padding-inline: var(--tg-btn-x);
     padding-block: var(--tg-btn-y);
     min-height: var(--tg-btn-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -632,7 +629,7 @@
   }
 
   .tg-btn-nav {
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
     letter-spacing: var(--tg-btn-letter, 0.045em);
@@ -654,7 +651,7 @@
   .tg-btn-gold.tg-btn-nav,
   .tg-btn-secondary.tg-btn-nav,
   .tg-btn-outline.tg-btn-nav {
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-font);
     font-weight: var(--tg-fw-btn, 600);
     min-height: var(--tg-btn-min-h);
@@ -667,7 +664,7 @@
     padding-inline: var(--tg-btn-x);
     padding-block: var(--tg-btn-y);
     min-height: var(--tg-btn-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -708,7 +705,7 @@
     padding-inline: var(--tg-btn-x);
     padding-block: var(--tg-btn-y);
     min-height: var(--tg-btn-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -876,11 +873,64 @@
     @apply bg-tg-soft font-semibold text-tg-navy;
   }
 
+  .tg-brand-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    line-height: 0;
+    vertical-align: middle;
+  }
+
+  .tg-brand-logo__img {
+    display: block;
+    height: 2.25rem;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+  }
+
+  @media (min-width: 640px) {
+    .tg-brand-logo__img {
+      height: 2.5rem;
+    }
+  }
+
+  .tg-brand-logo-link {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    line-height: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .tg-brand-logo-link:hover {
+    transform: scale(1.02);
+  }
+
+  .tg-site-footer .tg-brand-logo-link,
+  .tg-site-footer .tg-logo-hero,
+  .tg-site-footer .tg-brand-logo {
+    max-width: fit-content;
+  }
+
+  .tg-logo-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: fit-content;
+    padding: 0.25rem 0.5rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+  }
+
   .tg-logo-hero {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.375rem 0.75rem;
+    max-width: fit-content;
+    padding: 0.25rem 0.5rem;
     background: #fff;
     border-radius: 0.5rem;
     box-shadow: 0 4px 22px rgba(0, 0, 0, 0.28);
@@ -890,7 +940,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.375rem 0.5rem;
+    max-width: fit-content;
+    padding: 0.25rem 0.5rem;
     background: #fff;
     border-radius: 0.5rem;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
@@ -907,7 +958,7 @@
   }
 
   [data-theme='prism'] .tg-hero--editorial .tg-hero-heading {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif;
   }
 
   [data-theme='prism'] .tg-heading-reveal {
@@ -997,7 +1048,7 @@
     padding-inline: var(--tg-btn-hero-x);
     padding-block: var(--tg-btn-hero-y);
     min-height: var(--tg-btn-hero-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-hero-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -1021,7 +1072,7 @@
     padding-inline: var(--tg-btn-hero-x);
     padding-block: var(--tg-btn-hero-y);
     min-height: var(--tg-btn-hero-min-h);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-hero-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -1148,6 +1199,16 @@
     background: var(--tg-navy-deep);
   }
 
+  .tg-venture-card__title {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(6, 20, 40, 0.65);
+  }
+
+  .tg-venture-reveal .tg-venture-card__title {
+    color: #fff;
+    text-shadow: none;
+  }
+
   .tg-venture-reveal {
     background: linear-gradient(
       145deg,
@@ -1174,7 +1235,7 @@
   .tg-venture-reveal__cta {
     position: relative;
     overflow: hidden;
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-outfit), system-ui, sans-serif;
     font-size: var(--tg-btn-sm-font);
     font-weight: var(--tg-fw-btn, 600);
     font-style: normal;
@@ -1310,7 +1371,7 @@
   }
 
   .tg-stat-value {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif;
     font-weight: var(--tg-fw-stat, 500);
     font-style: normal;
     font-variant-numeric: tabular-nums;
@@ -1318,7 +1379,7 @@
   }
 
   .tg-stat-label {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-fraunces), Georgia, serif;
     font-size: var(--text-micro);
     font-weight: var(--tg-fw-stat, 500);
     font-style: normal;
@@ -1726,6 +1787,33 @@
   .tg-venture-chip--active {
     border-color: rgba(255, 255, 255, 0.28);
     box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.22);
+  }
+
+  [data-theme='prism'] .tg-hero--editorial .tg-venture-glass {
+    background: rgba(6, 20, 40, 0.82);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 1rem 2rem rgba(6, 20, 40, 0.4);
+  }
+
+  [data-theme='prism'] .tg-hero--editorial .tg-venture-chip {
+    background: rgba(11, 31, 58, 0.72);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  [data-theme='prism'] .tg-hero--editorial .tg-venture-chip:not(.tg-venture-chip--active):hover {
+    background: rgba(11, 31, 58, 0.88);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+
+  [data-theme='prism'] .tg-hero--editorial .tg-venture-chip__label {
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(6, 20, 40, 0.85);
+  }
+
+  [data-theme='prism'] .tg-hero--editorial .tg-venture-chip--active .tg-venture-chip__label {
+    color: var(--tg-navy);
+    text-shadow: none;
   }
 
   .tg-venture-shimmer {

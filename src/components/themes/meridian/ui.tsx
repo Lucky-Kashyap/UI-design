@@ -2,19 +2,29 @@
 
 import { useState, type ImgHTMLAttributes, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import { MeridianCursor } from './cursor';
 import './meridian.css';
 
 type ThemeImageProps = ImgHTMLAttributes<HTMLImageElement> & {
   fallbackClassName?: string;
+  cursorMode?: 'image' | 'card';
 };
 
-export const MeridianThemeStyles = () => null;
+export const MeridianExperience = ({ children }: { children?: ReactNode }) => (
+  <>
+    <MeridianCursor />
+    {children}
+  </>
+);
+
+export const MeridianThemeStyles = () => <MeridianExperience />;
 
 export const MeridianImage = ({
   className,
   fallbackClassName,
   alt,
   onError,
+  cursorMode = 'image',
   ...props
 }: ThemeImageProps) => {
   const [failed, setFailed] = useState(false);
@@ -34,6 +44,7 @@ export const MeridianImage = ({
       {...props}
       alt={alt ?? ''}
       className={className}
+      data-md-cursor={cursorMode}
       onError={(event) => {
         setFailed(true);
         onError?.(event);

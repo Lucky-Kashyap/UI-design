@@ -1,6 +1,6 @@
 import AnimatedContent from '@/components/react-bits/AnimatedContent';
 import { cn } from '@/lib/utils';
-import { HORIZON_SCENES } from './media';
+import { HORIZON_BG_SCENES, HORIZON_SCENES } from './media';
 import {
   HorizonBody,
   HorizonContainer,
@@ -9,21 +9,24 @@ import {
   HorizonH3,
   HorizonImage,
   HorizonSection,
+  HorizonSectionBg,
 } from './ui';
 
 const HorizonScenes = () => (
-  <HorizonSection id="scenes" className="bg-tg-bg" aria-labelledby="scenes-heading">
-    <HorizonContainer className="mb-8 xs:mb-10">
+  <HorizonSection id="scenes" className="relative overflow-hidden bg-tg-bg" aria-labelledby="scenes-heading">
+    <HorizonSectionBg src={HORIZON_BG_SCENES} overlay="light" />
+
+    <HorizonContainer className="relative z-[1] mb-8 xs:mb-10">
       <HorizonEyebrow>Scenes</HorizonEyebrow>
       <HorizonH2 id="scenes-heading" className="mt-2 xs:mt-3">
         Light, space, and story
       </HorizonH2>
       <HorizonBody className="mt-3 max-w-xl">
-        Intimate vignettes — each scene paired with copy in a left-right rhythm.
+        Intimate vignettes — each scene paired with photography in a left-right rhythm.
       </HorizonBody>
     </HorizonContainer>
 
-    <div className="space-y-10 xs:space-y-12">
+    <div className="relative z-[1] space-y-10 xs:space-y-12">
       {HORIZON_SCENES.map((item, index) => {
         const imageLeft = index % 2 === 0;
 
@@ -44,7 +47,7 @@ const HorizonScenes = () => (
                   decoding="async"
                 />
               </div>
-              <div className={cn('min-w-0 px-0.5', !imageLeft && 'md:text-right')}>
+              <div className={cn('min-w-0 rounded-tg-lg border border-tg-line/70 bg-tg-bg/80 p-5 backdrop-blur-sm xs:p-6', !imageLeft && 'md:text-right')}>
                 <p className="hz-caption text-tg-cyan">{item.sector}</p>
                 <HorizonH3 className="mt-1">{item.title}</HorizonH3>
                 <HorizonBody className="mt-2">{item.description}</HorizonBody>

@@ -32,6 +32,7 @@ const LazyImage = ({
   const [visible, setVisible] = useState(priority);
   const resolved = publicImagePath(src);
   const fitClass = objectFit === 'cover' ? 'object-cover' : 'object-contain';
+  const imageClassName = cn(fitClass, className);
 
   useEffect(() => {
     if (priority || visible) return undefined;
@@ -54,7 +55,7 @@ const LazyImage = ({
 
   if (priority) {
     if (fill) {
-      return <Image src={resolved} alt={alt} fill priority sizes={sizes} className={cn(fitClass, className)} />;
+      return <Image src={resolved} alt={alt} fill priority sizes={sizes} className={imageClassName} />;
     }
     return (
       <Image
@@ -64,27 +65,55 @@ const LazyImage = ({
         height={height}
         priority
         sizes={sizes}
-        className={cn(fitClass, className)}
+        className={imageClassName}
       />
     );
   }
 
-  return (
-    <div ref={ref} className={cn('relative overflow-hidden', fill && 'h-full w-full', className)} {...rest}>
-      {!visible && <div className="absolute inset-0 animate-pulse bg-tg-soft" aria-hidden="true" />}
-      {visible &&
-        (fill ? (
-          <Image src={resolved} alt={alt} fill sizes={sizes} className={cn(fitClass, 'opacity-0 animate-fade-in')} />
-        ) : (
+  if (fill) {
+    return (
+      <div
+        ref={ref}
+        className={cn('relative h-full w-full overflow-hidden')}
+        {...rest}
+      >
+        {!visible && <div className="absolute inset-0 animate-pulse bg-tg-soft" aria-hidden="true" />}
+        {visible && (
           <Image
             src={resolved}
             alt={alt}
-            width={width}
-            height={height}
+            fill
             sizes={sizes}
-            className={cn(fitClass, 'opacity-0 animate-fade-in')}
+            className={cn(imageClassName, 'opacity-0 animate-fade-in')}
           />
-        ))}
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      ref={ref}
+      className="relative inline-block w-fit max-w-full shrink-0 leading-none"
+      {...rest}
+    >
+      {!visible && (
+        <div
+          className="animate-pulse bg-tg-soft"
+          style={{ width: Math.round((width / height) * 36), height: 36 }}
+          aria-hidden="true"
+        />
+      )}
+      {visible && (
+        <Image
+          src={resolved}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes={sizes}
+          className={cn(imageClassName, 'opacity-0 animate-fade-in')}
+        />
+      )}
     </div>
   );
 };

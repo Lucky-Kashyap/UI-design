@@ -75,8 +75,8 @@ export const horizonTheme: ThemeConfig = {
   assets: {
     basePath: '/assets/themes/horizon',
     hero: {
-      posterSrc: '/media/horizon/horizon-hero-resort.webp',
-      fallbackImage: '/media/horizon/horizon-hero-resort.webp',
+      posterSrc: '/assets/themes/horizon/backgrounds/horizon-bg-hero.webp',
+      fallbackImage: '/assets/themes/horizon/backgrounds/horizon-bg-hero.webp',
     },
     decorativeSvg: '/assets/themes/horizon/icons/horizon-wave.svg',
   },

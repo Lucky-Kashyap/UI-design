@@ -47,7 +47,7 @@ const Navigation = () => {
         <Magnet strength={0.18}>
           <a
             href="#home"
-            className="tg-magnetic-target shrink-0 transition-transform duration-300 hover:scale-[1.02]"
+            className="tg-brand-logo-link tg-magnetic-target shrink-0"
             onClick={() => handleNavClick('#home')}
             aria-label="Traditional Group home"
             aria-current={active === '#home' ? 'page' : undefined}

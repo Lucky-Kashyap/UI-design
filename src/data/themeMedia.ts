@@ -60,21 +60,30 @@ export const MERIDIAN_FRAMES = [
 ] as const;
 
 /* ── Horizon (theme 3) ── */
-export const HORIZON_HERO_IMAGE = horizon('horizon-hero-resort.webp');
+const horizonBg = (name: string) => `/assets/themes/horizon/backgrounds/${name}`;
+const horizonVenture = (name: string) => `/assets/themes/horizon/ventures/${name}`;
+const horizonGallery = (name: string) => `/assets/themes/horizon/gallery/${name}`;
+
+export const HORIZON_HERO_IMAGE = horizonBg('horizon-bg-hero.webp');
+export const HORIZON_BG_WORLDS = horizonBg('horizon-bg-worlds.webp');
+export const HORIZON_BG_JOURNEY = horizonBg('horizon-bg-journey.webp');
+export const HORIZON_BG_SCENES = horizonBg('horizon-bg-scenes.webp');
+export const HORIZON_BG_ECHOES = horizonBg('horizon-bg-echoes.webp');
+export const HORIZON_BG_REACH = horizonBg('horizon-bg-reach.webp');
 
 export const HORIZON_WORLDS_MEDIA: ThemeVentureMedia[] = [
-  { id: 'gallery', image: horizon('horizon-world-factory.webp'), alt: 'Bright manufacturing studio' },
-  { id: 'haveli', image: horizon('horizon-world-haveli.webp'), alt: 'Pink haveli in daylight' },
-  { id: 'sas', image: horizon('horizon-world-campus.webp'), alt: 'Campus lawns in morning light' },
-  { id: 'kindori', image: horizon('horizon-world-kindori.webp'), alt: 'IB collaborative classroom' },
-  { id: 'leopard', image: horizon('horizon-world-valley.webp'), alt: 'Green valley trail' },
+  { id: 'gallery', image: horizonVenture('horizon-world-factory.webp'), alt: 'Bright manufacturing studio' },
+  { id: 'haveli', image: horizonVenture('horizon-world-haveli.webp'), alt: 'Pink haveli in daylight' },
+  { id: 'sas', image: horizonVenture('horizon-world-campus.webp'), alt: 'Campus lawns in morning light' },
+  { id: 'kindori', image: horizonVenture('horizon-world-kindori.webp'), alt: 'IB collaborative classroom' },
+  { id: 'leopard', image: horizonVenture('horizon-world-valley.webp'), alt: 'Green valley trail' },
 ];
 
 export const HORIZON_SCENES = [
-  { id: 'hs1', src: horizon('horizon-scene-craft.webp'), alt: 'Textile loom detail', sector: 'Craft', title: 'Woven colour', description: 'Threads pulled tight under soft Jaipur daylight.' },
-  { id: 'hs2', src: horizon('horizon-scene-nature.webp'), alt: 'Valley waterfall', sector: 'Nature', title: 'Living water', description: 'Rock, moss, and cool air along the valley path.' },
-  { id: 'hs3', src: horizon('horizon-scene-campus.webp'), alt: 'Courtyard from above', sector: 'Education', title: 'Open courtyards', description: 'Geometry of light across learning spaces.' },
-  { id: 'hs4', src: horizon('horizon-scene-evening.webp'), alt: 'Terrace lanterns', sector: 'Hospitality', title: 'Lantern hour', description: 'Terraces that slow time at the end of the day.' },
+  { id: 'hs1', src: horizonGallery('horizon-scene-craft.webp'), alt: 'Textile loom detail', sector: 'Craft', title: 'Woven colour', description: 'Threads pulled tight under soft Jaipur daylight.' },
+  { id: 'hs2', src: horizonGallery('horizon-scene-nature.webp'), alt: 'Valley waterfall', sector: 'Nature', title: 'Living water', description: 'Rock, moss, and cool air along the valley path.' },
+  { id: 'hs3', src: horizonGallery('horizon-scene-campus.webp'), alt: 'Courtyard from above', sector: 'Education', title: 'Open courtyards', description: 'Geometry of light across learning spaces.' },
+  { id: 'hs4', src: horizonGallery('horizon-scene-evening.webp'), alt: 'Terrace lanterns', sector: 'Hospitality', title: 'Lantern hour', description: 'Terraces that slow time at the end of the day.' },
 ] as const;
 
 /* ── Forge (theme 4) ── */

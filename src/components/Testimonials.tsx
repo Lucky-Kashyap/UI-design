@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { TESTIMONIALS, type Testimonial } from '@/data/traditionalGroup';
-import HeadingReveal from '@/components/HeadingReveal';
 import { cn } from '@/lib/utils';
 
 const CARD_TILT = [-3, 0, 0, 2] as const;
@@ -27,7 +26,7 @@ const Testimonials = () => {
         >
           <p className="tg-eyebrow mb-4">Testimonials</p>
           <h2 id="testimonials-heading" className="font-display text-headline-xl">
-            <HeadingReveal block className="mx-auto">Stories of trust</HeadingReveal>
+            Stories of trust
           </h2>
           <div className="mx-auto mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="font-sans text-body-md text-tg-muted">

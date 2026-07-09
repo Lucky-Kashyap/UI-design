@@ -1,0 +1,1 @@
+Hero video optional: place meridian-hero-loop.webm here. Poster/fallback WebP images are generated.

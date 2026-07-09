@@ -1,30 +1,49 @@
-/* Meridian Atelier — typography, layout, components (Theme 2 only) */
+/* Meridian Atelier — premium dark editorial system (Theme 2 only) */
 
 [data-theme='meridian'] {
+  --md-obsidian: #060810;
+  --md-slate: #151b26;
+  --md-violet: #7c3aed;
+  --md-cyan: #06b6d4;
+  --md-champagne: #d4a853;
   --md-section-y: clamp(3.5rem, 8vw, 6.5rem);
   --md-container-x: clamp(1rem, 4vw, 2rem);
-  --md-display: clamp(2.5rem, 12vw, 4rem);
-  --md-display-lg: clamp(3rem, 8vw, 6.5rem);
-  --md-h2: clamp(1.75rem, 5vw, 3.25rem);
-  --md-h3: clamp(1.25rem, 2.5vw, 1.75rem);
-  --md-body: 0.9375rem;
-  --md-body-lg: 1.0625rem;
+  --md-display: clamp(2.5rem, 10vw, 4.5rem);
+  --md-display-lg: clamp(3.25rem, 7.5vw, 6.75rem);
+  --md-h2: clamp(1.75rem, 4.5vw, 3.25rem);
+  --md-h3: clamp(1.2rem, 2.5vw, 1.75rem);
+  --md-body: 1rem;
+  --md-body-lg: 1.125rem;
   --md-eyebrow: 0.6875rem;
   --md-caption: 0.625rem;
-  --md-btn: 0.875rem;
-  --md-btn-pad-y: 0.6875rem;
-  --md-btn-pad-x: 1.375rem;
+  --md-nav: 0.875rem;
+  --md-nav-lg: 0.9375rem;
+  --md-btn: 1rem;
+  --md-btn-pad-y: 0.75rem;
+  --md-btn-pad-x: 1.75rem;
   --md-btn-min-h: 2.75rem;
-  --md-nav: 0.8125rem;
+  --md-btn-radius: 0.875rem;
+  --md-nav-blur: 20px;
+  --md-nav-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 768px) {
+  [data-theme='meridian'] {
+    --md-body: 1.0625rem;
+    --md-btn-min-h: 3rem;
+    --md-btn-pad-x: 2rem;
+  }
 }
 
 @media (min-width: 1024px) {
   [data-theme='meridian'] {
     --md-display: var(--md-display-lg);
+    --md-body-lg: 1.125rem;
   }
 }
 
 [data-theme='meridian'] .md-section {
+  position: relative;
   padding-block: var(--md-section-y);
   scroll-margin-top: var(--tg-header-offset, 5.5rem);
 }
@@ -36,37 +55,39 @@
   padding-inline: var(--md-container-x);
 }
 
+/* ── Typography ── */
+
 [data-theme='meridian'] .md-eyebrow {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: var(--md-eyebrow);
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   line-height: 1.35;
   text-transform: uppercase;
-  color: var(--tg-prism-cyan);
+  color: var(--md-cyan);
 }
 
 [data-theme='meridian'] .md-display {
   font-family: Syne, system-ui, sans-serif;
   font-size: var(--md-display);
   font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
 [data-theme='meridian'] .md-h2 {
   font-family: Syne, system-ui, sans-serif;
   font-size: var(--md-h2);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
 }
 
 [data-theme='meridian'] .md-h3 {
   font-family: Syne, system-ui, sans-serif;
   font-size: var(--md-h3);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.18;
   letter-spacing: -0.015em;
 }
 
@@ -82,7 +103,7 @@
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: var(--md-body-lg);
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.68;
 }
 
 [data-theme='meridian'] .md-caption {
@@ -94,7 +115,10 @@
   text-transform: uppercase;
 }
 
+/* ── Buttons ── */
+
 [data-theme='meridian'] .md-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -104,36 +128,70 @@
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: var(--md-btn);
   font-weight: 600;
-  letter-spacing: 0.04em;
-  border-radius: 9999px;
+  letter-spacing: 0.03em;
+  border-radius: var(--md-btn-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.35s ease;
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.4s ease,
+    filter 0.3s ease;
 }
 
 [data-theme='meridian'] .md-btn--primary {
-  background: var(--tg-prism-cyan);
-  color: var(--tg-navy-deep);
+  background: linear-gradient(135deg, var(--md-cyan) 0%, #0891b2 100%);
+  color: var(--md-obsidian);
+  box-shadow: 0 4px 24px rgba(6, 182, 212, 0.25);
+}
+
+[data-theme='meridian'] .md-btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--md-cyan), var(--md-violet), var(--md-champagne));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 [data-theme='meridian'] .md-btn--primary:hover {
-  filter: brightness(1.08);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.35);
+  filter: brightness(1.06);
+}
+
+[data-theme='meridian'] .md-btn--primary:hover::before {
+  opacity: 1;
+}
+
+[data-theme='meridian'] .md-btn--primary:active {
+  transform: translateY(0) scale(0.98);
 }
 
 [data-theme='meridian'] .md-btn--ghost {
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
 }
 
 [data-theme='meridian'] .md-btn--ghost:hover {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(6, 182, 212, 0.45);
+  background: rgba(6, 182, 212, 0.08);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme='meridian'] .md-btn--ghost:active {
+  transform: translateY(0) scale(0.98);
 }
 
 [data-theme='meridian'] .md-chip {
@@ -144,6 +202,248 @@
   border-radius: 9999px;
   padding: 0.5rem 0.875rem;
   white-space: nowrap;
+}
+
+/* ── Navbar ── */
+
+[data-theme='meridian'] .md-nav {
+  transition:
+    background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease;
+}
+
+[data-theme='meridian'] .md-nav--top {
+  background: rgba(6, 8, 16, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(var(--md-nav-blur));
+  -webkit-backdrop-filter: blur(var(--md-nav-blur));
+  box-shadow: none;
+}
+
+[data-theme='meridian'] .md-nav--scrolled {
+  background: rgba(6, 8, 16, 0.88);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: var(--md-nav-shadow);
+}
+
+[data-theme='meridian'] .md-nav-link {
+  position: relative;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-nav);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0.5rem 0.875rem;
+  transition: color 0.3s ease;
+}
+
+@media (min-width: 1280px) {
+  [data-theme='meridian'] .md-nav-link {
+    font-size: var(--md-nav-lg);
+    padding: 0.5rem 1rem;
+  }
+}
+
+[data-theme='meridian'] .md-nav--scrolled .md-nav-link {
+  color: rgba(232, 234, 237, 0.85);
+}
+
+[data-theme='meridian'] .md-nav-link:hover {
+  color: #fff;
+}
+
+[data-theme='meridian'] .md-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.15rem;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--md-cyan), var(--md-violet));
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme='meridian'] .md-nav-link:hover::after,
+[data-theme='meridian'] .md-nav-link--active::after {
+  width: calc(100% - 1rem);
+}
+
+[data-theme='meridian'] .md-nav-link--active {
+  color: #fff;
+  font-weight: 500;
+}
+
+[data-theme='meridian'] .md-nav-pill {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  border-radius: 9999px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  transition:
+    left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+  pointer-events: none;
+}
+
+[data-theme='meridian'] .md-nav-cta {
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: 2.75rem;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  [data-theme='meridian'] .md-nav-cta {
+    min-height: 3rem;
+    padding-inline: 2rem;
+  }
+}
+
+/* ── Logo ── */
+
+[data-theme='meridian'] .md-logo {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme='meridian'] .md-logo:hover {
+  transform: scale(1.02);
+}
+
+[data-theme='meridian'] .md-logo img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+[data-theme='meridian'] .md-logo--nav {
+  max-width: clamp(6.875rem, 18vw, 11.25rem);
+}
+
+[data-theme='meridian'] .md-logo--footer {
+  max-width: clamp(7.5rem, 20vw, 10rem);
+}
+
+[data-theme='meridian'] .md-logo-brand {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+}
+
+[data-theme='meridian'] .md-footer-logo-link {
+  width: fit-content;
+  max-width: 10rem;
+}
+
+[data-theme='meridian'] .md-footer-logo .tg-brand-logo__img,
+[data-theme='meridian'] .md-footer .tg-brand-logo__img {
+  display: block;
+  height: 2.5rem;
+  width: auto;
+  max-width: 10rem;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  [data-theme='meridian'] .md-footer-logo-link {
+    max-width: 11rem;
+  }
+
+  [data-theme='meridian'] .md-footer-logo .tg-brand-logo__img,
+  [data-theme='meridian'] .md-footer .tg-brand-logo__img {
+    height: 2.75rem;
+    max-width: 11rem;
+  }
+}
+
+/* ── Footer ── */
+
+[data-theme='meridian'] .md-footer {
+  background: var(--md-obsidian);
+  border-top: 1px solid rgba(232, 234, 237, 0.06);
+}
+
+[data-theme='meridian'] .md-footer-link {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-body);
+  color: rgba(232, 234, 237, 0.72);
+  transition: color 0.3s ease;
+}
+
+[data-theme='meridian'] .md-footer-link:hover {
+  color: var(--md-cyan);
+}
+
+[data-theme='meridian'] .md-footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(232, 234, 237, 0.75);
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+[data-theme='meridian'] .md-footer-social:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  color: var(--md-cyan);
+  background: rgba(6, 182, 212, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ── Cards & gallery ── */
+
+[data-theme='meridian'] .md-card-hover {
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease,
+    border-color 0.4s ease;
+}
+
+[data-theme='meridian'] .md-card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35), 0 0 40px rgba(6, 182, 212, 0.08);
+}
+
+[data-theme='meridian'] .md-img-zoom {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme='meridian'] .md-card-hover:hover .md-img-zoom {
+  transform: scale(1.06);
+}
+
+[data-theme='meridian'] .md-section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.28;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+[data-theme='meridian'] .md-section-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 [data-theme='meridian'] .md-img-fallback {
@@ -164,14 +464,96 @@
   display: none;
 }
 
-[data-theme='meridian'] .md-nav-link {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: var(--md-nav);
-  font-weight: 500;
+/* ── Custom cursor ── */
+
+[data-theme='meridian'] .md-cursor-root {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+[data-theme='meridian'] .md-cursor-dot,
+[data-theme='meridian'] .md-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+[data-theme='meridian'] .md-cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--md-cyan);
+  mix-blend-mode: difference;
+}
+
+[data-theme='meridian'] .md-cursor-ring {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1px solid rgba(6, 182, 212, 0.5);
+  transition:
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+[data-theme='meridian'] .md-cursor-ring--button {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-color: rgba(124, 58, 237, 0.6);
+  background: rgba(6, 182, 212, 0.06);
+}
+
+[data-theme='meridian'] .md-cursor-ring--image {
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border-color: rgba(212, 168, 83, 0.5);
+}
+
+[data-theme='meridian'] .md-cursor-ring--card {
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border-color: rgba(6, 182, 212, 0.7);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-theme='meridian'] .md-btn:hover {
+  [data-theme='meridian'] .md-btn:hover,
+  [data-theme='meridian'] .md-btn--primary:active,
+  [data-theme='meridian'] .md-btn--ghost:active,
+  [data-theme='meridian'] .md-card-hover:hover,
+  [data-theme='meridian'] .md-logo:hover,
+  [data-theme='meridian'] .md-footer-social:hover {
     transform: none;
+  }
+
+  [data-theme='meridian'] .md-cursor-root {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 1024px) {
+  [data-theme='meridian'] {
+    cursor: none;
+  }
+
+  [data-theme='meridian'] a,
+  [data-theme='meridian'] button {
+    cursor: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 1023px) {
+  [data-theme='meridian'] .md-cursor-root {
+    display: none;
   }
 }

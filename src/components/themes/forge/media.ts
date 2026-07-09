@@ -31,3 +31,5 @@ export const FORGE_CRAFT = [
   { id: 'fc1', src: gallery('forge-craft-textile.webp'), alt: 'Artisan weaving', sector: 'Textile', title: 'Loom and thread', description: 'Hands that carry forward Rajasthan weaving traditions.' },
   { id: 'fc2', src: gallery('forge-craft-trail.webp'), alt: 'Hill trail at dusk', sector: 'Landscape', title: 'Copper trails', description: 'Earth-toned paths that frame eco-adventure stays.' },
 ] as const;
+
+export const FORGE_VISIT_BG = gallery('forge-visit-hearth.webp');

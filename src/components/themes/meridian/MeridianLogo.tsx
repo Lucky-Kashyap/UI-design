@@ -8,10 +8,17 @@ type MeridianLogoProps = {
 };
 
 const MeridianLogo = ({ className, priority = false, variant = 'nav' }: MeridianLogoProps) => (
-  <Logo
-    priority={priority || variant === 'footer'}
-    className={cn(variant === 'footer' && 'md-footer-logo', className)}
-  />
+  <span
+    className={cn(
+      'md-logo',
+      variant === 'nav' ? 'md-logo--nav' : 'md-logo--footer md-footer-logo',
+      className,
+    )}
+  >
+    <span className="md-logo-brand">
+      <Logo priority={priority || variant === 'footer'} />
+    </span>
+  </span>
 );
 
 export default MeridianLogo;

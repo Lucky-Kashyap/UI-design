@@ -28,7 +28,7 @@ const ForgeHero = () => {
       <section
         ref={sectionRef}
         id="home"
-        className="relative min-h-[100dvh] scroll-mt-[var(--tg-header-offset,5.5rem)] bg-tg-deep"
+        className="fg-hero relative min-h-[calc(100dvh-var(--tg-header-offset,5.5rem))] overflow-visible scroll-mt-[var(--tg-header-offset,5.5rem)] bg-tg-deep"
         aria-labelledby="forge-hero-heading"
       >
         <motion.div className="absolute inset-0" style={{ y: bgY }} aria-hidden="true">
@@ -50,10 +50,10 @@ const ForgeHero = () => {
 
         <div className="fg-copper-band absolute inset-x-0 top-0 z-20" aria-hidden="true" />
 
-        <div className="fg-container relative z-10 grid min-h-[100dvh] min-w-0 items-center gap-8 py-[calc(var(--tg-header-offset,5.5rem)+1.25rem)] xs:gap-10 lg:grid-cols-[1fr_minmax(0,0.9fr)] lg:gap-14 xl:gap-16">
+        <div className="fg-container relative z-10 grid min-w-0 items-start gap-8 py-[calc(var(--tg-header-offset,5.5rem)+1.25rem)] pb-10 xs:gap-10 xs:pb-12 lg:grid-cols-[1fr_minmax(0,0.9fr)] lg:items-center lg:gap-14 lg:pb-16 xl:gap-16">
           <div className="order-2 min-w-0 lg:order-1">
             <p className="fg-eyebrow">{FORGE_HERO.eyebrow}</p>
-            <h1 id="forge-hero-heading" className="fg-display mt-3 text-white xs:mt-4">
+            <h1 id="forge-hero-heading" className="fg-hero__heading fg-display mt-3 max-w-full text-white xs:mt-4">
               <SplitText text={FORGE_HERO.title} delay={0.1} accentFromIndex={1} />
             </h1>
             <ScrollReveal className="fg-body-lg mt-4 max-w-lg text-white/75 xs:mt-6">
@@ -90,7 +90,7 @@ const ForgeHero = () => {
             <ForgeImage
               src={FORGE_HERO_FEATURE}
               alt="Traditional Group craftsmanship and heritage landscape"
-              className="relative aspect-[5/6] w-full max-h-[min(70dvh,36rem)] rounded-tg-lg object-cover shadow-2xl sm:aspect-[4/5] lg:max-h-none"
+              className="relative aspect-[5/6] w-full max-h-[min(52dvh,28rem)] rounded-tg-lg object-cover shadow-2xl sm:aspect-[4/5] sm:max-h-[min(58dvh,32rem)] lg:max-h-[min(68dvh,36rem)]"
               width={900}
               height={1125}
               decoding="async"

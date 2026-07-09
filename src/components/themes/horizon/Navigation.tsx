@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import TraditionalGroupLogo from '@/components/TraditionalGroupLogo';
+import HorizonLogo from './HorizonLogo';
 import { HORIZON_CTA, HORIZON_NAV_LINKS, HORIZON_SECTION_IDS } from '@/data/horizonContent';
 import { useThemeNav } from '@/hooks/useThemeNav';
 import { cn } from '@/lib/utils';
@@ -44,7 +44,7 @@ const HorizonNavigation = () => {
                     aria-label="Traditional Group home"
                     className="tg-brand-logo-link shrink-0"
                   >
-                    <TraditionalGroupLogo priority />
+                    <HorizonLogo priority surface="solid" />
                   </a>
                   <button
                     type="button"
@@ -109,8 +109,13 @@ const HorizonNavigation = () => {
         )}
       >
         <HorizonContainer className="flex min-w-0 items-center gap-4">
-          <a href="#home" onClick={() => handleNavClick('#home')} aria-label="Traditional Group home" className="shrink-0">
-            <TraditionalGroupLogo priority />
+          <a
+            href="#home"
+            onClick={() => handleNavClick('#home')}
+            aria-label="Traditional Group home"
+            className="tg-brand-logo-link shrink-0"
+          >
+            <HorizonLogo priority surface={navSolid ? 'solid' : 'hero'} />
           </a>
 
           <ul className="hidden min-w-0 flex-1 items-center justify-center gap-6 lg:flex lg:gap-8">

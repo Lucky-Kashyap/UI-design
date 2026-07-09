@@ -190,3 +190,93 @@
     transform: none;
   }
 }
+
+/* ── Logo — theme-tinted plate replaces mismatched prism frame on the asset ── */
+
+[data-theme='horizon'] .hz-logo {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+[data-theme='horizon'] .hz-logo:hover {
+  transform: scale(1.02);
+}
+
+[data-theme='horizon'] .hz-logo--nav {
+  max-width: clamp(6.75rem, 18vw, 11rem);
+}
+
+[data-theme='horizon'] .hz-logo-brand,
+[data-theme='horizon'] .hz-logo-hero {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: fit-content;
+  isolation: isolate;
+  line-height: 0;
+}
+
+[data-theme='horizon'] .hz-logo-brand {
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 12px rgba(30, 58, 95, 0.12);
+}
+
+[data-theme='horizon'] .hz-logo-hero {
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 22px rgba(21, 42, 69, 0.28);
+}
+
+[data-theme='horizon'] .hz-logo-brand::before,
+[data-theme='horizon'] .hz-logo-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--tg-prism-gradient);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+[data-theme='horizon'] .hz-logo-brand .tg-brand-logo,
+[data-theme='horizon'] .hz-logo-hero .tg-brand-logo {
+  display: inline-flex;
+  line-height: 0;
+}
+
+[data-theme='horizon'] .hz-logo-brand .tg-brand-logo__img,
+[data-theme='horizon'] .hz-logo-hero .tg-brand-logo__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 2.25rem;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  [data-theme='horizon'] .hz-logo-brand .tg-brand-logo__img,
+  [data-theme='horizon'] .hz-logo-hero .tg-brand-logo__img {
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='horizon'] .hz-logo:hover {
+    transform: none;
+  }
+}

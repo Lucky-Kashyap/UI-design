@@ -76,8 +76,8 @@ export const forgeTheme: ThemeConfig = {
   assets: {
     basePath: '/assets/themes/forge',
     hero: {
-      posterSrc: '/media/forge/forge-hearth-hero.webp',
-      fallbackImage: '/media/forge/forge-hearth-hero.webp',
+      posterSrc: '/assets/themes/forge/hero/forge-hearth-hero.webp',
+      fallbackImage: '/assets/themes/forge/hero/forge-hearth-hero.webp',
     },
     decorativeSvg: '/assets/themes/forge/icons/copper-frame.svg',
   },

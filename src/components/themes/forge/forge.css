@@ -50,7 +50,7 @@
   font-family: 'DM Serif Display', Georgia, serif;
   font-size: var(--fg-display);
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.15;
   letter-spacing: -0.01em;
 }
 
@@ -432,4 +432,28 @@
   [data-theme='forge'] .fg-venture-card:hover .fg-venture-card__media img {
     transform: none;
   }
+}
+
+/* Forge hero stacks copy + image + stats — must grow past one viewport on desktop */
+[data-theme='forge'] .tg-first-screen {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+[data-theme='forge'] .fg-hero {
+  overflow: visible;
+}
+
+[data-theme='forge'] .fg-hero__heading {
+  max-width: 100%;
+  overflow: visible;
+  word-break: break-word;
+}
+
+[data-theme='forge'] .fg-hero__heading > span {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 0.08em;
 }

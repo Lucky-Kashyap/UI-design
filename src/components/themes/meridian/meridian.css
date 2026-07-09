@@ -319,12 +319,6 @@
   transform: scale(1.02);
 }
 
-[data-theme='meridian'] .md-logo img {
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
 [data-theme='meridian'] .md-logo--nav {
   max-width: clamp(6.875rem, 18vw, 11.25rem);
 }
@@ -334,12 +328,56 @@
 }
 
 [data-theme='meridian'] .md-logo-brand {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.65rem;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 0.625rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+  justify-content: center;
+  max-width: fit-content;
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+  isolation: isolate;
+  line-height: 0;
+}
+
+[data-theme='meridian'] .md-logo-brand::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--md-violet), var(--md-cyan), var(--md-champagne));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+[data-theme='meridian'] .md-logo-brand .tg-brand-logo {
+  display: inline-flex;
+  line-height: 0;
+}
+
+[data-theme='meridian'] .md-logo-brand .tg-brand-logo__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 2.25rem;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  [data-theme='meridian'] .md-logo-brand .tg-brand-logo__img {
+    height: 2.5rem;
+  }
 }
 
 [data-theme='meridian'] .md-footer-logo-link {

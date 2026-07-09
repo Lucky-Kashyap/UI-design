@@ -6,22 +6,18 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-tg-navy text-white" role="contentinfo">
+    <footer className="tg-site-footer bg-tg-navy text-white" role="contentinfo">
       <div className="tg-container py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="sm:col-span-2 lg:col-span-1">
-            <a
-              href="#home"
-              aria-label="Traditional Group home"
-              className="inline-block mb-4 rounded-lg bg-white p-2 transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg"
-            >
-              <TraditionalGroupLogo className="h-10" />
+            <a href="#home" aria-label="Traditional Group home" className="tg-brand-logo-link mb-4">
+              <TraditionalGroupLogo variant="footer" />
             </a>
-            <p className="text-sm text-white/70 leading-relaxed">{FOOTER.blurb}</p>
+            <p className="tg-footer-copy text-white/70">{FOOTER.blurb}</p>
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4">Services</h3>
+            <h3 className="tg-footer-title text-white mb-4">Services</h3>
             <ul className="space-y-2.5">
               {VENTURES.map((venture) => (
                 <li key={venture.id}>
@@ -29,7 +25,7 @@ const Footer = () => {
                     href={venture.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="tg-link-hover text-sm text-white/70 hover:!text-tg-cyan"
+                    className="tg-link-hover tg-footer-link text-white/70 hover:!text-tg-cyan"
                   >
                     {venture.shortName}
                   </a>
@@ -39,11 +35,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4">Explore</h3>
+            <h3 className="tg-footer-title text-white mb-4">Explore</h3>
             <ul className="space-y-2.5">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="tg-link-hover text-sm text-white/70 hover:!text-tg-amber">
+                  <a href={link.href} className="tg-link-hover tg-footer-link text-white/70 hover:!text-tg-amber">
                     {link.label}
                   </a>
                 </li>
@@ -52,36 +48,27 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4">Contact us</h3>
-            <ul className="space-y-2.5 text-sm text-white/70">
-              <li>
-                <a
-                  href={SITE.officePhoneHref}
-                  className="tg-link-hover inline-flex items-center gap-2 hover:!text-tg-cyan"
-                >
-                  <Phone className="h-3.5 w-3.5 shrink-0 text-tg-cyan/80" aria-hidden="true" />
-                  <span>{SITE.officePhoneDisplay}</span>
-                </a>
-              </li>
+            <h3 className="tg-footer-title text-white mb-4">Contact us</h3>
+            <ul className="space-y-2.5 text-white/70">
               <li>
                 <a
                   href={SITE.phoneHref}
-                  className="tg-link-hover inline-flex items-center gap-2 hover:!text-tg-amber"
+                  className="tg-link-hover tg-footer-link inline-flex items-center gap-2 hover:!text-tg-cyan"
                 >
-                  <Phone className="h-3.5 w-3.5 shrink-0 text-tg-amber/80" aria-hidden="true" />
+                  <Phone className="h-3.5 w-3.5 shrink-0 text-tg-cyan/80" aria-hidden="true" />
                   <span>{SITE.phoneDisplay}</span>
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${SITE.email}`}
-                  className="tg-link-hover inline-flex items-center gap-2 hover:!text-tg-emerald break-all"
+                  className="tg-link-hover tg-footer-link inline-flex items-center gap-2 hover:!text-tg-emerald break-all"
                 >
                   <Mail className="h-3.5 w-3.5 shrink-0 text-tg-emerald/80" aria-hidden="true" />
                   <span>{SITE.email}</span>
                 </a>
               </li>
-              <li>{SITE.address}</li>
+              <li className="tg-footer-copy">{SITE.address}</li>
             </ul>
             <div className="mt-4 flex gap-2">
               <a
@@ -117,18 +104,18 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="tg-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-5 text-xs text-white/55">
-          <p>
+        <div className="tg-container tg-footer-meta flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-5 text-white/55">
+          <p className="tg-footer-meta-item">
             © {year} {SITE.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#about" className="transition-colors hover:text-tg-cyan">
+            <a href="#about" className="tg-footer-meta-item transition-colors hover:text-tg-cyan">
               About Us
             </a>
-            <a href="#ventures" className="transition-colors hover:text-tg-amber">
+            <a href="#ventures" className="tg-footer-meta-item transition-colors hover:text-tg-amber">
               Services
             </a>
-            <a href="#contact" className="transition-colors hover:text-tg-emerald">
+            <a href="#contact" className="tg-footer-meta-item transition-colors hover:text-tg-emerald">
               Contact Us
             </a>
           </div>

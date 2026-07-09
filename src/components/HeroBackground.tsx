@@ -1,8 +1,11 @@
+'use client';
+
 import { motion, useReducedMotion } from 'framer-motion';
-import { VENTURES } from '@/data/traditionalGroup';
+import { HERO, VENTURES } from '@/data/traditionalGroup';
 
 const SLIDE_DURATION_MS = 6000;
 const FADE_DURATION_S = 1.4;
+const CINEMATIC_EASE = [0.22, 1, 0.36, 1] as const;
 
 type HeroBackgroundProps = {
   activeIndex: number;
@@ -13,6 +16,18 @@ const HeroBackground = ({ activeIndex }: HeroBackgroundProps) => {
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      {/* Instant LCP paint — matches production preload */}
+      <img
+        src={HERO.backgroundImage}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        width={1920}
+        height={1080}
+      />
+
       {VENTURES.map((venture, index) => {
         const isActive = index === activeIndex;
 
@@ -21,30 +36,32 @@ const HeroBackground = ({ activeIndex }: HeroBackgroundProps) => {
             key={venture.id}
             className="absolute inset-0"
             initial={false}
+            style={{ opacity: isActive ? 1 : 0 }}
             animate={{ opacity: isActive ? 1 : 0 }}
             transition={{ duration: reduce ? 0 : FADE_DURATION_S, ease: 'easeInOut' }}
           >
             <motion.div
               className="absolute inset-0"
-              initial={false}
+              initial={reduce ? false : { scale: 1.1 }}
               animate={
                 reduce || !isActive
                   ? { scale: 1, x: '0%', y: '0%' }
-                  : { scale: [1, 1.06, 1.08], x: ['0%', '-1%', '-1.5%'], y: ['0%', '-0.5%', '-1%'] }
+                  : { scale: [1.1, 1.04, 1.06], x: ['0%', '-1%', '-1.5%'], y: ['0%', '-0.5%', '-1%'] }
               }
               transition={
                 reduce || !isActive
-                  ? undefined
+                  ? { duration: 2.8, ease: CINEMATIC_EASE }
                   : {
-                      duration: SLIDE_DURATION_MS / 1000,
-                      ease: 'easeInOut',
+                      scale: { duration: 2.8, ease: CINEMATIC_EASE },
+                      x: { duration: SLIDE_DURATION_MS / 1000, ease: 'easeInOut' },
+                      y: { duration: SLIDE_DURATION_MS / 1000, ease: 'easeInOut' },
                     }
               }
             >
               <img
                 src={venture.image}
                 alt=""
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover object-center"
                 fetchPriority={index === 0 ? 'high' : 'low'}
                 loading={index === 0 ? 'eager' : 'lazy'}
                 decoding="async"
@@ -56,31 +73,18 @@ const HeroBackground = ({ activeIndex }: HeroBackgroundProps) => {
         );
       })}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-tg-deep via-tg-navy/82 to-tg-navy/55" />
-      <div className="absolute inset-0 bg-gradient-to-r from-tg-deep/94 via-tg-navy/62 to-tg-deep/45" />
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-tg-deep/92 via-tg-deep/55 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 tg-hero-grain opacity-[0.1]" />
+      {/* Cinematic editorial overlays — image stays visible behind navbar */}
+      <div className="absolute inset-0 bg-gradient-to-b from-tg-deep/25 via-transparent via-35% to-tg-deep/80" />
+      <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-tg-deep/70 via-tg-navy/30 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_70%_50%,transparent_0%,rgba(6,20,40,0.35)_100%)]" />
+      <div className="absolute inset-0 tg-hero-grain opacity-[0.06]" />
 
       {!reduce && (
-        <>
-          <div className="absolute inset-0 tg-scanline opacity-20 pointer-events-none" />
-          <div className="absolute inset-0 tg-hero-vignette pointer-events-none" />
-          <motion.div
-            className="absolute -left-[10vw] top-[18%] h-[38vh] w-[38vh] rounded-full bg-tg-cyan/18 blur-3xl"
-            animate={{ x: [0, 24, 0], y: [0, -18, 0], opacity: [0.4, 0.65, 0.4] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.div
-            className="absolute -right-[8vw] bottom-[16%] h-[42vh] w-[42vh] rounded-full bg-tg-gold/14 blur-3xl"
-            animate={{ x: [0, -20, 0], y: [0, 14, 0], opacity: [0.35, 0.6, 0.35] }}
-            transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-          />
-        </>
+        <div className="absolute inset-0 tg-hero-vignette pointer-events-none opacity-50" />
       )}
 
-      <div className="absolute inset-x-0 bottom-0 h-[10rem] bg-gradient-to-t from-tg-deep via-tg-deep/85 to-transparent pointer-events-none" />
-      <div className="absolute top-0 left-0 h-28 w-28 md:h-40 md:w-40 tg-corner-prism" />
-      <div className="absolute top-0 right-0 h-28 w-28 md:h-40 md:w-40 tg-corner-prism scale-x-[-1]" />
+      <div className="absolute top-0 left-0 h-28 w-28 md:h-40 md:w-40 tg-corner-prism opacity-80" />
+      <div className="absolute top-0 right-0 h-28 w-28 md:h-40 md:w-40 tg-corner-prism scale-x-[-1] opacity-80" />
     </div>
   );
 };

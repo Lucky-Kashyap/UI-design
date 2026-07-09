@@ -11,18 +11,18 @@ const Ventures = () => {
       <div className="absolute inset-x-0 top-0 h-px tg-prism-line opacity-70" aria-hidden="true" />
       <div className="tg-container relative">
         <motion.div
-          className="tg-section-header max-w-3xl"
+          className="tg-section-header w-full"
           initial={reduce ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.55 }}
         >
           <p className="tg-eyebrow mb-4">Our portfolio</p>
-          <h2 id="ventures-heading" className="font-display text-headline-xl text-tg-navy">
+          <h2 id="ventures-heading" className="font-display text-headline-xl">
             Traditional Group Ventures
           </h2>
           <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-          <p className="text-body-md text-tg-muted">
+          <p className="text-body-md text-tg-muted w-full max-w-none">
             Traditional Group operates across multiple sectors with a strong commitment to quality
             and innovation. From manufacturing to hospitality, education, and recreation, each
             venture reflects our dedication to excellence and customer trust.
@@ -72,9 +72,9 @@ const VentureFront = ({ venture }: { venture: Venture }) => (
     />
     <div className="absolute inset-0 bg-gradient-to-t from-tg-deep via-tg-navy/55 to-tg-navy/10 transition-opacity duration-500 group-hover:opacity-60" />
     <div className="absolute inset-x-0 bottom-0 p-5 xs:p-6 transition-transform duration-500 group-hover:translate-y-2 group-hover:opacity-0">
-      <p className="text-[11px] uppercase tracking-[0.14em] text-white/70 mb-2">{venture.sector}</p>
-      <h3 className="font-display text-xl xs:text-2xl text-white mb-2 pr-10">{venture.shortName}</h3>
-      <p className="text-sm text-white/80 max-w-sm line-clamp-2">{venture.description}</p>
+      <p className="tg-caption text-white/70 mb-2">{venture.sector}</p>
+      <h3 className="tg-card-title-lg tg-venture-card__title mb-2 pr-10">{venture.shortName}</h3>
+      <p className="tg-card-body text-white/80 max-w-sm line-clamp-2">{venture.description}</p>
       <span className="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
         <ArrowUpRight className="h-4 w-4" />
       </span>
@@ -86,13 +86,13 @@ const VentureFront = ({ venture }: { venture: Venture }) => (
 const VentureBack = ({ venture }: { venture: Venture }) => (
   <div className="tg-venture-reveal absolute inset-0 flex flex-col justify-between p-5 xs:p-6">
     <div className="tg-venture-reveal__content">
-      <p className="text-[11px] uppercase tracking-[0.16em] text-tg-cyan mb-3">{venture.sector}</p>
-      <h3 className="font-display text-2xl text-white mb-3">{venture.shortName}</h3>
+      <p className="tg-caption text-tg-cyan mb-3">{venture.sector}</p>
+      <h3 className="tg-card-title-lg tg-venture-card__title mb-3">{venture.shortName}</h3>
       <div className="mb-4 h-1 w-12 rounded-full tg-prism-line" aria-hidden="true" />
-      <p className="text-sm text-white/85 leading-relaxed">{venture.description}</p>
-      <p className="mt-4 text-xs text-white/55">{venture.name}</p>
+      <p className="tg-card-body text-white/85 w-full max-w-none">{venture.description}</p>
+      <p className="tg-caption mt-4 text-white/55">{venture.name}</p>
     </div>
-    <span className="tg-venture-reveal__cta inline-flex items-center gap-2 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-tg-navy">
+    <span className="tg-venture-reveal__cta tg-btn-sm inline-flex items-center gap-2 self-start bg-white text-tg-navy">
       Visit website
       <ExternalLink className="h-3.5 w-3.5 text-tg-cyan" />
     </span>

@@ -1,0 +1,282 @@
+/* Horizon Light — typography, layout, components (Theme 3 only) */
+
+[data-theme='horizon'] {
+  --hz-section-y: clamp(4rem, 9vw, 7.5rem);
+  --hz-container-x: clamp(1rem, 5vw, 2.5rem);
+  --hz-display: clamp(2.25rem, 10vw, 4.5rem);
+  --hz-display-lg: clamp(3rem, 7vw, 5.5rem);
+  --hz-h2: clamp(2rem, 4.5vw, 3.5rem);
+  --hz-h3: clamp(1.375rem, 2.8vw, 2rem);
+  --hz-body: 1rem;
+  --hz-body-lg: 1.125rem;
+  --hz-eyebrow: 0.6875rem;
+  --hz-caption: 0.75rem;
+  --hz-btn: 0.875rem;
+  --hz-btn-pad-y: 0.75rem;
+  --hz-btn-pad-x: 1.75rem;
+  --hz-btn-min-h: 2.875rem;
+  --hz-nav: 0.875rem;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='horizon'] {
+    --hz-display: var(--hz-display-lg);
+  }
+}
+
+[data-theme='horizon'] .hz-section {
+  padding-block: var(--hz-section-y);
+  scroll-margin-top: var(--tg-header-offset, 5.5rem);
+}
+
+[data-theme='horizon'] .hz-container {
+  width: 100%;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding-inline: var(--hz-container-x);
+}
+
+[data-theme='horizon'] .hz-eyebrow {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--hz-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--tg-prism-cyan);
+}
+
+[data-theme='horizon'] .hz-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: var(--hz-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+[data-theme='horizon'] .hz-h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: var(--hz-h2);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+[data-theme='horizon'] .hz-h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: var(--hz-h3);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+[data-theme='horizon'] .hz-body {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--hz-body);
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+[data-theme='horizon'] .hz-body-lg {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--hz-body-lg);
+  font-weight: 400;
+  line-height: 1.72;
+}
+
+[data-theme='horizon'] .hz-caption {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--hz-caption);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+[data-theme='horizon'] .hz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hz-btn-min-h);
+  padding: var(--hz-btn-pad-y) var(--hz-btn-pad-x);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--hz-btn);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 9999px;
+  transition: transform 0.35s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme='horizon'] .hz-nav-cta--desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='horizon'] .hz-nav-cta--desktop {
+    display: inline-flex;
+  }
+}
+
+[data-theme='horizon'] .hz-btn--primary {
+  background: #fff;
+  color: var(--tg-navy);
+}
+
+[data-theme='horizon'] .hz-mobile-menu .hz-btn--primary,
+[data-theme='horizon'] .hz-mobile-menu__cta {
+  background: var(--tg-navy);
+  color: #fff;
+}
+
+[data-theme='horizon'] .hz-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(30, 58, 95, 0.15);
+}
+
+[data-theme='horizon'] .hz-btn--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  background: transparent;
+}
+
+[data-theme='horizon'] .hz-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+[data-theme='horizon'] .hz-hero-bg__img {
+  object-position: 86% 28%;
+}
+
+@media (max-width: 767px) {
+  [data-theme='horizon'] .hz-hero-bg__img {
+    object-position: 82% 22%;
+  }
+}
+
+[data-theme='horizon'] .hz-hero-copy {
+  text-shadow: 0 1px 12px rgba(21, 42, 69, 0.35);
+}
+
+[data-theme='horizon'] .hz-hero-copy .hz-btn--primary {
+  box-shadow: 0 8px 24px rgba(21, 42, 69, 0.2);
+}
+
+[data-theme='horizon'] .hz-section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+[data-theme='horizon'] .hz-section-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+[data-theme='horizon'] .hz-img-fallback {
+  background: linear-gradient(160deg, #e8f4fc 0%, #b8dff5 45%, #eef2f6 100%);
+}
+
+[data-theme='horizon'] .hz-nav-link {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: var(--hz-nav);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='horizon'] .hz-btn:hover {
+    transform: none;
+  }
+}
+
+/* ── Logo — theme-tinted plate replaces mismatched prism frame on the asset ── */
+
+[data-theme='horizon'] .hz-logo {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+[data-theme='horizon'] .hz-logo:hover {
+  transform: scale(1.02);
+}
+
+[data-theme='horizon'] .hz-logo--nav {
+  max-width: clamp(6.75rem, 18vw, 11rem);
+}
+
+[data-theme='horizon'] .hz-logo-brand,
+[data-theme='horizon'] .hz-logo-hero {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: fit-content;
+  isolation: isolate;
+  line-height: 0;
+}
+
+[data-theme='horizon'] .hz-logo-brand {
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 12px rgba(30, 58, 95, 0.12);
+}
+
+[data-theme='horizon'] .hz-logo-hero {
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 22px rgba(21, 42, 69, 0.28);
+}
+
+[data-theme='horizon'] .hz-logo-brand::before,
+[data-theme='horizon'] .hz-logo-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--tg-prism-gradient);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+[data-theme='horizon'] .hz-logo-brand .tg-brand-logo,
+[data-theme='horizon'] .hz-logo-hero .tg-brand-logo {
+  display: inline-flex;
+  line-height: 0;
+}
+
+[data-theme='horizon'] .hz-logo-brand .tg-brand-logo__img,
+[data-theme='horizon'] .hz-logo-hero .tg-brand-logo__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 2.25rem;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  [data-theme='horizon'] .hz-logo-brand .tg-brand-logo__img,
+  [data-theme='horizon'] .hz-logo-hero .tg-brand-logo__img {
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='horizon'] .hz-logo:hover {
+    transform: none;
+  }
+}

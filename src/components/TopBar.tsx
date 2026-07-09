@@ -23,7 +23,7 @@ const PhoneLink = ({ className }: { className?: string }) => (
   <a
     href={SITE.phoneHref}
     className={cn(
-      'tg-link-hover inline-flex shrink-0 items-center gap-1.5 font-semibold text-white/90 hover:!text-tg-amber',
+      'tg-link-hover inline-flex shrink-0 items-center gap-1.5 text-white/90 hover:!text-tg-amber',
       className,
     )}
   >
@@ -55,7 +55,7 @@ const TopBar = () => {
   return (
     <div
       className={cn(
-        'max-lg:hidden tg-topbar text-white text-topbar leading-none transition-all duration-500 ease-tg',
+        'max-lg:hidden tg-topbar text-white text-topbar transition-all duration-500 ease-tg',
         showTopBar
           ? 'tg-topbar--visible max-h-none opacity-100 bg-tg-navy border-b border-white/10'
           : 'tg-topbar--hidden max-h-0 opacity-0 pointer-events-none',

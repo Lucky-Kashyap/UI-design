@@ -90,7 +90,7 @@ const HeroVenturePicker = ({ selected, onChange, onAutoPlayChange }: HeroVenture
                     'absolute inset-0 rounded-[inherit] transition-opacity duration-500',
                     active
                       ? `bg-gradient-to-r ${gradient} opacity-100`
-                      : 'bg-white/5 opacity-100',
+                      : 'bg-tg-navy/80 opacity-100',
                   )}
                   aria-hidden="true"
                 />
@@ -98,11 +98,21 @@ const HeroVenturePicker = ({ selected, onChange, onAutoPlayChange }: HeroVenture
                   <span className="tg-venture-shimmer absolute inset-0 rounded-[inherit]" aria-hidden="true" />
                 )}
                 <span className="relative z-[1] flex w-full items-center justify-between gap-2">
-                  <span className="font-display text-venture-chip leading-tight text-white">
+                  <span
+                    className={cn(
+                      'tg-venture-chip__label font-sans text-venture-chip leading-tight',
+                      active && 'tg-venture-chip__label--active',
+                    )}
+                  >
                     {venture.shortName}
                   </span>
                   <ArrowUpRight
-                    className="h-3.5 w-3.5 shrink-0 text-white/50 transition-all duration-300 group-hover/chip:text-white group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5"
+                    className={cn(
+                      'h-3.5 w-3.5 shrink-0 transition-all duration-300 group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5',
+                      active
+                        ? 'text-tg-navy/70 group-hover/chip:text-tg-navy'
+                        : 'text-white/80 group-hover/chip:text-white',
+                    )}
                     aria-hidden="true"
                   />
                 </span>

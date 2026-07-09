@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const HEADER_GAP_PX = 20;
+const HEADER_GAP_PX = 32;
 
 export const useHeaderOffset = (): void => {
   useEffect(() => {

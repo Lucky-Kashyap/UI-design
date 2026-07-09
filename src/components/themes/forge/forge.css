@@ -1,0 +1,474 @@
+/* Copper Forge — typography, layout, components (Theme 4 only) */
+
+[data-theme='forge'] {
+  --fg-section-y: clamp(3.5rem, 8vw, 6.5rem);
+  --fg-container-x: clamp(1rem, 4vw, 2rem);
+  --fg-display: clamp(2.25rem, 9vw, 3.75rem);
+  --fg-display-lg: clamp(2.75rem, 6vw, 5rem);
+  --fg-h2: clamp(1.875rem, 4vw, 3rem);
+  --fg-h3: clamp(1.3125rem, 2.5vw, 1.875rem);
+  --fg-body: 0.9375rem;
+  --fg-body-lg: 1.0625rem;
+  --fg-eyebrow: 0.6875rem;
+  --fg-caption: 0.6875rem;
+  --fg-btn: 0.875rem;
+  --fg-btn-pad-y: 0.6875rem;
+  --fg-btn-pad-x: 1.5rem;
+  --fg-btn-min-h: 2.75rem;
+  --fg-nav: 0.875rem;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='forge'] {
+    --fg-display: var(--fg-display-lg);
+  }
+}
+
+[data-theme='forge'] .fg-section {
+  padding-block: var(--fg-section-y);
+  scroll-margin-top: var(--tg-header-offset, 5.5rem);
+}
+
+[data-theme='forge'] .fg-container {
+  width: 100%;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding-inline: var(--fg-container-x);
+}
+
+[data-theme='forge'] .fg-eyebrow {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--tg-gold);
+}
+
+[data-theme='forge'] .fg-display {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-display);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+[data-theme='forge'] .fg-h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-h2);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+[data-theme='forge'] .fg-h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-h3);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+[data-theme='forge'] .fg-body {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-body);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+[data-theme='forge'] .fg-body-lg {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-body-lg);
+  font-weight: 400;
+  line-height: 1.68;
+}
+
+[data-theme='forge'] .fg-caption {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-caption);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+[data-theme='forge'] .fg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--fg-btn-min-h);
+  padding: var(--fg-btn-pad-y) var(--fg-btn-pad-x);
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-btn);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  transition: transform 0.35s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme='forge'] .fg-btn--primary {
+  background: var(--tg-gold);
+  color: var(--tg-navy-deep);
+}
+
+[data-theme='forge'] .fg-btn--primary:hover {
+  background: var(--tg-gold-light);
+  transform: translateY(-2px);
+}
+
+[data-theme='forge'] .fg-btn--ghost {
+  border: 1px solid rgba(184, 115, 51, 0.55);
+  color: var(--tg-gold);
+  background: transparent;
+}
+
+[data-theme='forge'] .fg-btn--ghost:hover {
+  background: rgba(184, 115, 51, 0.12);
+  transform: translateY(-2px);
+}
+
+[data-theme='forge'] .fg-frame {
+  position: relative;
+}
+
+[data-theme='forge'] .fg-frame::before {
+  content: '';
+  position: absolute;
+  inset: -0.5rem;
+  border: 1px solid rgba(184, 115, 51, 0.35);
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+[data-theme='forge'] .fg-img-fallback {
+  background: linear-gradient(145deg, #120d0a 0%, #2a1e18 50%, rgba(184, 115, 51, 0.35) 100%);
+}
+
+[data-theme='forge'] .fg-nav-link {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-nav);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='forge'] .fg-btn:hover {
+    transform: none;
+  }
+}
+
+/* ── Copper band accent ── */
+[data-theme='forge'] .fg-copper-band {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--tg-gold), var(--tg-prism-amber), var(--tg-prism-emerald), transparent);
+  opacity: 0.7;
+}
+
+/* ── Hero stats ── */
+[data-theme='forge'] .fg-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(184, 115, 51, 0.3);
+  border-radius: var(--tg-radius-md, 0.875rem);
+  background: rgba(18, 13, 10, 0.55);
+  backdrop-filter: blur(8px);
+  min-width: 0;
+}
+
+[data-theme='forge'] .fg-stat__value {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.1;
+  color: var(--tg-gold);
+}
+
+[data-theme='forge'] .fg-stat__label {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Works bento grid ── */
+[data-theme='forge'] .fg-works-bento {
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  [data-theme='forge'] .fg-works-bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  [data-theme='forge'] .fg-works-bento__featured {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-theme='forge'] .fg-works-bento {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(12rem, auto);
+    gap: 1.25rem;
+  }
+
+  [data-theme='forge'] .fg-works-bento__featured {
+    grid-column: span 7;
+    grid-row: span 2;
+  }
+
+  [data-theme='forge'] .fg-works-bento__side {
+    grid-column: span 5;
+  }
+
+  [data-theme='forge'] .fg-works-bento__half {
+    grid-column: span 6;
+  }
+}
+
+[data-theme='forge'] .fg-venture-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--tg-radius-lg, 1.25rem);
+  border: 1px solid var(--tg-line);
+  background: var(--tg-bg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  min-height: 100%;
+}
+
+[data-theme='forge'] .fg-works-bento__side .fg-venture-card {
+  min-height: 11rem;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='forge'] .fg-works-bento__side .fg-venture-card {
+    min-height: 13.5rem;
+  }
+}
+
+[data-theme='forge'] .fg-venture-card--overlay .fg-venture-card__media {
+  position: absolute;
+  inset: 0;
+}
+
+[data-theme='forge'] .fg-venture-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(42, 30, 24, 0.12);
+}
+
+[data-theme='forge'] .fg-venture-card__media {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='forge'] .fg-venture-card__media img {
+  transition: transform 0.7s ease;
+}
+
+[data-theme='forge'] .fg-venture-card:hover .fg-venture-card__media img {
+  transform: scale(1.04);
+}
+
+[data-theme='forge'] .fg-venture-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(18, 13, 10, 0.75) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+[data-theme='forge'] .fg-venture-card__body {
+  padding: clamp(0.875rem, 2vw, 1.25rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme='forge'] .fg-venture-card--overlay .fg-venture-card__body {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  color: white;
+}
+
+[data-theme='forge'] .fg-venture-card--overlay .fg-venture-card__body .fg-h3 {
+  color: white;
+}
+
+[data-theme='forge'] .fg-venture-card--overlay .fg-venture-card__body .fg-body {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Lineage timeline ── */
+[data-theme='forge'] .fg-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  [data-theme='forge'] .fg-timeline {
+    padding-left: 2rem;
+  }
+}
+
+[data-theme='forge'] .fg-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--tg-gold), var(--tg-prism-amber), var(--tg-gold));
+  opacity: 0.5;
+}
+
+[data-theme='forge'] .fg-timeline__item {
+  position: relative;
+  padding-bottom: 1.75rem;
+}
+
+[data-theme='forge'] .fg-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+[data-theme='forge'] .fg-timeline__item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.5rem - 5px);
+  top: 0.4rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tg-gold);
+  box-shadow: 0 0 0 4px rgba(184, 115, 51, 0.2);
+}
+
+@media (min-width: 640px) {
+  [data-theme='forge'] .fg-timeline__item::before {
+    left: calc(-2rem - 5px);
+  }
+}
+
+/* ── Craft mosaic ── */
+[data-theme='forge'] .fg-craft-grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  [data-theme='forge'] .fg-craft-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+[data-theme='forge'] .fg-craft-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--tg-radius-lg, 1.25rem);
+  border: 1px solid rgba(184, 115, 51, 0.25);
+}
+
+[data-theme='forge'] .fg-craft-card__content {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background: linear-gradient(to top, rgba(18, 13, 10, 0.92) 0%, transparent 100%);
+}
+
+/* ── Visit panel ── */
+[data-theme='forge'] .fg-visit-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--tg-radius-lg, 1.25rem);
+  border: 1px solid rgba(184, 115, 51, 0.35);
+}
+
+[data-theme='forge'] .fg-visit-panel__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+[data-theme='forge'] .fg-visit-panel__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+}
+
+[data-theme='forge'] .fg-visit-panel__content {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(250, 246, 241, 0.97) 0%, rgba(240, 232, 220, 0.95) 100%);
+}
+
+[data-theme='forge'] .fg-contact-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--tg-radius-md, 0.875rem);
+  border: 1px solid var(--tg-line);
+  background: var(--tg-bg);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme='forge'] .fg-contact-chip:hover {
+  border-color: rgba(184, 115, 51, 0.45);
+  box-shadow: 0 4px 16px rgba(42, 30, 24, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='forge'] .fg-venture-card:hover,
+  [data-theme='forge'] .fg-venture-card:hover .fg-venture-card__media img {
+    transform: none;
+  }
+}
+
+/* Forge hero stacks copy + image + stats — must grow past one viewport on desktop */
+[data-theme='forge'] .tg-first-screen {
+  height: auto;
+  max-height: none;
+  overflow: hidden;
+}
+
+[data-theme='forge'] .fg-hero {
+  overflow: hidden;
+}
+
+[data-theme='forge'] .fg-hero__bg {
+  pointer-events: none;
+}
+
+[data-theme='forge'] .fg-hero__heading {
+  max-width: 100%;
+  overflow: visible;
+  word-break: break-word;
+}
+
+[data-theme='forge'] .fg-hero__heading > span {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 0.08em;
+}
+
+/* ── Mobile menu (portaled full-screen) ── */
+[data-theme='forge'] .fg-mobile-menu {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme='forge'] .fg-mobile-menu__cta {
+  margin-top: auto;
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+}

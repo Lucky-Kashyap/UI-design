@@ -32,18 +32,18 @@ const Gallery = () => {
     <section id="gallery" className="tg-section bg-tg-bg overflow-hidden scroll-mt-[var(--tg-header-offset,5.5rem)]" aria-labelledby="gallery-heading">
       <div className="tg-container">
         <motion.div
-          className="tg-section-header max-w-2xl"
+          className="tg-section-header w-full max-w-none"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5 }}
         >
           <p className="tg-eyebrow mb-4">In the gallery</p>
-          <h2 id="gallery-heading" className="font-display text-headline-xl text-tg-navy">
+          <h2 id="gallery-heading" className="font-display text-headline-xl">
             A journey across our ventures
           </h2>
           <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-          <p className="text-body-md text-tg-muted">
+          <p className="text-body-md text-tg-muted w-full max-w-none">
             Follow the pathway through hospitality, manufacturing, education, and eco-adventure —
             each stop a chapter of Traditional Group. Tap a timeline dot to expand or collapse.
           </p>
@@ -64,8 +64,8 @@ const Gallery = () => {
                 <motion.li
                   key={item.id}
                   layout={!reduce}
-                  className={cn(
-                    'relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 lg:gap-14 items-center pl-10 md:pl-0 transition-[gap] duration-500',
+                    className={cn(
+                      'relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 lg:gap-14 items-center pl-10 md:pl-0 transition-[gap] duration-500',
                     !isExpanded && 'md:gap-4',
                   )}
                   initial={reduce ? false : { opacity: 0, y: 28 }}
@@ -153,7 +153,7 @@ const Gallery = () => {
                           transition={{ type: 'spring', stiffness: 320, damping: 24 }}
                         >
                           <p className="tg-eyebrow mb-2">{item.sector}</p>
-                          <h3 className="font-display text-2xl xs:text-3xl text-tg-navy mb-3">{item.title}</h3>
+                          <h3 className="font-display text-headline-lg mb-3">{item.title}</h3>
                           <div
                             className={cn(
                               'mb-4 h-1 w-14 rounded-full tg-prism-line',
@@ -166,7 +166,7 @@ const Gallery = () => {
                             type="button"
                             onClick={() => setActive(item)}
                             className={cn(
-                              'mt-5 tg-link-hover inline-flex items-center gap-1.5 text-sm font-semibold text-tg-navy hover:!text-tg-cyan',
+                              'mt-5 tg-link-hover inline-flex items-center gap-1.5 text-tg-navy hover:!text-tg-cyan',
                               !imageLeft && 'md:flex-row-reverse',
                             )}
                           >
@@ -188,7 +188,7 @@ const Gallery = () => {
                       <button
                         type="button"
                         onClick={() => toggleItem(item.id)}
-                        className="tg-link-hover inline-flex items-center gap-1 text-sm font-semibold text-tg-muted hover:!text-tg-cyan"
+                        className="tg-link-hover inline-flex items-center gap-1 text-tg-muted hover:!text-tg-cyan"
                       >
                         {item.title}
                         <ChevronDown className="h-4 w-4" />

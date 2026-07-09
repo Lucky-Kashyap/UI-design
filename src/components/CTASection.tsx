@@ -19,7 +19,6 @@ const CTASection = () => {
           decoding="async"
           className={`h-full w-full object-cover ${reduce ? '' : 'animate-ken-burns tg-img-drift'}`}
         />
-        {/* Animated gif-like layers */}
         {!reduce && (
           <>
             <div className="absolute inset-0 tg-scanline opacity-50" aria-hidden="true" />

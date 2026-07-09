@@ -1,0 +1,117 @@
+/* Theme color palettes — scoped via data-theme on <html> (replaces tailwind-themes.cjs plugin) */
+
+:root,
+[data-theme='prism'] {
+  --tg-bg: #ffffff;
+  --tg-bg-soft: #f5f7fa;
+  --tg-navy: #0b1f3a;
+  --tg-navy-deep: #061428;
+  --tg-ink: #1a2332;
+  --tg-muted: #5b6575;
+  --tg-line: rgba(11, 31, 58, 0.1);
+  --tg-prism-emerald: #1fa463;
+  --tg-prism-cyan: #1ba3c9;
+  --tg-prism-amber: #f0a020;
+  --tg-gold: #c9a227;
+  --tg-gold-light: #d4b84a;
+  --tg-prism-coral: #e85d3b;
+  --tg-prism-gradient: linear-gradient(90deg, #1fa463, #1ba3c9, #f0a020, #e85d3b);
+}
+
+[data-theme='meridian'] {
+  --tg-bg: #0a0d12;
+  --tg-bg-soft: #151b26;
+  --tg-navy: #0a0d12;
+  --tg-navy-deep: #060810;
+  --tg-ink: #e8eaed;
+  --tg-muted: #8b95a8;
+  --tg-line: rgba(232, 234, 237, 0.08);
+  --tg-prism-emerald: #06b6d4;
+  --tg-prism-cyan: #06b6d4;
+  --tg-prism-amber: #d4a853;
+  --tg-gold: #d4a853;
+  --tg-gold-light: #e8c96a;
+  --tg-prism-coral: #7c3aed;
+  --tg-prism-gradient: linear-gradient(90deg, #7c3aed, #06b6d4, #d4a853);
+}
+
+[data-theme='horizon'] {
+  --tg-bg: #f7f5f0;
+  --tg-bg-soft: #eef2f6;
+  --tg-navy: #1e3a5f;
+  --tg-navy-deep: #152a45;
+  --tg-ink: #1a2332;
+  --tg-muted: #64748b;
+  --tg-line: rgba(30, 58, 95, 0.1);
+  --tg-prism-emerald: #22c55e;
+  --tg-prism-cyan: #38bdf8;
+  --tg-prism-amber: #fbbf24;
+  --tg-gold: #ca8a04;
+  --tg-gold-light: #eab308;
+  --tg-prism-coral: #f97316;
+  --tg-prism-gradient: linear-gradient(90deg, #38bdf8, #86efac, #fde68a);
+}
+
+[data-theme='forge'] {
+  --tg-bg: #faf6f1;
+  --tg-bg-soft: #f0e8dc;
+  --tg-navy: #1c1410;
+  --tg-navy-deep: #120d0a;
+  --tg-ink: #2a1e18;
+  --tg-muted: #7a6a5c;
+  --tg-line: rgba(42, 30, 24, 0.12);
+  --tg-prism-emerald: #6b7c3c;
+  --tg-prism-cyan: #8b7355;
+  --tg-prism-amber: #c45c26;
+  --tg-gold: #b87333;
+  --tg-gold-light: #d4a574;
+  --tg-prism-coral: #a0522d;
+  --tg-prism-gradient: linear-gradient(90deg, #b87333, #c45c26, #6b7c3c);
+}
+
+:root {
+  --site-content-max-width: 75rem;
+  --site-inline-padding: clamp(0.75rem, 4vw, 2rem);
+  --section-y-padding: 7rem;
+  --site-header-offset: 4.75rem;
+  --site-header-offset-md: 5.25rem;
+  --tg-radius-sm: 0.625rem;
+  --tg-radius-md: 0.875rem;
+  --tg-radius-lg: 1.25rem;
+  --tg-gap-sector: 0.5rem;
+  --tg-pad-topbar-y: 0.375rem;
+  --tg-pad-nav-y: 0.5rem;
+  --tg-pad-nav-y-md: 0.5625rem;
+  --tg-hero-top-gap: 1.5rem;
+  --tg-hero-top-gap-md: 2rem;
+  --tg-hero-scroll-h: 3.25rem;
+  --tg-hero-badge-mb: 0;
+  --tg-hero-eyebrow-mb: 0.75rem;
+  --tg-hero-title-mb: 0;
+  --tg-hero-line-mb: 0;
+  --tg-hero-body-mb: 0;
+  --tg-hero-body-mb-lg: 0;
+  --tg-hero-badge-x: 0.625rem;
+  --tg-hero-badge-y: 0.3125rem;
+  --tg-hero-badge-gap: 0.5rem;
+  --tg-live-dot-size: 0.5rem;
+  --tg-hero-prism-w: 4rem;
+  --tg-btn-x: 1.75rem;
+  --tg-btn-y: 0.6875rem;
+  --tg-btn-min-h: 2.75rem;
+  --tg-btn-font: 0.9375rem;
+  --tg-btn-nav-x: 1rem;
+  --tg-btn-nav-y: 0.5rem;
+  --tg-btn-nav-min-h: 2.25rem;
+  --tg-btn-nav-font: 0.6875rem;
+  --tg-venture-gap: 0.5rem;
+  --tg-venture-pad-y: 0.5625rem;
+  --tg-venture-pad-x: 1rem;
+  --tg-venture-glass-pad: 0.875rem;
+  --tg-font-scroll-label: 0.75rem;
+  --tg-font-scroll-icon: 1.375rem;
+  --tg-scroll-top-offset: 1.5rem;
+  --tg-scroll-top-size: 2.75rem;
+  --tg-header-offset: 4.75rem;
+  --tg-header-offset-md: 5.25rem;
+}

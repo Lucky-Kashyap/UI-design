@@ -64,8 +64,8 @@ const Gallery = () => {
                 <motion.li
                   key={item.id}
                   layout={!reduce}
-                  className={cn(
-                    'relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 lg:gap-14 items-center pl-10 md:pl-0 transition-[gap] duration-500',
+                    className={cn(
+                      'relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 lg:gap-14 items-center pl-10 md:pl-0 transition-[gap] duration-500',
                     !isExpanded && 'md:gap-4',
                   )}
                   initial={reduce ? false : { opacity: 0, y: 28 }}

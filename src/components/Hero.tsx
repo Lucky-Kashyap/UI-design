@@ -89,18 +89,7 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          <div className="flex w-full min-w-0 shrink-0 flex-col gap-3 lg:max-w-venture-panel lg:pt-1 lg:pl-venture-panel-inset">
-            <motion.div
-              className="inline-flex max-w-full items-center gap-hero-badge self-start rounded-tg-pill border border-white/20 bg-white/10 px-hero-badge-x py-hero-badge-y backdrop-blur-md lg:self-end"
-              {...fadeUp(0.12, reduce)}
-            >
-              <span className="tg-live-dot" aria-hidden="true">
-                <span className="tg-live-dot__ping" />
-                <span className="tg-live-dot__core" />
-              </span>
-              <span className="min-w-0 text-hero-label uppercase leading-snug text-white/80">{HERO.liveLabel}</span>
-            </motion.div>
-
+          <div className="hidden min-w-0 shrink-0 flex-col lg:flex lg:w-full lg:max-w-venture-panel lg:pt-1 lg:pl-venture-panel-inset lg:ml-auto">
             <HeroVenturePicker
               selected={activeVenture}
               onChange={handleVentureChange}

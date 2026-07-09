@@ -1,0 +1,85 @@
+import type { ThemeConfig } from '@/themes/types';
+
+export const forgeTheme: ThemeConfig = {
+  id: 'forge',
+  name: 'Copper Forge',
+  tagline: 'Warm earthy premium with copper accents',
+  className: 'theme-forge',
+  themeColor: '#1C1410',
+  gradient: 'linear-gradient(90deg, #b87333, #c45c26, #6b7c3c)',
+  colors: {
+    bg: '#faf6f1',
+    soft: '#f0e8dc',
+    navy: '#1c1410',
+    deep: '#120d0a',
+    ink: '#2a1e18',
+    muted: '#7a6a5c',
+    line: 'rgba(42, 30, 24, 0.12)',
+    emerald: '#6b7c3c',
+    cyan: '#8b7355',
+    amber: '#c45c26',
+    gold: '#b87333',
+    goldLight: '#d4a574',
+    coral: '#a0522d',
+  },
+  fonts: {
+    display: 'DM Serif Display, Georgia, serif',
+    sans: 'Work Sans, system-ui, sans-serif',
+    googleFontsUrl:
+      'https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Work+Sans:wght@400;500;600;700&display=swap',
+  },
+  layout: {
+    showTopBar: false,
+    venturesStyle: 'cards',
+    galleryStyle: 'grid',
+    navigationStyle: 'serif-sticky',
+    heroStyle: 'parallax-layers',
+  },
+  spacing: {
+    sectionY: 'clamp(3rem, 7vw, 6rem)',
+    containerX: 'clamp(0.75rem, 4vw, 2rem)',
+    heroContentRatio: '1fr',
+    heroVisualRatio: '1fr',
+  },
+  sections: {
+    ventures: 'numbered-list',
+    about: 'lineage-split',
+    gallery: 'filmstrip',
+    testimonials: 'card-swap',
+    cta: 'reach-cards',
+  },
+  animation: {
+    intensity: 'balanced',
+    respectReducedMotion: true,
+    lenisSmoothScroll: true,
+    heroParallax: true,
+    shaderFallbackMobile: true,
+  },
+  reactBits: {
+    navigation: { pillNav: false, staggeredMenu: true, magnet: false, electricBorder: false },
+    hero: {
+      blurText: false,
+      splitText: true,
+      gradientText: false,
+      scrollReveal: true,
+      aurora: false,
+      darkVeil: false,
+      noise: false,
+    },
+    sections: {
+      ventures: ['AnimatedContent'],
+      about: ['ScrollReveal'],
+      gallery: ['TiltedCard'],
+      testimonials: ['CardSwap'],
+    },
+  },
+  assets: {
+    basePath: '/assets/themes/forge',
+    hero: {
+      posterSrc: '/media/forge/forge-hearth-hero.webp',
+      fallbackImage: '/media/forge/forge-hearth-hero.webp',
+    },
+    decorativeSvg: '/assets/themes/forge/icons/copper-frame.svg',
+  },
+  status: 'complete',
+};

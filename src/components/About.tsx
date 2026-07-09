@@ -60,7 +60,7 @@ const Stat = ({ value, suffix, label, delay = 0, reduce }: StatProps) => {
       transition={{ duration: 0.4, delay }}
       whileHover={reduce ? undefined : { y: -4, scale: 1.03 }}
     >
-      <p className="font-display text-2xl xs:text-3xl text-tg-navy">
+      <p className="font-display text-2xl text-tg-navy md:text-3xl">
         {count}
         {suffix}
       </p>
@@ -87,7 +87,7 @@ const About = () => {
         </>
       )}
 
-      <div className="tg-container relative py-12 xs:py-14 md:py-16 lg:py-20">
+      <div className="tg-container relative py-12 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 lg:items-stretch">
           <motion.div
             className="relative z-10 flex flex-col"

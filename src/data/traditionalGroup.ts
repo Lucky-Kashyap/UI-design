@@ -144,7 +144,7 @@ export const VENTURES: Venture[] = [
     description: 'IB World School nurturing global learners.',
     sector: 'Education',
     href: 'https://kindori.in/',
-    image: '/media/hero-education-campus-students-jaipur.webp',
+    image: '/media/gallery-education-campus-shanti-asiatic-jaipur.webp',
     logoImage:
       'https://traditionalgroup.in/wp-content/uploads/2025/11/KINDORI-LOGO-PNG-2-scaled.webp',
   },

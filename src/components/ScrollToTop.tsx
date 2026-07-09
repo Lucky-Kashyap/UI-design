@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
@@ -11,7 +13,6 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > SCROLL_THRESHOLD_PX);
-
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);

@@ -1,0 +1,157 @@
+/* Tailwind v4 bridge — maps utilities to CSS variables (no tailwind.config.ts color tokens) */
+
+@theme {
+  --breakpoint-xxs: 350px;
+  --breakpoint-xs: 375px;
+  --breakpoint-sm: 400px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+
+  --font-family-display: var(--font-fraunces), Fraunces, Georgia, serif;
+  --font-family-sans: var(--font-outfit), Outfit, system-ui, sans-serif;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-tg-bg: var(--tg-bg);
+  --color-tg-soft: var(--tg-bg-soft);
+  --color-tg-navy: var(--tg-navy);
+  --color-tg-deep: var(--tg-navy-deep);
+  --color-tg-ink: var(--tg-ink);
+  --color-tg-muted: var(--tg-muted);
+  --color-tg-line: var(--tg-line);
+  --color-tg-emerald: var(--tg-prism-emerald);
+  --color-tg-cyan: var(--tg-prism-cyan);
+  --color-tg-amber: var(--tg-prism-amber);
+  --color-tg-gold: var(--tg-gold);
+  --color-tg-gold-light: var(--tg-gold-light);
+  --color-tg-coral: var(--tg-prism-coral);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+  --radius-tg-sm: var(--tg-radius-sm);
+  --radius-tg-md: var(--tg-radius-md);
+  --radius-tg-lg: var(--tg-radius-lg);
+  --radius-tg-pill: 9999px;
+
+  --max-width-container-max: 75rem;
+  --max-width-hero-copy: 32rem;
+  --max-width-hero-body: 28rem;
+  --max-width-venture-panel: 15rem;
+
+  --spacing-gutter: 1.5rem;
+  --spacing-section-gap: 7rem;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 48px;
+
+  --text-display-lg: clamp(2.125rem, 4.5vw, 3.75rem);
+  --text-headline-xl: clamp(1.875rem, 3.8vw, 3.25rem);
+  --text-headline-lg: clamp(1.25rem, 2.2vw, 1.75rem);
+  --text-body-lg: 1.0625rem;
+  --text-body-md: 0.9375rem;
+  --text-label-md: 0.75rem;
+
+  --background-image-prism-band: var(--tg-prism-gradient);
+  --background-image-prism-hero-fade: linear-gradient(to top, rgba(6, 20, 40, 0.82) 0%, rgba(6, 20, 40, 0.35) 55%, transparent 100%);
+  --background-image-tg-scanline: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.045) 48%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.045) 52%, transparent 100%);
+
+  --ease-tg: cubic-bezier(0.22, 1, 0.36, 1);
+  --default-transition-duration: 300ms;
+
+  --animate-ken-burns: ken-burns 22s ease-in-out infinite alternate;
+  --animate-scroll-cue: scroll-cue 1.8s ease-in-out infinite;
+  --animate-prism-shift: prism-shift 8s ease infinite;
+  --animate-float: float 10s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.8s ease-in-out infinite;
+  --animate-hero-sweep: hero-sweep 9s ease-in-out infinite;
+  --animate-hero-dust: hero-dust 22s linear infinite;
+  --animate-live-ping: live-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-live-glow: live-glow 2s ease-in-out infinite;
+  --animate-aurora-drift: aurora-drift 18s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-fade-in: fade-in 0.5s ease forwards;
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+@keyframes scroll-cue {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(0.4375rem); opacity: 1; }
+}
+
+@keyframes prism-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 120% 0; }
+  100% { background-position: -40% 0; }
+}
+
+@keyframes hero-sweep {
+  0% { background-position: 120% 0; }
+  100% { background-position: -30% 0; }
+}
+
+@keyframes hero-dust {
+  0% { transform: translate3d(0, 0, 0); opacity: 0.45; }
+  50% { transform: translate3d(-1.5%, -1%, 0); opacity: 0.65; }
+  100% { transform: translate3d(0.5%, 0.5%, 0); opacity: 0.45; }
+}
+
+@keyframes live-ping {
+  0% { transform: scale(1); opacity: 0.65; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes live-glow {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0 8px rgba(31, 164, 99, 0.7); }
+  50% { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.28), 0 0 14px rgba(31, 164, 99, 1); }
+}
+
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0%, 0%) scale(1); }
+  33% { transform: translate(3%, -2%) scale(1.05); }
+  66% { transform: translate(-2%, 2%) scale(0.98); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}

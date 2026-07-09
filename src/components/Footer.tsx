@@ -13,9 +13,9 @@ const Footer = () => {
             <a
               href="#home"
               aria-label="Traditional Group home"
-              className="inline-block mb-4 rounded-lg bg-white p-2 transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg"
+              className="inline-block mb-4 transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg"
             >
-              <TraditionalGroupLogo className="h-10" />
+              <TraditionalGroupLogo variant="footer" />
             </a>
             <p className="text-sm text-white/70 leading-relaxed">{FOOTER.blurb}</p>
           </div>

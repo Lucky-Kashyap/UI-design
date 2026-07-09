@@ -154,9 +154,7 @@ const Gallery = () => {
                           transition={{ type: 'spring', stiffness: 320, damping: 24 }}
                         >
                           <p className="tg-eyebrow mb-2">{item.sector}</p>
-                          <h3 className="font-display text-headline-lg mb-3">
-                            <HeadingReveal block>{item.title}</HeadingReveal>
-                          </h3>
+                          <h3 className="font-display text-headline-lg mb-3">{item.title}</h3>
                           <div
                             className={cn(
                               'mb-4 h-1 w-14 rounded-full tg-prism-line',

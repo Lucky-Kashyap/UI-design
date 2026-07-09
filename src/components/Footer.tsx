@@ -15,9 +15,9 @@ const Footer = () => {
               aria-label="Traditional Group home"
               className="inline-block mb-4 transition-transform duration-300 hover:scale-[1.03] hover:shadow-lg"
             >
-              <TraditionalGroupLogo variant="footer" />
+              <TraditionalGroupLogo variant="hero" />
             </a>
-            <p className="text-body-md text-white/70">{FOOTER.blurb}</p>
+            <p className="tg-footer-copy text-white/70">{FOOTER.blurb}</p>
           </div>
 
           <div>
@@ -81,7 +81,7 @@ const Footer = () => {
                   <span>{SITE.email}</span>
                 </a>
               </li>
-              <li>{SITE.address}</li>
+              <li className="tg-footer-copy">{SITE.address}</li>
             </ul>
             <div className="mt-4 flex gap-2">
               <a
@@ -118,17 +118,17 @@ const Footer = () => {
 
       <div className="border-t border-white/10">
         <div className="tg-container tg-footer-meta flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-5 text-white/55">
-          <p>
+          <p className="tg-footer-meta-item">
             © {year} {SITE.name}. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#about" className="transition-colors hover:text-tg-cyan">
+            <a href="#about" className="tg-footer-meta-item transition-colors hover:text-tg-cyan">
               About Us
             </a>
-            <a href="#ventures" className="transition-colors hover:text-tg-amber">
+            <a href="#ventures" className="tg-footer-meta-item transition-colors hover:text-tg-amber">
               Services
             </a>
-            <a href="#contact" className="transition-colors hover:text-tg-emerald">
+            <a href="#contact" className="tg-footer-meta-item transition-colors hover:text-tg-emerald">
               Contact Us
             </a>
           </div>

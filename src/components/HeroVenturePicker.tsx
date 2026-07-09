@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { VENTURES, type Venture } from '@/data/traditionalGroup';
-import HeadingReveal from '@/components/HeadingReveal';
 import { cn } from '@/lib/utils';
 
 const MANUAL_PAUSE_MS = 6000;
@@ -99,9 +98,7 @@ const HeroVenturePicker = ({ selected, onChange, onAutoPlayChange }: HeroVenture
                   <span className="tg-venture-shimmer absolute inset-0 rounded-[inherit]" aria-hidden="true" />
                 )}
                 <span className="relative z-[1] flex w-full items-center justify-between gap-2">
-                  <span className="font-display text-venture-chip leading-tight">
-                    <HeadingReveal variant="light">{venture.shortName}</HeadingReveal>
-                  </span>
+                  <span className="font-display text-venture-chip leading-tight">{venture.shortName}</span>
                   <ArrowUpRight
                     className="h-3.5 w-3.5 shrink-0 text-white/50 transition-all duration-300 group-hover/chip:text-white group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5"
                     aria-hidden="true"

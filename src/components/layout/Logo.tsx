@@ -27,7 +27,7 @@ const Logo = ({ className, priority = false, variant = 'default' }: LogoProps) =
   );
 
   if (variant === 'hero') return <span className="tg-logo-hero">{image}</span>;
-  if (variant === 'footer') return <span className="tg-logo-footer">{image}</span>;
+  if (variant === 'footer') return image;
   return image;
 };
 

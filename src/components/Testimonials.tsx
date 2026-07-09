@@ -19,7 +19,7 @@ const Testimonials = () => {
       <div className="absolute inset-0 tg-soft-texture opacity-50 pointer-events-none" aria-hidden="true" />
       <div className="tg-container relative">
         <motion.div
-          className="tg-section-header mx-auto max-w-2xl text-center"
+          className="tg-section-header tg-section-header--center mx-auto max-w-2xl"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -27,7 +27,7 @@ const Testimonials = () => {
         >
           <p className="tg-eyebrow mb-4">Testimonials</p>
           <h2 id="testimonials-heading" className="font-display text-headline-xl">
-            <HeadingReveal block>Stories of trust</HeadingReveal>
+            <HeadingReveal block className="mx-auto">Stories of trust</HeadingReveal>
           </h2>
           <div className="mx-auto mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="font-sans text-body-md text-tg-muted">

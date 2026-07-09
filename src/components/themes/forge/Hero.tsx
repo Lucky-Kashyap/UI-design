@@ -66,7 +66,7 @@ const ForgeHero = () => {
                 {FORGE_HERO.secondaryCta.label}
               </a>
             </div>
-            <div className="mt-6 grid grid-cols-3 gap-2 xs:mt-8 xs:gap-3 sm:max-w-md">
+            <div className="fg-hero-stats mt-6 xs:mt-8 sm:max-w-md">
               {FORGE_HERO_STATS.map((stat) => (
                 <div key={stat.label} className="fg-stat">
                   <span className="fg-stat__value">{stat.value}</span>
@@ -76,7 +76,7 @@ const ForgeHero = () => {
             </div>
           </div>
 
-          <motion.div className="fg-frame relative order-1 min-w-0 lg:order-2" style={{ y: frameY }}>
+          <motion.div className="fg-frame relative order-1 min-w-0 overflow-hidden lg:order-2 lg:overflow-visible" style={{ y: frameY }}>
             {theme.assets.decorativeSvg && (
               <img
                 src={theme.assets.decorativeSvg}

@@ -1,0 +1,35 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+# Explicit rewrites for static-exported theme routes with trailingSlash enabled.
+[[redirects]]
+  from = "/themes/prism/"
+  to = "/themes/prism/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/themes/horizon/"
+  to = "/themes/horizon/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/themes/meridian/"
+  to = "/themes/meridian/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/themes/forge/"
+  to = "/themes/forge/index.html"
+  status = 200
+
+# General static-page fallback for other clean URLs produced by Next export.
+[[redirects]]
+  from = "/*/"
+  to = "/:splat/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/:splat/index.html"
+  status = 200

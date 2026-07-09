@@ -438,11 +438,15 @@
 [data-theme='forge'] .tg-first-screen {
   height: auto;
   max-height: none;
-  overflow: visible;
+  overflow: hidden;
 }
 
 [data-theme='forge'] .fg-hero {
-  overflow: visible;
+  overflow: hidden;
+}
+
+[data-theme='forge'] .fg-hero__bg {
+  pointer-events: none;
 }
 
 [data-theme='forge'] .fg-hero__heading {
@@ -456,4 +460,15 @@
   flex-wrap: wrap;
   max-width: 100%;
   row-gap: 0.08em;
+}
+
+/* ── Mobile menu (portaled full-screen) ── */
+[data-theme='forge'] .fg-mobile-menu {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme='forge'] .fg-mobile-menu__cta {
+  margin-top: auto;
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
 }

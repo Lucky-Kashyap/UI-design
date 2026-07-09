@@ -1,22 +1,24 @@
 import type { NavLink } from '@/data/traditionalGroup';
+import { getSectionHref } from '@/themes/sectionRegistry';
 
+/** Forge nav — standard labels mapped to Copper Forge section ids. */
 export const FORGE_NAV_LINKS: NavLink[] = [
-  { label: 'Hearth', href: '#home' },
-  { label: 'Works', href: '#works' },
-  { label: 'Lineage', href: '#lineage' },
-  { label: 'Craft', href: '#craft' },
-  { label: 'Visit', href: '#visit' },
+  { label: 'Home', href: getSectionHref('forge', 'home') },
+  { label: 'Services', href: getSectionHref('forge', 'ventures') },
+  { label: 'About Us', href: getSectionHref('forge', 'about') },
+  { label: 'Gallery', href: getSectionHref('forge', 'gallery') },
+  { label: 'Contact', href: getSectionHref('forge', 'contact') },
 ];
 
 export const FORGE_SECTION_IDS = ['home', 'works', 'lineage', 'craft', 'visit'] as const;
 
-export const FORGE_CTA = { label: 'Plan a Visit', href: '#visit' } as const;
+export const FORGE_CTA = { label: 'Plan a Visit', href: getSectionHref('forge', 'contact') } as const;
 
 export const FORGE_HERO = {
   eyebrow: 'Forged in Jaipur',
   title: 'Traditional Group',
-  primaryCta: { label: 'Visit Us', href: '#visit' },
-  secondaryCta: { label: 'View Works', href: '#works' },
+  primaryCta: { label: 'Contact Us', href: getSectionHref('forge', 'contact') },
+  secondaryCta: { label: 'Our Services', href: getSectionHref('forge', 'ventures') },
 } as const;
 
 export const FORGE_LINEAGE = [

@@ -28,14 +28,14 @@ const ForgeHero = () => {
       <section
         ref={sectionRef}
         id="home"
-        className="fg-hero relative min-h-[calc(100dvh-var(--tg-header-offset,5.5rem))] overflow-visible scroll-mt-[var(--tg-header-offset,5.5rem)] bg-tg-deep"
+        className="fg-hero relative isolate min-h-[calc(100dvh-var(--tg-header-offset,5.5rem))] scroll-mt-[var(--tg-header-offset,5.5rem)] bg-tg-deep"
         aria-labelledby="forge-hero-heading"
       >
-        <motion.div className="absolute inset-0" style={{ y: bgY }} aria-hidden="true">
+        <motion.div className="fg-hero__bg absolute inset-0 overflow-hidden" style={{ y: bgY }} aria-hidden="true">
           <ForgeImage
             src={FORGE_HERO_BG}
             alt=""
-            className="h-[115%] w-full object-cover opacity-50"
+            className="h-full min-h-full w-full scale-105 object-cover object-center opacity-50"
             decoding="async"
             fetchPriority="high"
             width={1920}
@@ -44,6 +44,10 @@ const ForgeHero = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-tg-deep via-tg-deep/88 to-tg-deep/45" />
           <div
             className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_50%,rgba(184,115,51,0.18)_0%,transparent_70%)]"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-tg-deep lg:h-32"
             aria-hidden="true"
           />
         </motion.div>

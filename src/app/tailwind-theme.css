@@ -9,8 +9,8 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1440px;
 
-  --font-family-display: var(--font-fraunces), Fraunces, Georgia, serif;
-  --font-family-sans: var(--font-outfit), Outfit, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -62,17 +62,120 @@
   --max-width-hero-body: 28rem;
   --max-width-venture-panel: 15rem;
 
+  --width-hero-prism-w: 4rem;
+
+  --text-hero-display: clamp(2.5rem, 6.5vw, 5.25rem);
+  --text-hero-display--line-height: 1.05;
+  --text-hero-display--font-weight: 600;
+  --text-hero-display--letter-spacing: -0.02em;
+  --text-hero-display--font-family: var(--font-display);
+
+  --text-hero-editorial: clamp(2.35rem, 5.6vw, 6.25rem);
+  --text-hero-editorial--line-height: 0.95;
+  --text-hero-editorial--font-weight: 700;
+  --text-hero-editorial--letter-spacing: -0.03em;
+  --text-hero-editorial--font-family: var(--font-display);
+
+  --text-hero-eyebrow: 0.75rem;
+  --text-hero-eyebrow--line-height: 1.2;
+  --text-hero-eyebrow--font-weight: 500;
+  --text-hero-eyebrow--letter-spacing: 0.18em;
+
+  --text-hero-body: 0.9375rem;
+  --text-hero-body--line-height: 1.72;
+  --text-hero-body--font-weight: 400;
+
+  --text-hero-body-lg: 1.0625rem;
+  --text-hero-body-lg--line-height: 1.72;
+  --text-hero-body-lg--font-weight: 400;
+
+  --text-hero-label: 0.625rem;
+  --text-hero-label--line-height: 1.2;
+  --text-hero-label--font-weight: 600;
+  --text-hero-label--letter-spacing: 0.14em;
+
+  --text-venture-chip: 0.8125rem;
+  --text-venture-chip--line-height: 1.3;
+  --text-venture-chip--font-weight: 500;
+
+  --spacing-hero-stack: 1.25rem;
+  --spacing-hero-stack-xl: 3rem;
+  --spacing-hero-copy: 1.125rem;
+  --spacing-hero-copy-md: 1.375rem;
+  --spacing-hero-copy-lg: 1.625rem;
+  --spacing-hero-cta: 1rem;
+  --spacing-hero-badge: 0.5rem;
+  --spacing-hero-title: 0.875rem;
+  --spacing-hero-cta-mt: 0.75rem;
+  --spacing-hero-cta-bottom: 0.5rem;
+  --spacing-hero-badge-x: 0.625rem;
+  --spacing-hero-badge-y: 0.3125rem;
+  --spacing-venture-panel-inset: 0.5rem;
+
   --spacing-gutter: 1.5rem;
   --spacing-section-gap: 7rem;
   --spacing-margin-mobile: 16px;
   --spacing-margin-desktop: 48px;
 
   --text-display-lg: clamp(2.125rem, 4.5vw, 3.75rem);
-  --text-headline-xl: clamp(1.875rem, 3.8vw, 3.25rem);
-  --text-headline-lg: clamp(1.25rem, 2.2vw, 1.75rem);
-  --text-body-lg: 1.0625rem;
+  --text-display-lg--font-family: var(--font-display);
+  --text-display-lg--font-weight: 600;
+  --text-headline-xl: clamp(1.75rem, 3.2vw, 2.75rem);
+  --text-headline-xl--line-height: 1.12;
+  --text-headline-xl--font-weight: 600;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-family: var(--font-display);
+  --text-headline-lg: clamp(1.1875rem, 2vw, 1.625rem);
+  --text-headline-lg--font-family: var(--font-display);
+  --text-headline-lg--font-weight: 500;
+  --text-headline-lg--line-height: 1.22;
+  --text-headline-lg--letter-spacing: -0.015em;
+  --text-body-lg: 1rem;
+  --text-body-lg--font-weight: 400;
+  --text-body-lg--line-height: 1.72;
   --text-body-md: 0.9375rem;
-  --text-label-md: 0.75rem;
+  --text-body-md--font-weight: 400;
+  --text-body-md--line-height: 1.7;
+  --text-label-md: 0.6875rem;
+  --text-label-md--font-weight: 600;
+  --text-label-md--line-height: 1.25;
+  --text-label-md--letter-spacing: 0.16em;
+
+  --text-caption: 0.6875rem;
+  --text-caption--line-height: 1.35;
+  --text-caption--font-weight: 600;
+  --text-caption--letter-spacing: 0.14em;
+
+  --text-micro: 0.625rem;
+  --text-micro--line-height: 1.3;
+  --text-micro--font-weight: 500;
+  --text-micro--letter-spacing: 0.12em;
+
+  --text-nav: 0.8125rem;
+  --text-nav--line-height: 1.3;
+  --text-nav--font-weight: 500;
+
+  --text-card-title: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  --text-card-title--line-height: 1.25;
+  --text-card-title--font-weight: 500;
+  --text-card-title--font-family: var(--font-display);
+
+  --text-card-title-lg: clamp(1.1875rem, 2vw, 1.5625rem);
+  --text-card-title-lg--line-height: 1.2;
+  --text-card-title-lg--font-weight: 500;
+  --text-card-title-lg--font-family: var(--font-display);
+
+  --text-card-body: 0.875rem;
+  --text-card-body--line-height: 1.65;
+  --text-card-body--font-weight: 400;
+
+  --text-btn-sm: 0.8125rem;
+  --text-btn-sm--font-weight: 600;
+  --text-btn-sm--line-height: 1.2;
+
+  --text-topbar: 0.6875rem;
+  --text-topbar--line-height: 1.35;
+  --text-topbar--font-weight: 400;
 
   --background-image-prism-band: var(--tg-prism-gradient);
   --background-image-prism-hero-fade: linear-gradient(to top, rgba(6, 20, 40, 0.82) 0%, rgba(6, 20, 40, 0.35) 55%, transparent 100%);

@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Phone, Mail } from 'lucide-react';
 import { SITE } from '@/data/traditionalGroup';
+import HeadingReveal from '@/components/HeadingReveal';
 
 const CTASection = () => {
   const reduce = useReducedMotion() ?? false;
@@ -39,14 +40,16 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-label-md uppercase tracking-[0.16em] text-white/60 mb-3">
+            <p className="tg-eyebrow text-white/60 mb-3">
               Get in touch
             </p>
-            <h2 id="cta-heading" className="font-display text-headline-xl text-white mb-4">
-              Get a Free Quote
+            <h2 id="cta-heading" className="font-display text-headline-xl mb-4">
+              <HeadingReveal variant="light" block>
+                Get a Free Quote
+              </HeadingReveal>
             </h2>
             <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-            <p className="text-body-md text-white/75 mb-8 max-w-lg">
+            <p className="text-body-md text-white/75 mb-8 w-full max-w-none">
               Reach Traditional Group for manufacturing, hospitality, education, or eco-adventure
               enquiries. We are ready to help you take the next step.
             </p>
@@ -59,8 +62,8 @@ const CTASection = () => {
                 <Phone className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                 {SITE.phoneDisplay}
               </a>
-              <a href={`mailto:${SITE.email}`} className="tg-btn-secondary gap-2">
-                <Mail className="h-4 w-4" />
+              <a href={`mailto:${SITE.email}`} className="group tg-btn-secondary gap-2">
+                <Mail className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-110" />
                 Email us
               </a>
             </div>
@@ -74,8 +77,8 @@ const CTASection = () => {
             transition={{ duration: 0.5, delay: 0.08 }}
             whileHover={reduce ? undefined : { y: -4 }}
           >
-            <p className="text-[11px] uppercase tracking-[0.14em] text-white/55 mb-3">Contact details</p>
-            <address className="not-italic text-sm text-white/80 leading-relaxed space-y-3">
+            <p className="tg-caption text-white/55 mb-3">Contact details</p>
+            <address className="not-italic tg-card-body text-white/80 space-y-3">
               <p>{SITE.address}</p>
               <p>
                 <a

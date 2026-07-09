@@ -73,7 +73,9 @@ const ThemePageContent = ({ themeId }: ThemePageContentProps) => {
     case 'horizon':
       return (
         <>
-          <HorizonHero />
+          <div className="tg-first-screen">
+            <HorizonHero />
+          </div>
           <main id="main-content" role="main">
             <HorizonWorlds />
             <HorizonJourney />
@@ -88,7 +90,9 @@ const ThemePageContent = ({ themeId }: ThemePageContentProps) => {
     case 'forge':
       return (
         <>
-          <ForgeHero />
+          <div className="tg-first-screen">
+            <ForgeHero />
+          </div>
           <main id="main-content" role="main">
             <ForgeWorks />
             <ForgeLineage />

@@ -1,0 +1,157 @@
+/* Copper Forge — typography, layout, components (Theme 4 only) */
+
+[data-theme='forge'] {
+  --fg-section-y: clamp(3.5rem, 8vw, 6.5rem);
+  --fg-container-x: clamp(1rem, 4vw, 2rem);
+  --fg-display: clamp(2.25rem, 9vw, 3.75rem);
+  --fg-display-lg: clamp(2.75rem, 6vw, 5rem);
+  --fg-h2: clamp(1.875rem, 4vw, 3rem);
+  --fg-h3: clamp(1.3125rem, 2.5vw, 1.875rem);
+  --fg-body: 0.9375rem;
+  --fg-body-lg: 1.0625rem;
+  --fg-eyebrow: 0.6875rem;
+  --fg-caption: 0.6875rem;
+  --fg-btn: 0.875rem;
+  --fg-btn-pad-y: 0.6875rem;
+  --fg-btn-pad-x: 1.5rem;
+  --fg-btn-min-h: 2.75rem;
+  --fg-nav: 0.875rem;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='forge'] {
+    --fg-display: var(--fg-display-lg);
+  }
+}
+
+[data-theme='forge'] .fg-section {
+  padding-block: var(--fg-section-y);
+  scroll-margin-top: var(--tg-header-offset, 5.5rem);
+}
+
+[data-theme='forge'] .fg-container {
+  width: 100%;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding-inline: var(--fg-container-x);
+}
+
+[data-theme='forge'] .fg-eyebrow {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--tg-gold);
+}
+
+[data-theme='forge'] .fg-display {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-display);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+[data-theme='forge'] .fg-h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-h2);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+[data-theme='forge'] .fg-h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-h3);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+[data-theme='forge'] .fg-body {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-body);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+[data-theme='forge'] .fg-body-lg {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-body-lg);
+  font-weight: 400;
+  line-height: 1.68;
+}
+
+[data-theme='forge'] .fg-caption {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-caption);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+[data-theme='forge'] .fg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--fg-btn-min-h);
+  padding: var(--fg-btn-pad-y) var(--fg-btn-pad-x);
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: var(--fg-btn);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  transition: transform 0.35s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme='forge'] .fg-btn--primary {
+  background: var(--tg-gold);
+  color: var(--tg-navy-deep);
+}
+
+[data-theme='forge'] .fg-btn--primary:hover {
+  background: var(--tg-gold-light);
+  transform: translateY(-2px);
+}
+
+[data-theme='forge'] .fg-btn--ghost {
+  border: 1px solid rgba(184, 115, 51, 0.55);
+  color: var(--tg-gold);
+  background: transparent;
+}
+
+[data-theme='forge'] .fg-btn--ghost:hover {
+  background: rgba(184, 115, 51, 0.12);
+  transform: translateY(-2px);
+}
+
+[data-theme='forge'] .fg-frame {
+  position: relative;
+}
+
+[data-theme='forge'] .fg-frame::before {
+  content: '';
+  position: absolute;
+  inset: -0.5rem;
+  border: 1px solid rgba(184, 115, 51, 0.35);
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+[data-theme='forge'] .fg-img-fallback {
+  background: linear-gradient(145deg, #120d0a 0%, #2a1e18 50%, rgba(184, 115, 51, 0.35) 100%);
+}
+
+[data-theme='forge'] .fg-nav-link {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: var(--fg-nav);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='forge'] .fg-btn:hover {
+    transform: none;
+  }
+}

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { X, ArrowUpRight, ChevronDown } from 'lucide-react';
 import { GALLERY, type GalleryItem } from '@/data/traditionalGroup';
+import HeadingReveal from '@/components/HeadingReveal';
 import { cn } from '@/lib/utils';
 
 const Gallery = () => {
@@ -32,18 +33,18 @@ const Gallery = () => {
     <section id="gallery" className="tg-section bg-tg-bg overflow-hidden scroll-mt-[var(--tg-header-offset,5.5rem)]" aria-labelledby="gallery-heading">
       <div className="tg-container">
         <motion.div
-          className="tg-section-header max-w-2xl"
+          className="tg-section-header w-full max-w-none"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5 }}
         >
           <p className="tg-eyebrow mb-4">In the gallery</p>
-          <h2 id="gallery-heading" className="font-display text-headline-xl text-tg-navy">
-            A journey across our ventures
+          <h2 id="gallery-heading" className="font-display text-headline-xl">
+            <HeadingReveal block>A journey across our ventures</HeadingReveal>
           </h2>
           <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-          <p className="text-body-md text-tg-muted">
+          <p className="text-body-md text-tg-muted w-full max-w-none">
             Follow the pathway through hospitality, manufacturing, education, and eco-adventure —
             each stop a chapter of Traditional Group. Tap a timeline dot to expand or collapse.
           </p>
@@ -153,7 +154,9 @@ const Gallery = () => {
                           transition={{ type: 'spring', stiffness: 320, damping: 24 }}
                         >
                           <p className="tg-eyebrow mb-2">{item.sector}</p>
-                          <h3 className="font-display text-2xl xs:text-3xl text-tg-navy mb-3">{item.title}</h3>
+                          <h3 className="font-display text-headline-lg mb-3">
+                            <HeadingReveal block>{item.title}</HeadingReveal>
+                          </h3>
                           <div
                             className={cn(
                               'mb-4 h-1 w-14 rounded-full tg-prism-line',
@@ -166,7 +169,7 @@ const Gallery = () => {
                             type="button"
                             onClick={() => setActive(item)}
                             className={cn(
-                              'mt-5 tg-link-hover inline-flex items-center gap-1.5 text-sm font-semibold text-tg-navy hover:!text-tg-cyan',
+                              'mt-5 tg-link-hover inline-flex items-center gap-1.5 text-tg-navy hover:!text-tg-cyan',
                               !imageLeft && 'md:flex-row-reverse',
                             )}
                           >
@@ -188,7 +191,7 @@ const Gallery = () => {
                       <button
                         type="button"
                         onClick={() => toggleItem(item.id)}
-                        className="tg-link-hover inline-flex items-center gap-1 text-sm font-semibold text-tg-muted hover:!text-tg-cyan"
+                        className="tg-link-hover inline-flex items-center gap-1 text-tg-muted hover:!text-tg-cyan"
                       >
                         {item.title}
                         <ChevronDown className="h-4 w-4" />

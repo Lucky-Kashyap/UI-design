@@ -1,0 +1,177 @@
+/* Meridian Atelier — typography, layout, components (Theme 2 only) */
+
+[data-theme='meridian'] {
+  --md-section-y: clamp(3.5rem, 8vw, 6.5rem);
+  --md-container-x: clamp(1rem, 4vw, 2rem);
+  --md-display: clamp(2.5rem, 12vw, 4rem);
+  --md-display-lg: clamp(3rem, 8vw, 6.5rem);
+  --md-h2: clamp(1.75rem, 5vw, 3.25rem);
+  --md-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --md-body: 0.9375rem;
+  --md-body-lg: 1.0625rem;
+  --md-eyebrow: 0.6875rem;
+  --md-caption: 0.625rem;
+  --md-btn: 0.875rem;
+  --md-btn-pad-y: 0.6875rem;
+  --md-btn-pad-x: 1.375rem;
+  --md-btn-min-h: 2.75rem;
+  --md-nav: 0.8125rem;
+}
+
+@media (min-width: 1024px) {
+  [data-theme='meridian'] {
+    --md-display: var(--md-display-lg);
+  }
+}
+
+[data-theme='meridian'] .md-section {
+  padding-block: var(--md-section-y);
+  scroll-margin-top: var(--tg-header-offset, 5.5rem);
+}
+
+[data-theme='meridian'] .md-container {
+  width: 100%;
+  max-width: 75rem;
+  margin-inline: auto;
+  padding-inline: var(--md-container-x);
+}
+
+[data-theme='meridian'] .md-eyebrow {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--tg-prism-cyan);
+}
+
+[data-theme='meridian'] .md-display {
+  font-family: Syne, system-ui, sans-serif;
+  font-size: var(--md-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+[data-theme='meridian'] .md-h2 {
+  font-family: Syne, system-ui, sans-serif;
+  font-size: var(--md-h2);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+[data-theme='meridian'] .md-h3 {
+  font-family: Syne, system-ui, sans-serif;
+  font-size: var(--md-h3);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+[data-theme='meridian'] .md-body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-body);
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: 0.01em;
+}
+
+[data-theme='meridian'] .md-body-lg {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-body-lg);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+[data-theme='meridian'] .md-caption {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-caption);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+[data-theme='meridian'] .md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--md-btn-min-h);
+  padding: var(--md-btn-pad-y) var(--md-btn-pad-x);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-btn);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 9999px;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.35s ease;
+}
+
+[data-theme='meridian'] .md-btn--primary {
+  background: var(--tg-prism-cyan);
+  color: var(--tg-navy-deep);
+}
+
+[data-theme='meridian'] .md-btn--primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+[data-theme='meridian'] .md-btn--ghost {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='meridian'] .md-btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+[data-theme='meridian'] .md-chip {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  border-radius: 9999px;
+  padding: 0.5rem 0.875rem;
+  white-space: nowrap;
+}
+
+[data-theme='meridian'] .md-img-fallback {
+  background: linear-gradient(145deg, #060810 0%, #151b26 40%, #1a1035 70%, rgba(6, 182, 212, 0.25) 100%);
+}
+
+[data-theme='meridian'] .md-scroll-strip {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+[data-theme='meridian'] .md-scroll-strip::-webkit-scrollbar {
+  display: none;
+}
+
+[data-theme='meridian'] .md-nav-link {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: var(--md-nav);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='meridian'] .md-btn:hover {
+    transform: none;
+  }
+}

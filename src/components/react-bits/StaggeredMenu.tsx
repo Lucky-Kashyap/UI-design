@@ -16,9 +16,10 @@ type StaggeredMenuProps = {
   cta?: { label: string; href: string; onClick?: () => void };
   title?: string;
   className?: string;
+  id?: string;
 };
 
-const StaggeredMenu = ({ open, onClose, items, cta, title, className }: StaggeredMenuProps) => {
+const StaggeredMenu = ({ open, onClose, items, cta, title, className, id }: StaggeredMenuProps) => {
   const reduce = useReducedMotion() ?? false;
 
   if (!open) return null;
@@ -32,6 +33,7 @@ const StaggeredMenu = ({ open, onClose, items, cta, title, className }: Staggere
     >
       <button type="button" className="absolute inset-0 bg-tg-deep/80 backdrop-blur-sm" aria-label="Close menu" onClick={onClose} />
       <motion.nav
+        id={id}
         className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col border-l border-tg-line bg-tg-soft p-6"
         initial={reduce ? false : { x: '100%' }}
         animate={{ x: 0 }}

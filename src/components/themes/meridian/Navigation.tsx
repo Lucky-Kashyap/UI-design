@@ -8,6 +8,7 @@ import StaggeredMenu from '@/components/react-bits/StaggeredMenu';
 import { MERIDIAN_CTA, MERIDIAN_NAV_LINKS, MERIDIAN_SECTION_IDS } from '@/data/meridianContent';
 import { useThemeNav } from '@/hooks/useThemeNav';
 import { cn } from '@/lib/utils';
+import { MeridianContainer } from './ui';
 
 const MeridianNavigation = () => {
   const { scrolled, open, setOpen, active, setActiveHref, close, handleNavClick } = useThemeNav({
@@ -39,7 +40,7 @@ const MeridianNavigation = () => {
           : 'border-b border-white/10 bg-white/5 backdrop-blur-2xl',
       )}
     >
-      <div className="tg-container flex min-w-0 items-center justify-between gap-3">
+      <MeridianContainer className="flex min-w-0 items-center justify-between gap-3">
         <a
           href="#home"
           className="shrink-0 transition-transform duration-300 hover:scale-[1.02]"
@@ -50,18 +51,18 @@ const MeridianNavigation = () => {
           <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
         </a>
 
-        <div className="hidden lg:flex flex-1 justify-center px-4">
+        <div className="hidden min-w-0 flex-1 justify-center px-2 md:px-4 lg:flex">
           <PillNav items={pillItems} solid={navSolid} />
         </div>
 
-        <div className="hidden lg:flex shrink-0">
+        <div className="hidden shrink-0 lg:flex">
           <Magnet strength={0.25}>
             <ElectricBorder>
               <a
                 href={MERIDIAN_CTA.href}
                 onClick={() => setActiveHref(MERIDIAN_CTA.href)}
                 aria-current={contactActive ? 'page' : undefined}
-                className="inline-flex min-h-[2.5rem] items-center justify-center px-5 text-sm font-semibold text-tg-ink transition-colors hover:text-white"
+                className="md-btn md-btn--primary min-h-[2.5rem] px-5"
               >
                 {MERIDIAN_CTA.label}
               </a>
@@ -72,7 +73,7 @@ const MeridianNavigation = () => {
         <button
           type="button"
           className={cn(
-            'inline-flex h-10 w-10 items-center justify-center rounded-tg-md border lg:hidden',
+            'inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-tg-md border lg:hidden',
             navSolid ? 'border-tg-line text-tg-ink' : 'border-white/15 text-white',
           )}
           aria-expanded={open}
@@ -82,11 +83,12 @@ const MeridianNavigation = () => {
         >
           <Menu className="h-5 w-5" />
         </button>
-      </div>
+      </MeridianContainer>
 
       <AnimatePresence>
         {open && (
           <StaggeredMenu
+            id="meridian-mobile-menu"
             open={open}
             onClose={close}
             items={menuItems}

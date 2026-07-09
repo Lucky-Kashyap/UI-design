@@ -16,6 +16,16 @@
   --tg-gold-light: #d4b84a;
   --tg-prism-coral: #e85d3b;
   --tg-prism-gradient: linear-gradient(90deg, #1fa463, #1ba3c9, #f0a020, #e85d3b);
+  --tg-heading-reveal-ink: #0b1f3a;
+  --tg-heading-reveal-ink-light: #ffffff;
+  --tg-heading-reveal-stroke-light: rgba(255, 255, 255, 0.92);
+  --tg-heading-reveal-stroke-dark: rgba(11, 31, 58, 0.88);
+  --tg-heading-reveal-stroke-width: 1.5px;
+  --tg-xray-radius: 2.75rem;
+  --tg-xray-radius-sm: 2rem;
+  --tg-xray-radius-hero: clamp(2.5rem, 5vw, 3.75rem);
+  --tg-heading-reveal-duration: 0.95s;
+  --tg-heading-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme='meridian'] {
@@ -79,11 +89,11 @@
   --tg-radius-md: 0.875rem;
   --tg-radius-lg: 1.25rem;
   --tg-gap-sector: 0.5rem;
-  --tg-pad-topbar-y: 0.375rem;
+  --tg-pad-topbar-y: 0.4375rem;
   --tg-pad-nav-y: 0.5rem;
   --tg-pad-nav-y-md: 0.5625rem;
-  --tg-hero-top-gap: 1.5rem;
-  --tg-hero-top-gap-md: 2rem;
+  --tg-hero-top-gap: 2rem;
+  --tg-hero-top-gap-md: 2.75rem;
   --tg-hero-scroll-h: 3.25rem;
   --tg-hero-badge-mb: 0;
   --tg-hero-eyebrow-mb: 0.75rem;
@@ -96,14 +106,23 @@
   --tg-hero-badge-gap: 0.5rem;
   --tg-live-dot-size: 0.5rem;
   --tg-hero-prism-w: 4rem;
-  --tg-btn-x: 1.75rem;
-  --tg-btn-y: 0.6875rem;
-  --tg-btn-min-h: 2.75rem;
-  --tg-btn-font: 0.9375rem;
-  --tg-btn-nav-x: 1rem;
-  --tg-btn-nav-y: 0.5rem;
-  --tg-btn-nav-min-h: 2.25rem;
+  --tg-btn-x: 1.5rem;
+  --tg-btn-y: 0.5625rem;
+  --tg-btn-min-h: 2.5rem;
+  --tg-btn-font: 0.875rem;
+  --tg-btn-letter: 0.045em;
+  --tg-btn-nav-x: 0.875rem;
+  --tg-btn-nav-y: 0.4375rem;
+  --tg-btn-nav-min-h: 2.125rem;
   --tg-btn-nav-font: 0.6875rem;
+  --tg-btn-hero-x: 1.625rem;
+  --tg-btn-hero-y: 0.6875rem;
+  --tg-btn-hero-min-h: 2.625rem;
+  --tg-btn-hero-font: 0.875rem;
+  --tg-btn-sm-x: 1rem;
+  --tg-btn-sm-y: 0.4375rem;
+  --tg-btn-sm-min-h: 2.125rem;
+  --tg-btn-sm-font: 0.8125rem;
   --tg-venture-gap: 0.5rem;
   --tg-venture-pad-y: 0.5625rem;
   --tg-venture-pad-x: 1rem;

@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { ABOUT } from '@/data/traditionalGroup';
+import HeadingReveal from '@/components/HeadingReveal';
 import { useCountUp, useParallax } from '@/hooks/useMotionUtils';
 import { cn } from '@/lib/utils';
 
@@ -60,11 +61,11 @@ const Stat = ({ value, suffix, label, delay = 0, reduce }: StatProps) => {
       transition={{ duration: 0.4, delay }}
       whileHover={reduce ? undefined : { y: -4, scale: 1.03 }}
     >
-      <p className="font-display text-2xl text-tg-navy md:text-3xl">
+      <p className="tg-stat-value text-2xl text-tg-navy md:text-3xl tabular-nums">
         {count}
         {suffix}
       </p>
-      <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-tg-muted">{label}</p>
+      <p className="tg-stat-label mt-1 text-tg-muted">{label}</p>
     </motion.div>
   );
 };
@@ -97,11 +98,11 @@ const About = () => {
             transition={{ duration: 0.55 }}
           >
             <p className="tg-eyebrow mb-4">{ABOUT.eyebrow}</p>
-            <h2 id="about-heading" className="font-display text-headline-xl text-tg-navy mb-5">
-              {ABOUT.title}
+            <h2 id="about-heading" className="font-display text-headline-xl mb-5">
+              <HeadingReveal block>{ABOUT.title}</HeadingReveal>
             </h2>
             <div className="mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
-            <p className="text-body-md text-tg-muted mb-8 max-w-xl">{ABOUT.body}</p>
+            <p className="text-body-md text-tg-muted mb-8 w-full max-w-none">{ABOUT.body}</p>
 
             <div className="grid grid-cols-3 gap-2 mb-5">
               {ABOUT.stats.map((stat, i) => (
@@ -175,13 +176,13 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-tg-navy/55 via-transparent to-tg-navy/20" />
                 {!reduce && <div className="absolute inset-0 tg-scanline pointer-events-none opacity-40" aria-hidden="true" />}
 
-                <div className="absolute top-3 left-3 rounded-full bg-white/15 backdrop-blur-md border border-white/25 px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white">
+                <div className="absolute top-3 left-3 rounded-full bg-white/15 backdrop-blur-md border border-white/25 px-3 py-1 tg-micro text-white">
                   Jaipur · Multi-venture
                 </div>
 
-                <div className="absolute inset-x-3 bottom-3 rounded-[var(--tg-radius-md)] bg-white/95 backdrop-blur-md border border-tg-line p-3 shadow-lg">
-                  <p className="text-[10px] uppercase tracking-[0.14em] text-tg-muted mb-0.5">Across sectors</p>
-                  <p className="font-display text-base text-tg-navy leading-snug">
+                <div className="absolute inset-x-3 bottom-3 rounded-[var(--tg-radius-md)] bg-white/95 backdrop-blur-md border border-tg-line p-3 sm:p-4 shadow-lg">
+                  <p className="tg-caption text-tg-muted mb-1">Across sectors</p>
+                  <p className="font-display text-body-md text-tg-navy leading-snug break-words">
                     Manufacturing · Hospitality · Education · Eco-Adventure
                   </p>
                   <div className="mt-2 h-0.5 w-full rounded-full tg-prism-line animate-prism-shift bg-[length:200%_100%]" />

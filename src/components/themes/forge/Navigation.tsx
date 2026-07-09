@@ -5,6 +5,7 @@ import StaggeredMenu from '@/components/react-bits/StaggeredMenu';
 import { FORGE_CTA, FORGE_NAV_LINKS, FORGE_SECTION_IDS } from '@/data/forgeContent';
 import { useThemeNav } from '@/hooks/useThemeNav';
 import { cn } from '@/lib/utils';
+import { ForgeContainer } from './ui';
 
 const ForgeNavigation = () => {
   const { scrolled, open, setOpen, active, setActiveHref, close, handleNavClick } = useThemeNav({
@@ -20,13 +21,18 @@ const ForgeNavigation = () => {
   }));
 
   return (
-    <div className={cn('sticky top-0 z-50 border-b transition-colors', navSolid ? 'border-tg-line bg-tg-bg/95 backdrop-blur-md' : 'border-tg-gold/20 bg-tg-deep/30')}>
-      <div className="tg-container flex items-center justify-between gap-4 py-4">
-        <a href="#home" onClick={() => handleNavClick('#home')} aria-label="Traditional Group home">
+    <div
+      className={cn(
+        'border-b transition-colors duration-300',
+        navSolid ? 'border-tg-line bg-tg-bg/95 backdrop-blur-md' : 'border-tg-gold/20 bg-tg-deep/30',
+      )}
+    >
+      <ForgeContainer className="flex min-w-0 items-center justify-between gap-4 py-3 md:py-4">
+        <a href="#home" onClick={() => handleNavClick('#home')} aria-label="Traditional Group home" className="shrink-0">
           <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
         </a>
-        <div className="hidden h-px flex-1 max-w-xs bg-gradient-to-r from-transparent via-tg-gold/50 to-transparent lg:block" aria-hidden="true" />
-        <ul className="hidden items-center gap-6 lg:flex">
+        <div className="hidden h-px max-w-xs flex-1 bg-gradient-to-r from-transparent via-tg-gold/50 to-transparent lg:block" aria-hidden="true" />
+        <ul className="hidden items-center gap-5 lg:gap-6 lg:flex">
           {FORGE_NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -34,7 +40,7 @@ const ForgeNavigation = () => {
                 onClick={() => setActiveHref(link.href)}
                 aria-current={active === link.href ? 'page' : undefined}
                 className={cn(
-                  'font-display text-sm tracking-wide transition-colors',
+                  'fg-nav-link transition-colors',
                   active === link.href ? 'text-tg-gold' : navSolid ? 'text-tg-muted hover:text-tg-ink' : 'text-white/80 hover:text-white',
                 )}
               >
@@ -43,17 +49,13 @@ const ForgeNavigation = () => {
             </li>
           ))}
         </ul>
-        <a
-          href={FORGE_CTA.href}
-          onClick={() => setActiveHref(FORGE_CTA.href)}
-          className="hidden rounded-tg-pill border border-tg-gold bg-tg-gold/10 px-5 py-2 text-sm font-semibold text-tg-gold lg:inline-flex"
-        >
+        <a href={FORGE_CTA.href} onClick={() => setActiveHref(FORGE_CTA.href)} className="fg-btn fg-btn--ghost hidden px-5 lg:inline-flex">
           {FORGE_CTA.label}
         </a>
         <button
           type="button"
           className={cn(
-            'inline-flex h-10 w-10 items-center justify-center rounded-full border lg:hidden',
+            'inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border lg:hidden',
             navSolid ? 'border-tg-line text-tg-ink' : 'border-tg-gold/40 text-white',
           )}
           aria-expanded={open}
@@ -63,10 +65,11 @@ const ForgeNavigation = () => {
         >
           <Menu className="h-5 w-5" />
         </button>
-      </div>
+      </ForgeContainer>
       <AnimatePresence>
         {open && (
           <StaggeredMenu
+            id="forge-mobile-menu"
             open={open}
             onClose={close}
             items={menuItems}

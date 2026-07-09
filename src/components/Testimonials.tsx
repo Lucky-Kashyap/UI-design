@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { TESTIMONIALS, type Testimonial } from '@/data/traditionalGroup';
+import HeadingReveal from '@/components/HeadingReveal';
 import { cn } from '@/lib/utils';
 
 const CARD_TILT = [-3, 0, 0, 2] as const;
@@ -25,8 +26,8 @@ const Testimonials = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="tg-eyebrow mb-4">Testimonials</p>
-          <h2 id="testimonials-heading" className="font-display text-headline-xl text-tg-navy">
-            Stories of trust
+          <h2 id="testimonials-heading" className="font-display text-headline-xl">
+            <HeadingReveal block>Stories of trust</HeadingReveal>
           </h2>
           <div className="mx-auto mb-5 h-1 w-16 rounded-full tg-prism-line" aria-hidden="true" />
           <p className="font-sans text-body-md text-tg-muted">
@@ -71,14 +72,14 @@ const Testimonials = () => {
 const TestimonialCard = ({ item }: { item: Testimonial }) => (
   <>
     <header className="mb-4 flex items-start justify-between gap-3">
-      <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-tg-muted">
+      <p className="tg-caption text-tg-muted">
         {item.venture}
       </p>
       <div
         className="flex shrink-0 items-center gap-1 rounded-full bg-tg-soft px-2 py-0.5"
         aria-label={`Rated ${item.rating} out of 5`}
       >
-        <span className="font-sans text-sm font-semibold tabular-nums text-tg-navy">
+        <span className="tg-stat-value text-sm tabular-nums text-tg-navy">
           {item.rating.toFixed(1)}
         </span>
         <Star className="h-3.5 w-3.5 fill-tg-emerald text-tg-emerald" aria-hidden="true" />
@@ -90,10 +91,10 @@ const TestimonialCard = ({ item }: { item: Testimonial }) => (
     </blockquote>
 
     <footer className="mt-5 border-t border-tg-line pt-4">
-      <p className="font-sans text-sm font-semibold text-tg-navy transition-colors group-hover:text-tg-cyan">
+      <p className="text-body-md text-tg-navy transition-colors group-hover:text-tg-cyan">
         {item.name}
       </p>
-      <p className="mt-0.5 font-sans text-xs text-tg-muted">{item.role}</p>
+      <p className="tg-caption mt-0.5 text-tg-muted">{item.role}</p>
     </footer>
   </>
 );

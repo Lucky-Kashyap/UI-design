@@ -1,5 +1,6 @@
 import CardSwap from '@/components/react-bits/CardSwap';
 import { TESTIMONIALS } from '@/data/traditionalGroup';
+import { ForgeContainer, ForgeEyebrow, ForgeH2, ForgeSection } from './ui';
 
 const ForgeVoices = () => {
   const items = TESTIMONIALS.map((t) => ({
@@ -10,15 +11,15 @@ const ForgeVoices = () => {
   }));
 
   return (
-    <section className="border-y border-tg-line bg-tg-bg py-12 xxs:py-14 xs:py-16" aria-label="Testimonial">
-      <div className="tg-container min-w-0 max-w-3xl px-1 text-center xs:px-0">
-        <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-tg-gold xs:text-xs">Voices</p>
-        <h2 className="mt-2 font-display text-[clamp(1.5rem,5vw,2rem)] text-tg-ink">Forged in trust</h2>
+    <ForgeSection className="border-y border-tg-line bg-tg-bg" aria-label="Testimonial">
+      <ForgeContainer className="max-w-3xl text-center">
+        <ForgeEyebrow>Voices</ForgeEyebrow>
+        <ForgeH2 className="mt-2">Forged in trust</ForgeH2>
         <div className="mt-8 xs:mt-10">
           <CardSwap items={items} />
         </div>
-      </div>
-    </section>
+      </ForgeContainer>
+    </ForgeSection>
   );
 };
 

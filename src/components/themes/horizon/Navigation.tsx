@@ -5,6 +5,7 @@ import StaggeredMenu from '@/components/react-bits/StaggeredMenu';
 import { HORIZON_CTA, HORIZON_NAV_LINKS, HORIZON_SECTION_IDS } from '@/data/horizonContent';
 import { useThemeNav } from '@/hooks/useThemeNav';
 import { cn } from '@/lib/utils';
+import { HorizonContainer } from './ui';
 
 const HorizonNavigation = () => {
   const { scrolled, open, setOpen, active, setActiveHref, close, handleNavClick } = useThemeNav({
@@ -22,16 +23,16 @@ const HorizonNavigation = () => {
   return (
     <div
       className={cn(
-        'py-4 transition-all duration-300',
+        'py-3 transition-all duration-300 md:py-4',
         navSolid ? 'border-b border-tg-line bg-tg-bg/95 shadow-sm backdrop-blur-md' : 'bg-transparent',
       )}
     >
-      <div className="tg-container flex items-center justify-between gap-4">
-        <a href="#home" onClick={() => handleNavClick('#home')} aria-label="Traditional Group home">
+      <HorizonContainer className="flex min-w-0 items-center justify-between gap-4">
+        <a href="#home" onClick={() => handleNavClick('#home')} aria-label="Traditional Group home" className="shrink-0">
           <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
         </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-6 lg:gap-8 lg:flex">
           {HORIZON_NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -39,7 +40,7 @@ const HorizonNavigation = () => {
                 onClick={() => setActiveHref(link.href)}
                 aria-current={active === link.href ? 'page' : undefined}
                 className={cn(
-                  'text-sm font-medium tracking-wide transition-colors',
+                  'hz-nav-link transition-colors',
                   active === link.href ? 'text-tg-navy' : navSolid ? 'text-tg-muted hover:text-tg-navy' : 'text-white/85 hover:text-white',
                   active === link.href && 'border-b-2 border-tg-cyan pb-0.5',
                 )}
@@ -53,10 +54,7 @@ const HorizonNavigation = () => {
         <a
           href={HORIZON_CTA.href}
           onClick={() => setActiveHref(HORIZON_CTA.href)}
-          className={cn(
-            'hidden rounded-tg-pill px-5 py-2.5 text-sm font-semibold lg:inline-flex',
-            navSolid ? 'bg-tg-navy text-white' : 'bg-white text-tg-navy',
-          )}
+          className={cn('hz-btn hz-btn--primary hidden min-h-[2.5rem] px-5 lg:inline-flex', !navSolid && 'shadow-lg')}
         >
           {HORIZON_CTA.label}
         </a>
@@ -64,7 +62,7 @@ const HorizonNavigation = () => {
         <button
           type="button"
           className={cn(
-            'inline-flex h-10 w-10 items-center justify-center rounded-full border lg:hidden',
+            'inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border lg:hidden',
             navSolid ? 'border-tg-line text-tg-ink' : 'border-white/40 text-white',
           )}
           aria-expanded={open}
@@ -74,11 +72,12 @@ const HorizonNavigation = () => {
         >
           <Menu className="h-5 w-5" />
         </button>
-      </div>
+      </HorizonContainer>
 
       <AnimatePresence>
         {open && (
           <StaggeredMenu
+            id="horizon-mobile-menu"
             open={open}
             onClose={close}
             items={menuItems}

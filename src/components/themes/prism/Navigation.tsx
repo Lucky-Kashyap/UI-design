@@ -42,7 +42,7 @@ const PrismNavigation = () => {
                 aria-current={active === link.href ? 'page' : undefined}
                 className={cn(
                   'tg-nav-link',
-                  navSolid ? 'text-tg-ink/80 text-[0.8125rem]' : 'tg-nav-link--hero text-[0.8125rem]',
+                  navSolid ? 'text-tg-ink/80' : 'tg-nav-link--hero',
                   active === link.href && (navSolid ? 'is-active text-tg-navy' : 'is-active'),
                 )}
               >
@@ -61,7 +61,7 @@ const PrismNavigation = () => {
             href={PRISM_CTA.href}
             onClick={() => setActiveHref(PRISM_CTA.href)}
             aria-current={contactActive ? 'page' : undefined}
-            className={cn(navSolid ? 'tg-btn-primary' : 'tg-btn-gold', 'text-[0.8125rem]')}
+            className={cn(navSolid ? 'tg-btn-primary tg-btn-nav' : 'tg-btn-gold tg-btn-nav')}
           >
             {PRISM_CTA.label}
           </a>
@@ -108,7 +108,7 @@ const PrismNavigation = () => {
                   </li>
                 ))}
               </ul>
-              <a href={PRISM_CTA.href} onClick={() => handleNavClick(PRISM_CTA.href)} className="tg-btn-primary mt-6 w-full text-center">
+              <a href={PRISM_CTA.href} onClick={() => handleNavClick(PRISM_CTA.href)} className="tg-btn-primary tg-btn-nav mt-6 w-full text-center">
                 {PRISM_CTA.label}
               </a>
             </motion.nav>

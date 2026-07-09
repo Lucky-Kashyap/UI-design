@@ -19,7 +19,7 @@ const Logo = ({ className, priority = false, variant = 'default' }: LogoProps) =
       objectFit="contain"
       className={cn(
         'w-auto',
-        variant === 'footer' ? 'h-10' : 'h-8 sm:h-9',
+        variant === 'footer' ? 'h-8 sm:h-9' : 'h-8 sm:h-9',
         variant === 'hero' && 'h-7 sm:h-8',
         className,
       )}

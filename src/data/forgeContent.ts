@@ -23,8 +23,8 @@ export const FORGE_HERO = {
 
 export const FORGE_HERO_STATS = [
   { value: '5+', label: 'Ventures' },
-  { value: '1985', label: 'Established' },
-  { value: 'Jaipur', label: 'Headquarters' },
+  { value: '1985', label: 'Est.' },
+  { value: 'Jaipur', label: 'Based in' },
 ] as const;
 
 export const FORGE_HERO_BADGE = {

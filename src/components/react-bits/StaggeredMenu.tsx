@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -15,18 +19,24 @@ type StaggeredMenuProps = {
   items: StaggeredMenuItem[];
   cta?: { label: string; href: string; onClick?: () => void };
   title?: string;
+  logo?: ReactNode;
   className?: string;
   id?: string;
 };
 
-const StaggeredMenu = ({ open, onClose, items, cta, title, className, id }: StaggeredMenuProps) => {
+const StaggeredMenu = ({ open, onClose, items, cta, title, logo, className, id }: StaggeredMenuProps) => {
   const reduce = useReducedMotion() ?? false;
+  const [mounted, setMounted] = useState(false);
 
-  if (!open) return null;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  return (
+  if (!open || !mounted) return null;
+
+  return createPortal(
     <motion.div
-      className={cn('fixed inset-0 z-40 lg:hidden', className)}
+      className={cn('fixed inset-0 z-[100] lg:hidden', className)}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -41,9 +51,16 @@ const StaggeredMenu = ({ open, onClose, items, cta, title, className, id }: Stag
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         aria-label={title ?? 'Mobile menu'}
       >
-        <div className="mb-6 flex items-center justify-between">
-          <div className="h-1 w-16 rounded-full bg-prism-band" aria-hidden="true" />
-          <button type="button" onClick={onClose} className="rounded-tg-md border border-tg-line p-2 text-tg-ink" aria-label="Close menu">
+        <div className="mb-6 flex min-h-[2.75rem] items-center justify-between gap-3">
+          {logo ?? (
+            <div className="h-1 w-16 shrink-0 rounded-full bg-prism-band" aria-hidden="true" />
+          )}
+          <button
+            type="button"
+            onClick={onClose}
+            className="tg-menu-toggle cursor-pointer rounded-tg-md border border-tg-line p-2 text-tg-ink"
+            aria-label="Close menu"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -75,7 +92,8 @@ const StaggeredMenu = ({ open, onClose, items, cta, title, className, id }: Stag
           </a>
         )}
       </motion.nav>
-    </motion.div>
+    </motion.div>,
+    document.body,
   );
 };
 

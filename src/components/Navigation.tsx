@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Menu, Phone, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import TraditionalGroupLogo from '@/components/TraditionalGroupLogo';
 import Magnet from '@/components/react-bits/Magnet';
+import StaggeredMenu from '@/components/react-bits/StaggeredMenu';
 import { CONTACT_CTA, HEADER_NAV_LINKS, PAGE_SECTION_IDS, SITE } from '@/data/traditionalGroup';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { useScrolledPast } from '@/hooks/useScrolledPast';
@@ -15,12 +16,24 @@ const Navigation = () => {
   const [open, setOpen] = useState(false);
   const { active, setActiveHref } = useScrollSpy(PAGE_SECTION_IDS);
   const contactActive = active === CONTACT_CTA.href;
-  const navSolid = scrolled || open;
+  const navSolid = scrolled;
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (!open) {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      return undefined;
+    }
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
     return () => {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
   }, [open]);
 
@@ -32,126 +45,122 @@ const Navigation = () => {
   };
 
   return (
-    <div
-      className={cn(
-        'tg-navbar transition-[background-color,backdrop-filter,border-color,box-shadow] duration-500 ease-tg',
-        navSolid
-          ? 'tg-navbar--scrolled tg-glass border-b border-tg-line/80 shadow-[0_8px_32px_rgba(6,20,40,0.12)] backdrop-blur-xl'
-          : 'tg-navbar--overlay border-b border-transparent bg-transparent shadow-none backdrop-blur-none',
-      )}
-    >
-      <nav
-        className="tg-navbar__inner tg-container flex min-w-0 items-center justify-between gap-3"
-        aria-label="Primary"
+    <>
+      <div
+        className={cn(
+          'tg-navbar transition-[background-color,backdrop-filter,border-color,box-shadow] duration-500 ease-tg',
+          navSolid
+            ? 'tg-navbar--scrolled tg-glass border-b border-tg-line/80 shadow-[0_8px_32px_rgba(6,20,40,0.12)] backdrop-blur-xl'
+            : 'tg-navbar--overlay border-b border-transparent bg-transparent shadow-none backdrop-blur-none',
+        )}
       >
-        <Magnet strength={0.18}>
-          <a
-            href="#home"
-            className="tg-brand-logo-link tg-magnetic-target shrink-0"
-            onClick={() => handleNavClick('#home')}
-            aria-label="Traditional Group home"
-            aria-current={active === '#home' ? 'page' : undefined}
-          >
-            <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
-          </a>
-        </Magnet>
-
-        <ul className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {HEADER_NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <Magnet strength={0.15}>
-                <a
-                  href={link.href}
-                  onClick={() => setActiveHref(link.href)}
-                  aria-current={active === link.href ? 'page' : undefined}
-                  className={cn(
-                    'tg-magnetic-target tg-nav-link',
-                    navSolid
-                      ? 'text-tg-ink/80'
-                      : 'tg-nav-link--hero',
-                    active === link.href && (navSolid ? 'is-active text-tg-navy' : 'is-active'),
-                  )}
-                >
-                  {link.label}
-                </a>
-              </Magnet>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden lg:flex">
-          <Magnet strength={0.2}>
+        <nav
+          className="tg-navbar__inner tg-container flex min-w-0 items-center justify-between gap-3"
+          aria-label="Primary"
+        >
+          <Magnet strength={0.18}>
             <a
-              href={CONTACT_CTA.href}
-              onClick={() => setActiveHref(CONTACT_CTA.href)}
-              aria-current={contactActive ? 'page' : undefined}
-              className={cn(
-                'tg-magnetic-target tg-btn-nav transition-all duration-300',
-                navSolid ? 'tg-btn-primary' : 'tg-btn-gold',
-                contactActive && 'ring-2 ring-tg-cyan/60 ring-offset-2 ring-offset-transparent',
-              )}
+              href="#home"
+              className="tg-brand-logo-link tg-magnetic-target shrink-0"
+              onClick={() => handleNavClick('#home')}
+              aria-label="Traditional Group home"
+              aria-current={active === '#home' ? 'page' : undefined}
             >
-              {CONTACT_CTA.label}
+              <TraditionalGroupLogo priority variant={navSolid ? 'default' : 'hero'} />
             </a>
           </Magnet>
-        </div>
 
-        <motion.button
-          type="button"
-          className={cn(
-            'lg:hidden tg-icon-btn tg-magnetic-target inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border',
-            navSolid
-              ? 'tg-icon-btn--cyan border-tg-line text-tg-navy'
-              : 'border-white/35 text-white bg-white/10 backdrop-blur-sm',
-          )}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((value) => !value)}
-          whileTap={{ scale: 0.92 }}
-        >
-          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </motion.button>
-      </nav>
+          <ul className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {HEADER_NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Magnet strength={0.15}>
+                  <a
+                    href={link.href}
+                    onClick={() => setActiveHref(link.href)}
+                    aria-current={active === link.href ? 'page' : undefined}
+                    className={cn(
+                      'tg-magnetic-target tg-nav-link',
+                      navSolid
+                        ? 'text-tg-ink/80'
+                        : 'tg-nav-link--hero',
+                      active === link.href && (navSolid ? 'is-active text-tg-navy' : 'is-active'),
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                </Magnet>
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden lg:flex">
+            <Magnet strength={0.2}>
+              <a
+                href={CONTACT_CTA.href}
+                onClick={() => setActiveHref(CONTACT_CTA.href)}
+                aria-current={contactActive ? 'page' : undefined}
+                className={cn(
+                  'tg-magnetic-target tg-btn-nav transition-all duration-300',
+                  navSolid ? 'tg-btn-primary' : 'tg-btn-gold',
+                  contactActive && 'ring-2 ring-tg-cyan/60 ring-offset-2 ring-offset-transparent',
+                )}
+              >
+                {CONTACT_CTA.label}
+              </a>
+            </Magnet>
+          </div>
+
+          <motion.button
+            type="button"
+            className={cn(
+              'tg-menu-toggle lg:hidden tg-icon-btn inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border',
+              navSolid
+                ? 'tg-icon-btn--cyan border-tg-line text-tg-navy'
+                : 'border-white/35 text-white bg-white/10 backdrop-blur-sm',
+            )}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((value) => !value)}
+            whileTap={{ scale: 0.92 }}
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </motion.button>
+        </nav>
+      </div>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <StaggeredMenu
             id="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden border-t border-tg-line bg-white"
-          >
-            <div className="tg-container flex flex-col gap-1 py-3 pb-5">
-              {HEADER_NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  aria-current={active === link.href ? 'page' : undefined}
-                  className={cn(
-                    'tg-mobile-nav-link',
-                    active === link.href && 'tg-mobile-nav-link--active',
-                  )}
-                >
-                  {link.label}
-                </a>
-              ))}
+            open={open}
+            onClose={close}
+            title={`${SITE.name} mobile`}
+            logo={
               <a
-                href={SITE.phoneHref}
-                className="tg-btn-primary tg-btn-nav mt-2 w-full gap-2"
-                onClick={close}
+                href="#home"
+                onClick={() => handleNavClick('#home')}
+                aria-label="Traditional Group home"
+                className="tg-brand-logo-link min-w-0 shrink"
               >
-                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
-                Call {SITE.phoneDisplay}
+                <TraditionalGroupLogo priority variant="default" />
               </a>
-            </div>
-          </motion.div>
+            }
+            items={HEADER_NAV_LINKS.map((link) => ({
+              label: link.label,
+              href: link.href,
+              isActive: active === link.href,
+              onClick: () => handleNavClick(link.href),
+            }))}
+            cta={{
+              label: `Call ${SITE.phoneDisplay}`,
+              href: SITE.phoneHref,
+              onClick: close,
+            }}
+          />
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 };
 

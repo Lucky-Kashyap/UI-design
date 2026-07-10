@@ -494,7 +494,7 @@
   row-gap: 0.08em;
 }
 
-/* ── Mobile menu (inline dropdown below header) ── */
+/* ── Mobile menu (fixed overlay via portal) ── */
 [data-theme='forge'] .fg-mobile-menu {
   box-shadow: 0 12px 24px rgba(42, 30, 24, 0.08);
 }

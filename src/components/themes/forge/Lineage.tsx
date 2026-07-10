@@ -15,7 +15,7 @@ const ForgeLineage = () => (
     <div className="fg-copper-band absolute inset-x-0 top-0" aria-hidden="true" />
 
     <ForgeContainer className="grid min-w-0 gap-8 xs:gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14 xl:gap-16">
-      <AnimatedContent className="relative min-w-0">
+      <AnimatedContent className="relative order-2 min-w-0 lg:order-1">
         <div className="relative overflow-hidden rounded-tg-lg border border-tg-gold/25 shadow-xl">
           <ForgeImage
             src={FORGE_LINEAGE_IMAGE}
@@ -38,7 +38,7 @@ const ForgeLineage = () => (
         </div>
       </AnimatedContent>
 
-      <AnimatedContent delay={0.1} className="min-w-0">
+      <AnimatedContent delay={0.1} className="order-1 min-w-0 lg:order-2">
         <ForgeEyebrow>{FORGE_LINEAGE.eyebrow}</ForgeEyebrow>
         <ForgeH2 id="lineage-heading" className="mt-2 xs:mt-3">
           {FORGE_LINEAGE.title}

@@ -31,9 +31,9 @@ const ThemeNavigation = ({ themeId, showTopBar }: ThemeNavigationProps) => {
       <motion.header
         className="tg-site-header fixed inset-x-0 top-0 z-50"
         role="banner"
-        initial={reduce ? false : { y: -28, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        initial={reduce ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
         {content}
       </motion.header>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import LenisProvider from '@/components/providers/LenisProvider';
 import PageJsonLd from '@/components/seo/PageJsonLd';
 import { SITE_HEAD_LINKS } from '@/config/seo';
-import { VENTURES } from '@/data/traditionalGroup';
+import { HERO } from '@/data/traditionalGroup';
 import { fontVariables, outfit } from '@/lib/fonts';
 import { defaultMetadata } from '@/lib/metadata';
 import './globals.css';
@@ -19,18 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="preload"
           as="image"
           type="image/webp"
-          href="/media/hero-rajasthan-haveli-heritage-architecture.webp"
+          href={HERO.backgroundImage}
           fetchPriority="high"
         />
-        {VENTURES.map((venture) => (
-          <link
-            key={venture.id}
-            rel="preload"
-            as="image"
-            type="image/webp"
-            href={venture.image}
-          />
-        ))}
         <link rel="preconnect" href="https://traditionalgroup.in" crossOrigin="" />
         <link rel="dns-prefetch" href="https://traditionalgroup.in" />
         <PageJsonLd />

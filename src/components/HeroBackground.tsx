@@ -16,7 +16,7 @@ const HeroBackground = ({ activeIndex }: HeroBackgroundProps) => {
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-      {/* Instant LCP paint — matches production preload */}
+      {/* LCP paint — WebP hero slide */}
       <img
         src={HERO.backgroundImage}
         alt=""

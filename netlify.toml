@@ -1,35 +1,63 @@
+# Next.js static export (output: "export", trailingSlash: true)
+# Publish directory: out/
+
 [build]
   command = "npm run build"
   publish = "out"
 
-# Explicit rewrites for static-exported theme routes with trailingSlash enabled.
-[[redirects]]
-  from = "/themes/prism/"
-  to = "/themes/prism/index.html"
-  status = 200
+[build.environment]
+  NODE_VERSION = "20"
+
+# --- Rewrites (status 200): serve index.html without changing the browser URL ---
 
 [[redirects]]
-  from = "/themes/horizon/"
-  to = "/themes/horizon/index.html"
+  from = "/"
+  to = "/index.html"
   status = 200
+  force = true
 
 [[redirects]]
-  from = "/themes/meridian/"
-  to = "/themes/meridian/index.html"
+  from = "/themes/"
+  to = "/themes/index.html"
   status = 200
+  force = true
 
 [[redirects]]
-  from = "/themes/forge/"
-  to = "/themes/forge/index.html"
+  from = "/themes/:theme/"
+  to = "/themes/:theme/index.html"
   status = 200
+  force = true
 
-# General static-page fallback for other clean URLs produced by Next export.
+# Theme routes without trailing slash (e.g. /themes/horizon)
 [[redirects]]
-  from = "/*/"
-  to = "/:splat/index.html"
+  from = "/themes"
+  to = "/themes/index.html"
   status = 200
+  force = true
 
+[[redirects]]
+  from = "/themes/:theme"
+  to = "/themes/:theme/index.html"
+  status = 200
+  force = true
+
+# Other pre-rendered directory routes (trailing slash)
+[[redirects]]
+  from = "/:path/"
+  to = "/:path/index.html"
+  status = 200
+  force = true
+
+# Canonical trailing slash (matches next.config trailingSlash: true)
+[[redirects]]
+  from = "/:path"
+  to = "/:path/"
+  status = 301
+  force = true
+  conditions = {Path = ["!/*.*", "!/_next/*"]}
+
+# 404 fallback for routes with no matching static file
 [[redirects]]
   from = "/*"
-  to = "/:splat/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404

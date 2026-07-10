@@ -13,9 +13,21 @@ export function useThemeNav({ sectionIds }: UseThemeNavOptions) {
   const { active, setActiveHref } = useScrollSpy(sectionIds);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (!open) {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      return undefined;
+    }
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
     return () => {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
   }, [open]);
 

@@ -4,7 +4,6 @@
  */
 
 export const BRAND_IMAGES = {
-  logo: '/traditional-group-logo.png',
   logoWebp: '/traditional-group-logo.webp',
 } as const;
 

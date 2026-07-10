@@ -123,7 +123,7 @@ const HorizonNavigation = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  onClick={() => setActiveHref(link.href)}
+                  onClick={(event) => handleNavClick(link.href, event)}
                   aria-current={active === link.href ? 'page' : undefined}
                   className={cn(
                     'hz-nav-link transition-colors',
@@ -139,7 +139,7 @@ const HorizonNavigation = () => {
 
           <a
             href={HORIZON_CTA.href}
-            onClick={() => setActiveHref(HORIZON_CTA.href)}
+            onClick={(event) => handleNavClick(HORIZON_CTA.href, event)}
             className={cn(
               'hz-btn hz-btn--primary hz-nav-cta--desktop min-h-[2.5rem] shrink-0 px-5',
               !navSolid && 'shadow-lg',

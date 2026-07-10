@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getScrollY, subscribeScroll } from '@/lib/scroll';
 
 type ScrollPauseState = {
   scrollY: number;
@@ -15,16 +16,17 @@ export const useScrollPause = (threshold = 80, pauseMs = 220): ScrollPauseState 
     let timeout: number | undefined;
 
     const onScroll = () => {
-      setScrollY(window.scrollY);
+      const y = getScrollY();
+      setScrollY((prev) => (prev === y ? prev : y));
       setIsPaused(false);
       if (timeout) window.clearTimeout(timeout);
       timeout = window.setTimeout(() => setIsPaused(true), pauseMs);
     };
 
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const unsubscribe = subscribeScroll(onScroll);
     return () => {
-      window.removeEventListener('scroll', onScroll);
+      unsubscribe();
       if (timeout) window.clearTimeout(timeout);
     };
   }, [pauseMs]);

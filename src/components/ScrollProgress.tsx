@@ -1,22 +1,30 @@
-import { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { getScrollY, subscribeScroll } from '@/lib/scroll';
 
 const ScrollProgress = () => {
-  const [progress, setProgress] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
+    const update = () => {
+      const bar = barRef.current;
+      if (!bar) return;
+
       const doc = document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
-      const next = max > 0 ? (window.scrollY / max) * 100 : 0;
-      setProgress(Math.min(100, Math.max(0, next)));
+      const next = max > 0 ? (getScrollY() / max) * 100 : 0;
+      const clamped = Math.min(100, Math.max(0, next));
+      bar.style.transform = `scaleX(${clamped / 100})`;
+      bar.parentElement?.setAttribute('aria-valuenow', String(Math.round(clamped)));
     };
 
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    update();
+    const unsubscribe = subscribeScroll(update);
+    window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      unsubscribe();
+      window.removeEventListener('resize', update);
     };
   }, []);
 
@@ -27,11 +35,12 @@ const ScrollProgress = () => {
       aria-label="Page scroll progress"
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-valuenow={Math.round(progress)}
+      aria-valuenow={0}
     >
       <div
-        className="h-full tg-prism-line origin-left transition-[width] duration-75 ease-out"
-        style={{ width: `${progress}%` }}
+        ref={barRef}
+        className="h-full w-full origin-left tg-prism-line will-change-transform"
+        style={{ transform: 'scaleX(0)' }}
       />
     </div>
   );

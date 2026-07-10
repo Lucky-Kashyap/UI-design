@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import type { NavLink } from '@/data/traditionalGroup';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { useScrolledPast } from '@/hooks/useScrolledPast';
+import { scrollToHash } from '@/lib/scroll';
 
 type UseThemeNavOptions = {
   sectionIds: readonly string[];
@@ -33,7 +34,10 @@ export function useThemeNav({ sectionIds }: UseThemeNavOptions) {
 
   const close = () => setOpen(false);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, event?: MouseEvent<HTMLElement>) => {
+    event?.preventDefault();
+    event?.stopPropagation();
+    scrollToHash(href);
     setActiveHref(href);
     close();
   };

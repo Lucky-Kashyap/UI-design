@@ -33,7 +33,7 @@ export const meridianTheme: ThemeConfig = {
   layout: {
     showTopBar: false,
     venturesStyle: 'bento',
-    galleryStyle: 'masonry',
+    galleryStyle: 'grid',
     navigationStyle: 'pill-glass',
     heroStyle: 'cinematic-split',
   },
@@ -46,7 +46,7 @@ export const meridianTheme: ThemeConfig = {
   sections: {
     ventures: 'bento',
     about: 'timeline',
-    gallery: 'masonry',
+    gallery: 'scenes-zigzag',
     testimonials: 'spotlight',
     cta: 'gradient-electric',
   },
@@ -71,7 +71,7 @@ export const meridianTheme: ThemeConfig = {
     sections: {
       ventures: ['MagicBento', 'AnimatedContent'],
       about: ['ScrollReveal', 'ProfileCard'],
-      gallery: ['Masonry', 'TiltedCard'],
+      gallery: ['TiltedCard'],
       testimonials: ['SpotlightCard', 'CardSwap'],
       cta: ['GradientText', 'Magnet', 'ElectricBorder'],
     },

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
-import type Lenis from 'lenis';
+import { getScrollY, scrollToTop, subscribeScroll } from '@/lib/scroll';
 
 const SCROLL_THRESHOLD_PX = 450;
 
@@ -12,19 +12,18 @@ const ScrollToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > SCROLL_THRESHOLD_PX);
+    const onScroll = () => {
+      const next = getScrollY() > SCROLL_THRESHOLD_PX;
+      setVisible((prev) => (prev === next ? prev : next));
+    };
+
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const unsubscribe = subscribeScroll(onScroll);
+    return unsubscribe;
   }, []);
 
-  const scrollToTop = useCallback(() => {
-    const lenis = (window as Window & { __lenis?: Lenis }).__lenis;
-    if (lenis) {
-      lenis.scrollTo(0, { duration: reduce ? 0 : 1.2 });
-      return;
-    }
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  const handleScrollToTop = useCallback(() => {
+    scrollToTop({ immediate: reduce });
   }, [reduce]);
 
   return (
@@ -32,7 +31,7 @@ const ScrollToTop = () => {
       {visible && (
         <motion.button
           type="button"
-          onClick={scrollToTop}
+          onClick={handleScrollToTop}
           className="tg-scroll-top"
           initial={reduce ? false : { opacity: 0, y: 12, scale: 0.92 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

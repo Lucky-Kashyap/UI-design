@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
+import { getScrollY, subscribeScroll } from '@/lib/scroll';
 
 export const useScrolledPast = (threshold = 48): boolean => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > threshold);
+    const onScroll = () => {
+      const next = getScrollY() > threshold;
+      setScrolled((prev) => (prev === next ? prev : next));
+    };
 
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const unsubscribe = subscribeScroll(onScroll);
+    return unsubscribe;
   }, [threshold]);
 
   return scrolled;

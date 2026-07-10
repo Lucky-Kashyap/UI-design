@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInView, useReducedMotion } from 'framer-motion';
+import { subscribeScroll } from '@/lib/scroll';
 
 type CountUpOptions = {
   duration?: number;
@@ -40,6 +41,7 @@ export function useParallax(strength = 24) {
   const ref = useRef<HTMLDivElement | null>(null);
   const reduceMotion = useReducedMotion();
   const [offset, setOffset] = useState(0);
+  const rafRef = useRef(0);
 
   useEffect(() => {
     if (reduceMotion) return undefined;
@@ -48,16 +50,24 @@ export function useParallax(strength = 24) {
     if (!isDesktop) return undefined;
 
     const onScroll = () => {
-      const el = ref.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const mid = rect.top + rect.height / 2 - window.innerHeight / 2;
-      setOffset(Math.max(-strength, Math.min(strength, mid * -0.06)));
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = 0;
+        const el = ref.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const mid = rect.top + rect.height / 2 - window.innerHeight / 2;
+        const next = Math.max(-strength, Math.min(strength, mid * -0.06));
+        setOffset((prev) => (prev === next ? prev : next));
+      });
     };
 
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    const unsubscribe = subscribeScroll(onScroll);
+    return () => {
+      unsubscribe();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [reduceMotion, strength]);
 
   return { ref, offset };

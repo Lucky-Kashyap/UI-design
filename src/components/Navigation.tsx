@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type MouseEvent } from 'react';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import TraditionalGroupLogo from '@/components/TraditionalGroupLogo';
@@ -9,6 +9,7 @@ import StaggeredMenu from '@/components/react-bits/StaggeredMenu';
 import { CONTACT_CTA, HEADER_NAV_LINKS, PAGE_SECTION_IDS, SITE } from '@/data/traditionalGroup';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { useScrolledPast } from '@/hooks/useScrolledPast';
+import { scrollToHash } from '@/lib/scroll';
 import { cn } from '@/lib/utils';
 
 const Navigation = () => {
@@ -39,7 +40,10 @@ const Navigation = () => {
 
   const close = () => setOpen(false);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, event?: MouseEvent<HTMLElement>) => {
+    event?.preventDefault();
+    event?.stopPropagation();
+    scrollToHash(href);
     setActiveHref(href);
     close();
   };
@@ -62,7 +66,7 @@ const Navigation = () => {
             <a
               href="#home"
               className="tg-brand-logo-link tg-magnetic-target shrink-0"
-              onClick={() => handleNavClick('#home')}
+              onClick={(event) => handleNavClick('#home', event)}
               aria-label="Traditional Group home"
               aria-current={active === '#home' ? 'page' : undefined}
             >
@@ -76,7 +80,7 @@ const Navigation = () => {
                 <Magnet strength={0.15}>
                   <a
                     href={link.href}
-                    onClick={() => setActiveHref(link.href)}
+                    onClick={(event) => handleNavClick(link.href, event)}
                     aria-current={active === link.href ? 'page' : undefined}
                     className={cn(
                       'tg-magnetic-target tg-nav-link',
@@ -97,7 +101,7 @@ const Navigation = () => {
             <Magnet strength={0.2}>
               <a
                 href={CONTACT_CTA.href}
-                onClick={() => setActiveHref(CONTACT_CTA.href)}
+                onClick={(event) => handleNavClick(CONTACT_CTA.href, event)}
                 aria-current={contactActive ? 'page' : undefined}
                 className={cn(
                   'tg-magnetic-target tg-btn-nav transition-all duration-300',
@@ -139,7 +143,7 @@ const Navigation = () => {
             logo={
               <a
                 href="#home"
-                onClick={() => handleNavClick('#home')}
+                onClick={(event) => handleNavClick('#home', event)}
                 aria-label="Traditional Group home"
                 className="tg-brand-logo-link min-w-0 shrink"
               >

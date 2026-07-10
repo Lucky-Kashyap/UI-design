@@ -2,7 +2,7 @@
 
 import { useEffect, type ReactNode } from 'react';
 import Lenis from 'lenis';
-import { emitScroll, getHeaderOffsetPx } from '@/lib/scroll';
+import { emitScroll, scrollToHash } from '@/lib/scroll';
 
 type LenisProviderProps = {
   children: ReactNode;
@@ -11,16 +11,41 @@ type LenisProviderProps = {
 const LenisProvider = ({ children }: LenisProviderProps) => {
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) return undefined;
+
+    const onAnchorClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const hash = anchor.getAttribute('href');
+      if (!hash || hash === '#') return;
+
+      const el = document.querySelector(hash);
+      if (!(el instanceof HTMLElement)) return;
+
+      event.preventDefault();
+      scrollToHash(hash, { immediate: reduceMotion });
+    };
+
+    document.addEventListener('click', onAnchorClick, true);
+
+    if (reduceMotion) {
+      window.addEventListener('scroll', emitScroll, { passive: true });
+      return () => {
+        document.removeEventListener('click', onAnchorClick, true);
+        window.removeEventListener('scroll', emitScroll);
+      };
+    }
 
     const lenis = new Lenis({
-      duration: 1.35,
+      duration: 1.1,
       easing: (t) => 1 - Math.pow(1 - t, 4),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.85,
-      touchMultiplier: 1.65,
+      // Native wheel on desktop — smoothWheel caused lag and blocked anchor scroll while inertia was active.
+      smoothWheel: false,
+      wheelMultiplier: 1,
+      touchMultiplier: 1,
       syncTouch: false,
       infinite: false,
       autoResize: true,
@@ -38,29 +63,8 @@ const LenisProvider = ({ children }: LenisProviderProps) => {
     lenis.on('scroll', emitScroll);
     window.addEventListener('scroll', emitScroll, { passive: true });
 
-    const onAnchorClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const anchor = target?.closest('a[href^="#"]') as HTMLAnchorElement | null;
-      if (!anchor) return;
-
-      const hash = anchor.getAttribute('href');
-      if (!hash || hash === '#') return;
-
-      const el = document.querySelector(hash);
-      if (!(el instanceof HTMLElement)) return;
-
-      event.preventDefault();
-      lenis.scrollTo(el, {
-        offset: -getHeaderOffsetPx(),
-        duration: 1.4,
-        easing: (t) => 1 - Math.pow(1 - t, 4),
-      });
-    };
-
-    document.addEventListener('click', onAnchorClick);
-
     return () => {
-      document.removeEventListener('click', onAnchorClick);
+      document.removeEventListener('click', onAnchorClick, true);
       window.removeEventListener('scroll', emitScroll);
       lenis.off('scroll', emitScroll);
       cancelAnimationFrame(frame);

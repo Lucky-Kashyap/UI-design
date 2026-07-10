@@ -34,7 +34,7 @@ const ForgeNavigation = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  onClick={() => setActiveHref(link.href)}
+                  onClick={(event) => handleNavClick(link.href, event)}
                   aria-current={active === link.href ? 'page' : undefined}
                   className={cn(
                     'fg-nav-link transition-colors',
@@ -49,7 +49,7 @@ const ForgeNavigation = () => {
 
           <a
             href={FORGE_CTA.href}
-            onClick={() => setActiveHref(FORGE_CTA.href)}
+            onClick={(event) => handleNavClick(FORGE_CTA.href, event)}
             className="fg-btn fg-btn--ghost fg-nav-cta hidden shrink-0 px-5 lg:inline-flex"
           >
             {FORGE_CTA.label}

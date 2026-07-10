@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import BlurText from '@/components/react-bits/BlurText';
 import CountUp from '@/components/react-bits/CountUp';
@@ -36,10 +36,11 @@ const MeridianHero = () => {
   );
   const [activeVenture, setActiveVenture] = useState(0);
   const [videoFailed, setVideoFailed] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 600], [0, reduce ? 0 : 80]);
-  const contentY = useTransform(scrollY, [0, 600], [0, reduce ? 0 : -30]);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -30]);
 
   const handleVentureSelect = useCallback((index: number) => {
     setActiveVenture(index);
@@ -54,6 +55,7 @@ const MeridianHero = () => {
     <>
       <MeridianThemeStyles />
       <section
+        ref={sectionRef}
         id="home"
         className="relative min-h-[100dvh] overflow-hidden bg-tg-deep scroll-mt-[var(--tg-header-offset,5.5rem)]"
         aria-labelledby="hero-heading"

@@ -78,7 +78,7 @@ const MeridianNavigation = () => {
                       linkRefs.current[index] = el;
                     }}
                     href={link.href}
-                    onClick={() => handleNavClick(link.href)}
+                    onClick={(event) => handleNavClick(link.href, event)}
                     aria-current={active === link.href ? 'page' : undefined}
                     className={cn(
                       'md-nav-link inline-block',
@@ -95,7 +95,7 @@ const MeridianNavigation = () => {
           <div className="hidden shrink-0 lg:block">
             <a
               href={MERIDIAN_CTA.href}
-              onClick={() => setActiveHref(MERIDIAN_CTA.href)}
+              onClick={(event) => handleNavClick(MERIDIAN_CTA.href, event)}
               aria-current={contactActive ? 'page' : undefined}
               className="md-btn md-btn--primary md-nav-cta"
               data-md-cursor="button"
